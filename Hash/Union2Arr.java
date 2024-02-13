@@ -1,7 +1,5 @@
 import java.util.HashSet;
 
-import java.util.Iterator;
-
 class Union2Arr {
     public static void intersection(int[] nums1, int[] nums2) {
 
@@ -18,7 +16,6 @@ class Union2Arr {
             set.add(nums2[i]);
         }
 
-        Iterator i = set.iterator();
         System.out.println(set);
 
     }
