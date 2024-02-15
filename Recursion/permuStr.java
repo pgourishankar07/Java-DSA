@@ -36,7 +36,7 @@ public class permuStr {
     }
 
     public static void main(String[] args) {
-        String str = "abc";
+        String str = "abcd";
         // printPermutations(str, 0, str.length() - 1);
         printPermu(str, "");
     }
