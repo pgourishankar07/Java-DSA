@@ -3,7 +3,6 @@ import java.util.HashMap;
 public class SubArrEqK {
     public int subarraySum(int[] nums, int k) {
 
-        int n = nums.length;
         int count = 0;
         HashMap<Integer, Integer> map = new HashMap<>();
 

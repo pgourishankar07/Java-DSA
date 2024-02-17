@@ -37,40 +37,18 @@ public class BitOperations {
         return n & bitMask;
     }
 
+    static int clear_range_of_bits(int n, int i, int j) {
+        int a = ((~0) << (j + 1));
+        int b = (1 << i) - 1;
+        int bitMask = a | b;
+        return n & bitMask;
+    }
+
     public static void main(String args[]) {
         System.out.println(get_ith_bit(7, 2));
         System.out.println(set_ith_bit(10, 2));
         System.out.println(clear_ith_bit(10, 1));
         System.out.println(update_ith_bit(10, 1, 0));
         System.out.println(clear_i_bits(10, 4));
-    }
-}
-
-class Solution {
-    public int maxOperations(int[] nums) {
-
-        int n = nums.length;
-
-        int count = 0;
-        ArrayList<Integer> list = new ArrayList<>();
-
-        for (int num : nums) {
-            list.add(num);
-        }
-
-        int target = nums[0] + nums[1];
-
-        while (list.size() > 1) {
-            if (list.get(0) + list.get(1) == target) {
-                list.remove(0);
-                list.remove(0);
-                count++;
-            } else {
-                break;
-            }
-        }
-
-        return count;
-
     }
 }

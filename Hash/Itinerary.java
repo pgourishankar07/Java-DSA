@@ -6,7 +6,7 @@ public class Itinerary {
 
     public static void Solution(HashMap<String, String> map) {
         Set<String> from = map.keySet();
-        Set<String> to = new HashSet();
+        Set<String> to = new HashSet<>();
 
         // inserting all To places
         for (String str : from) {
