@@ -359,13 +359,13 @@ public class Basic {
 
         // movX("abxcxxd", 0, "", "");
 
-        // subSeq("abc", 0, "");
+        subSeq("123", 0, "");
 
         // HashSet<String> hSet = new HashSet<>();
         // unqSubSeq("aaa", 0, "", hSet);
 
         // subStr("hello", 0, 0);
-        subStr("hello", 0);
+        // subStr("hello", 0);
 
         sc.close();
     }

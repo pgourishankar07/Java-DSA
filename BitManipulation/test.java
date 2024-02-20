@@ -1,6 +1,6 @@
 
 public class test {
     public static void main(String args[]) {
-        System.out.println((char) 122);
+        System.out.println(-~3); // -~x = x + 1
     }
 }
