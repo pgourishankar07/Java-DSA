@@ -28,35 +28,21 @@ public class test {
         Node temp = head;
         Node prev = null;
 
-        int count = 0;
-
         while (temp != null) {
-            if (count == M) {
-                int skip = N;
-                while (skip != 0) {
-                    System.out.println(temp.val);
-                    temp = temp.next;
-                    skip--;
-                }
-                count = -1;
-                prev.next = temp.next;
+
+            for (int i = 0; i < M && temp != null; i++) {
+                prev = temp;
+                temp = temp.next;
             }
-            count++;
-            prev = temp;
-            temp = temp.next;
+
+            for (int i = 0; i < N && temp != null; i++) {
+                temp = temp.next;
+            }
+
+            prev.next = temp;
         }
 
         printLL(head);
-
-        // while (temp != null) {
-        // prev = temp;
-        // if (count == M) {
-        // prev.next = temp.next;
-        // count = 0;
-        // }
-        // count++;
-        // temp = temp.next;
-        // }
 
     }
 
@@ -70,7 +56,7 @@ public class test {
         head.next.next.next.next.next.next = new Node(10);
         head.next.next.next.next.next.next.next = new Node(1);
 
-        linkdelete(head, 1, 2);
+        linkdelete(head, 2, 1);
 
         // printLL(head);
     }

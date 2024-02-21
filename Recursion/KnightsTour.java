@@ -63,3 +63,5 @@ public class KnightsTour {
         }
     }
 }
+
+// Time Complexity : N^(N^2)
