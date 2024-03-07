@@ -19,7 +19,7 @@ public class _1_Basics {
             return rear == size - 1;
         }
 
-        void enque(int val) { // O(1)
+        void add(int val) { // O(1)
             if (isFull()) {
                 System.out.println("Queue is Full");
                 return;
@@ -28,14 +28,14 @@ public class _1_Basics {
             arr[rear] = val;
         }
 
-        int deque() { // O(n) so use circular queue while u use array
+        int remove() { // O(n) so use circular queue while u use array
             if (isEmpty()) {
                 System.out.println("Queue is Empty");
                 return -1;
             }
             int front = arr[0];
 
-            for (int i = 0; i < rear; i++) {
+            for (int i = 0; i < rear; i++) { // move all the elements to the left
                 arr[i] = arr[i + 1];
             }
             rear--;
@@ -55,18 +55,18 @@ public class _1_Basics {
     public static void main(String args[]) {
         queue q = new queue(5);
 
-        q.enque(1);
-        q.enque(2);
-        q.enque(3);
-        q.enque(4);
+        q.add(1);
+        q.add(2);
+        q.add(3);
+        q.add(4);
 
         while (!q.isEmpty()) {
-            System.out.println(q.deque());
+            System.out.println(q.remove());
         }
         System.out.println(q.peek());
 
         queue qu = new queue(3);
-        qu.enque(5);
+        qu.add(5);
         System.out.println(qu.peek());
     }
 }

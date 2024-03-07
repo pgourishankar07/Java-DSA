@@ -18,9 +18,12 @@ public class _7_StkuQu {
             }
 
             // Swap q1 and q2
-            Queue<Integer> temp = q1;
+            // Queue<Integer> temp = q1;
+            // q1 = q2;
+            // q2 = temp;
+
             q1 = q2;
-            q2 = temp;
+            q2.clear();
         }
 
         int pop() {

@@ -1,6 +1,42 @@
 import java.util.*;
 
 public class _5_usingStack {
+    static class twoStk {
+        Stack<Integer> s1 = new Stack<>();
+        Stack<Integer> s2 = new Stack<>();
+
+        boolean isEmpty() {
+            return s1.isEmpty();
+        }
+
+        void add(int val) {
+
+            while (!s1.isEmpty()) {
+                s2.push(s1.pop());
+            }
+
+            s1.push(val);
+
+            while (!s2.isEmpty()) {
+                s1.push(s2.pop());
+            }
+        }
+
+        int remove() {
+            int val = s1.pop();
+            return val;
+        }
+
+        int peek() {
+            if (isEmpty()) {
+                System.out.println("Queue is Empty");
+                return -1;
+            }
+
+            return s1.peek();
+        }
+    }
+
     static class QuStk {
         Stack<Integer> s = new Stack<>();
 
