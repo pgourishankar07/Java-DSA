@@ -16,5 +16,6 @@ public class binary {
             bin(i);
             System.out.println();
         }
+        sc.close();
     }
 }

@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class permuStr {
 
     private static String swap(String str, int i, int j) {
@@ -35,9 +37,24 @@ public class permuStr {
 
     }
 
+    public static void printPermu(int n, String str, ArrayList<String> arr) {
+        if (n == 0) {
+            System.out.println(str);
+            return;
+        }
+
+        printPermu(n - 1, str + '1', arr);
+        printPermu(n - 1, str + '0', arr);
+
+    }
+
     public static void main(String[] args) {
-        String str = "abcd";
+        // String str = "123";
         // printPermutations(str, 0, str.length() - 1);
-        printPermu(str, "");
+        // printPermu(str, "");
+
+        ArrayList<String> arr = new ArrayList<>();
+
+        printPermu(8, "", arr);
     }
 }

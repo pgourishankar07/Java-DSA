@@ -5,8 +5,8 @@ public class Chocola {
     public static void main(String args[]) {
 
         // chocolate bar
-        int n = 4;
-        int m = 6;
+        // int n = 4;
+        // int m = 6;
         int cost = 0;
         Integer costVer[] = { 2, 1, 3, 1, 4 };
         Integer costHor[] = { 4, 1, 2 };
