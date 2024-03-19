@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -26,7 +27,8 @@ public class BuilTraversedBT {
     static class BinaryTree {
         int idx = -1;
 
-        // build BT from preOrder Sequence
+        // build BT from preOrder
+        // Sequence____________________________________________________________________________________________________________
         public TreeNode preorderBuild(int nodes[]) {
             idx++;
 
@@ -41,29 +43,32 @@ public class BuilTraversedBT {
             return newNode;
         }
 
-        // preOrder Traversal
+        // preOrder
+        // Traversal____________________________________________________________________________________________________________
         public void preorderTraverse(TreeNode root) {
             if (root == null) {
                 return;
             }
 
-            System.out.println(root.val);
+            System.out.print(root.val + " ");
             preorderTraverse(root.left);
             preorderTraverse(root.right);
         }
 
-        // inOrder Traversal
+        // inOrder
+        // Traversal____________________________________________________________________________________________________________
         public void inorderTraverse(TreeNode root) {
             if (root == null) {
                 return;
             }
 
             inorderTraverse(root.left);
-            System.out.println(root.val);
+            System.out.print(root.val + " ");
             inorderTraverse(root.right);
         }
 
-        // postOrder Traversal
+        // postOrder
+        // Traversal____________________________________________________________________________________________________________
         public void postorderTraverse(TreeNode root) {
             if (root == null) {
                 return;
@@ -71,10 +76,11 @@ public class BuilTraversedBT {
 
             postorderTraverse(root.left);
             postorderTraverse(root.right);
-            System.out.println(root.val);
+            System.out.print(root.val + " ");
         }
 
-        // Level Order Traversal
+        // Level Order
+        // Traversal____________________________________________________________________________________________________________
         public void levelOrderTraversal(TreeNode root) {
 
             if (root == null) {
@@ -109,7 +115,8 @@ public class BuilTraversedBT {
             System.out.println();
         }
 
-        // Reverse Level Order Traversal
+        // Reverse Level Order
+        // Traversal____________________________________________________________________________________________________________
         public void RevlevelOrderTraversal(TreeNode root) {
 
             if (root == null) {
@@ -144,7 +151,47 @@ public class BuilTraversedBT {
             System.out.println();
         }
 
-        // Height of a Tree
+        // ZIgZag LevelOrder
+        // traversal____________________________________________________________________________________________________________
+        public void zigZag(TreeNode root) {
+            if (root == null) {
+                return;
+            }
+
+            List<List<Integer>> res = new ArrayList<>();
+            Queue<TreeNode> q = new LinkedList<>();
+            q.add(root);
+
+            boolean flag = false;
+
+            while (!q.isEmpty()) {
+                int size = q.size();
+                List<Integer> list = new ArrayList<>();
+                for (int i = 0; i < size; i++) {
+                    TreeNode temp = q.remove();
+                    list.add(temp.val);
+
+                    if (temp.left != null) {
+                        q.add(temp.left);
+                    }
+                    if (temp.right != null) {
+                        q.add(temp.right);
+                    }
+                }
+
+                if (flag) {
+                    Collections.reverse(list);
+                }
+                flag = !flag;
+                res.add(list);
+            }
+            for (List<Integer> i : res) {
+                System.out.println(i);
+            }
+        }
+
+        // Height of a
+        // Tree____________________________________________________________________________________________________________
         public int height(TreeNode root) {
             if (root == null) {
                 return 0;
@@ -156,7 +203,8 @@ public class BuilTraversedBT {
             return Math.max(leftHeight, rightHeight) + 1;
         }
 
-        // Count Nodes in a Tree
+        // Count Nodes in a
+        // Tree____________________________________________________________________________________________________________
         public int count(TreeNode root) {
             if (root == null) {
                 return 0;
@@ -168,7 +216,8 @@ public class BuilTraversedBT {
             return leftCount + rightCount + 1;
         }
 
-        // Sum of Nodes in a Tree
+        // Sum of Nodes in a
+        // Tree____________________________________________________________________________________________________________
         public int sum(TreeNode root) {
             if (root == null) {
                 return 0;
@@ -180,7 +229,8 @@ public class BuilTraversedBT {
             return leftSum + rightSum + root.val;
         }
 
-        // Diameter of the tree
+        // Diameter of the
+        // tree____________________________________________________________________________________________________________
         public int diameter(TreeNode root) { // O(N^2)
             if (root == null) {
                 return 0;
@@ -226,7 +276,8 @@ public class BuilTraversedBT {
             return new Info(dia, ht);
         }
 
-        // Check a subTree is present in a Tree
+        // Check a subTree is present in a
+        // Tree____________________________________________________________________________________________________________
         public boolean isSame(TreeNode root, TreeNode subRoot) {
             if (root == null && subRoot == null) {
                 return true;
@@ -255,7 +306,8 @@ public class BuilTraversedBT {
             return isSubTree(root.left, subRoot) || isSubTree(root.right, subRoot);
         }
 
-        // Top View of the Tree
+        // Top View of the
+        // Tree____________________________________________________________________________________________________________
         static class Info2 {
             TreeNode node;
             int horDis;
@@ -317,7 +369,8 @@ public class BuilTraversedBT {
             System.out.println();
         }
 
-        // Bottom view of the tree
+        // Bottom view of the
+        // tree____________________________________________________________________________________________________________
         public void bottomView(TreeNode root) {
 
             if (root == null) {
@@ -364,7 +417,8 @@ public class BuilTraversedBT {
             System.out.println();
         }
 
-        // Left View of the Tree
+        // Left View of the
+        // Tree____________________________________________________________________________________________________________
         public void leftView(TreeNode root) {
             if (root == null) {
                 return;
@@ -407,7 +461,8 @@ public class BuilTraversedBT {
             System.out.println();
         }
 
-        // Right View of the Tree
+        // Right View of the
+        // Tree____________________________________________________________________________________________________________
         public void rightView(TreeNode root) {
             if (root == null) {
                 return;
@@ -450,6 +505,8 @@ public class BuilTraversedBT {
             System.out.println();
         }
 
+        // Nodes at the Kth
+        // level____________________________________________________________________________________________________________
         public void kthLevel(TreeNode root, int k) {
 
             if (root == null || k == 0) {
@@ -498,6 +555,229 @@ public class BuilTraversedBT {
             System.out.println();
 
         }
+
+        // Get Path from the rootnode to the given
+        // node____________________________________________________________________________________________________________
+        public boolean getPath(TreeNode root, int n, List<Integer> list) {
+            if (root == null) {
+                return false;
+            }
+
+            list.add(root.val);
+
+            if (root.val == n) {
+                return true;
+            }
+
+            if (getPath(root.left, n, list) || getPath(root.right, n, list)) {
+                return true;
+            } else {
+                list.remove(list.size() - 1);
+                return false;
+            }
+        }
+
+        // Lowest Common
+        // Ancestor____________________________________________________________________________________________________________
+        public void lca(TreeNode root, int n1, int n2) {
+            if (root == null) {
+                return;
+            }
+
+            List<Integer> list1 = new ArrayList<>();
+            List<Integer> list2 = new ArrayList<>();
+
+            getPath(root, n1, list1);
+            getPath(root, n2, list2);
+
+            if (list1.get(0) != list2.get(0)) {
+                return;
+            }
+
+            int i = 0;
+            while (i < list1.size() && i < list2.size() && list1.get(i) == list2.get(i)) {
+                i++;
+            }
+
+            System.out.println("Lowest Common Ancestor of the given two Nodes is : " +
+                    list1.get(i - 1));
+        }
+
+        public TreeNode lca2(TreeNode root, int n1, int n2) {
+            if (root == null || root.val == n1 || root.val == n2) {
+                return root;
+            }
+
+            TreeNode leftLca = lca2(root.left, n1, n2);
+            TreeNode rightLca = lca2(root.right, n1, n2);
+
+            if (leftLca == null) {
+                return rightLca;
+            }
+
+            if (rightLca == null) {
+                return leftLca;
+            }
+
+            return root;
+        }
+
+        // Minimum Distance Between two
+        // nodes____________________________________________________________________________________________________________
+        public void minDis(TreeNode root, int n1, int n2) {
+            if (root == null) {
+                return;
+            }
+
+            List<Integer> list1 = new ArrayList<>();
+            List<Integer> list2 = new ArrayList<>();
+
+            getPath(root, n1, list1);
+            getPath(root, n2, list2);
+
+            if (list1.get(0) != list2.get(0)) {
+                return;
+            }
+
+            int i = 0;
+            while (i < list1.size() && i < list2.size() && list1.get(i) == list2.get(i)) {
+                i++;
+            }
+
+            int minDistance = (list1.size() - i) + (list2.size() - i);
+
+            System.out.println("The Minimum Distance between two nodes : " + minDistance);
+
+        }
+
+        // Kth Ancestor of a
+        // node____________________________________________________________________________________________________________
+        public void kthAnces(TreeNode root, int n, int k) {
+
+            if (root == null) {
+                return;
+            }
+
+            List<Integer> list = new ArrayList<>();
+
+            getPath(root, n, list);
+
+            int res = list.size() - k - 1 < 0 ? -1 : list.get(list.size() - k - 1);
+
+            System.out.println(k + "th Ancestor of the node is : " + res);
+        }
+
+        // transform to sum
+        // Tree____________________________________________________________________________________________________________
+        public int sumTree(TreeNode root) {
+            if (root == null) {
+                return 0;
+            }
+
+            int lSum = sumTree(root.left);
+            int rSum = sumTree(root.right);
+
+            root.val = lSum + rSum + root.val;
+
+            return root.val;
+
+        }
+
+        // Get the leaf Nodes
+        // ___________________________________________________________________________________________
+        public void leaf(TreeNode root, List<Integer> list) {
+            if (root == null) {
+                return;
+            }
+            if (root.left == null && root.right == null) {
+                list.add(root.val);
+            }
+
+            leaf(root.left, list);
+            leaf(root.right, list);
+        }
+
+        // Get Left Leafs
+        // ___________________________________________________________________________________________
+        public void leftLeafs(TreeNode root, List<Integer> list) {
+            if (root == null) {
+                return;
+            }
+            if (root.left != null && root.left.left == null && root.left.right == null) {
+                list.add(root.val);
+            }
+
+            leftLeafs(root.left, list);
+            leftLeafs(root.right, list);
+        }
+
+        // Diagnol
+        // Traversal___________________________________________________________________________________________
+        public void diagnolTraversal(TreeNode root) {
+            if (root == null) {
+                return;
+            }
+
+            Queue<TreeNode> q = new LinkedList<>();
+            q.add(root);
+
+            while (!q.isEmpty()) {
+                TreeNode temp = q.remove();
+
+                while (temp != null) {
+                    if (temp.left != null) {
+                        q.add(temp.left);
+                    }
+
+                    System.out.print(temp.val + " ");
+
+                    temp = temp.right;
+                }
+
+            }
+            System.out.println();
+        }
+
+        // Boundry
+        // Traversal___________________________________________________________________________________________
+        public void boundryTraversal(TreeNode root) {
+            if (root == null) {
+                return;
+            }
+
+            List<Integer> list = new ArrayList<>();
+
+            TreeNode root1 = root;
+
+            // get left side exclude leaf node
+            while (root1.left != null && root1.right != null) {
+                if (root1.left != null) {
+                    list.add(root1.val);
+                    root1 = root1.left;
+                } else {
+                    list.add(root1.val);
+                    root1 = root1.right;
+                }
+            }
+
+            root1 = root.right;
+
+            // get right side exclude leaf node
+            while (root1.left != null || root1.right != null) {
+                if (root1.right != null) {
+                    list.add(root1.val);
+                    root1 = root1.right;
+                } else {
+                    list.add(root1.val);
+                    root1 = root1.left;
+                }
+            }
+
+            // get leaf nodes
+            leaf(root, list);
+
+            System.out.println(list);
+        }
     }
 
     public static void main(String args[]) {
@@ -515,12 +795,15 @@ public class BuilTraversedBT {
 
         System.out.println("PreOrder Traversal :");
         bt.preorderTraverse(root);
+        System.out.println();
 
         System.out.println("InOrder Traversal :");
         bt.inorderTraverse(root);
+        System.out.println();
 
         System.out.println("PostOrder Traversal :");
         bt.postorderTraverse(root);
+        System.out.println();
 
         System.out.println("LevelOrder Traversal :");
         bt.levelOrderTraversal(root);
@@ -550,5 +833,25 @@ public class BuilTraversedBT {
         bt.rightView(root);
 
         bt.kthLevel(root, 3);
+
+        bt.lca(root, 4, 5);
+
+        bt.minDis(root, 4, 6);
+
+        bt.kthAnces(root, 4, 3);
+
+        System.out.println(bt.sumTree(root));
+        System.out.println("ZigZag Traversal : ");
+        bt.zigZag(root);
+
+        int nodes3[] = { 8, 3, 1, -1, -1, 6, 4, -1, -1, 7, -1, -1, 10, -1, 5, 2, -1, -1, -1 };
+        BinaryTree bt3 = new BinaryTree();
+        TreeNode root3 = bt3.preorderBuild(nodes3);
+
+        System.out.println("Diagnol Traversal : ");
+        bt3.diagnolTraversal(root3);
+
+        System.out.println("Boundry Traversal : ");
+        bt3.boundryTraversal(root3);
     }
 }
