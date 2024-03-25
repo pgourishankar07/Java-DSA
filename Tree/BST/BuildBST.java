@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 
 public class BuildBST {
@@ -148,6 +147,7 @@ public class BuildBST {
         } else {
             rootToLeaf(root.right, leaf, list);
         }
+
     }
 
     // Validate BST______________________________________________
@@ -251,6 +251,20 @@ public class BuildBST {
         TreeNode res = buildTree(list, 0, list.size() - 1);
 
         return res;
+    }
+
+    // presence of BST in BT
+    public static boolean isBSTinBT(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
+
+        boolean valid = isBST(root, Integer.MAX_VALUE, Integer.MIN_VALUE);
+
+        boolean leftHasBST = isBSTinBT(root.left);
+        boolean rightHasBST = isBSTinBT(root.right);
+
+        return valid || leftHasBST || rightHasBST;
     }
 
     // calculate size of the BST (No.of
@@ -397,24 +411,20 @@ public class BuildBST {
 
     }
 
-    public TreeNode lca2(TreeNode root, TreeNode p, TreeNode q) {
-        if (root == null || root.val == p.val || root.val == q.val) {
-            return root;
+    public static TreeNode lcaBST(TreeNode root, TreeNode p, TreeNode q) {
+        if (root == null) {
+            return null;
         }
 
-        TreeNode leftLca = lca2(root.left, p, q);
-        TreeNode rightLca = lca2(root.right, p, q);
-
-        if (leftLca == null) {
-            return rightLca;
+        if (root.val > p.val && root.val > q.val) {
+            return lcaBST(root.left, p, q);
         }
 
-        if (rightLca == null) {
-            return leftLca;
+        if (root.val < p.val && root.val < q.val) {
+            return lcaBST(root.right, p, q);
         }
 
         return root;
-
     }
 
     // Ceil of a node in BST
@@ -597,47 +607,45 @@ public class BuildBST {
 
         List<Integer> list = new ArrayList<>();
         // root = mirror(root);
-        inorderTraverse(root, list);
-        System.out.println(list);
+        // inorderTraverse(root, list);
         // printInRange(root, 5, 12);
         System.out.println();
-        System.out.println(size(root));
-
-        // rootToLeaf(root, root.left.left.right, list);
+        // System.out.println(size(root));
 
         TreeNode root2 = new TreeNode(50);
         root2.left = new TreeNode(30);
         root2.left.left = new TreeNode(5);
         root2.left.right = new TreeNode(20);
 
+        rootToLeaf(root, root.left.right, list);
         root2.right = new TreeNode(60);
         root2.right.left = new TreeNode(45);
         root2.right.right = new TreeNode(70);
         root2.right.right.left = new TreeNode(65);
         root2.right.right.right = new TreeNode(80);
 
-        int max[] = { 0 };
-        System.out.println(largBSTSize(root2, max));
+        // int max[] = { 0 };
+        // System.out.println(largBSTSize(root2, max));
 
-        int[] maxBST = { 0 };
-        Info1 rooot = largBSTSize2(root2, maxBST);
+        // int[] maxBST = { 0 };
+        // Info1 rooot = largBSTSize2(root2, maxBST);
 
-        System.out.println("Largest BST in BT : " + maxBST[0]);
+        // System.out.println("Largest BST in BT : " + maxBST[0]);
 
-        closest(root, 8);
+        // closest(root, 8);
 
         // ______________________________________________
 
-        lca(root, root.left.left, root.left.right);
+        System.out.println(lcaBST(root, root.left.left, root.left.right).val);
 
-        ceil(root, 12);
-        ceil2(root, 12);
-        floor(root, 12);
-        floor2(root, 12);
+        // ceil(root, 12);
+        // ceil2(root, 12);
+        // floor(root, 12);
+        // floor2(root, 12);
 
-        succ(root, 12);
-        succ2(root, 12);
-        pred(root, 12);
-        pred2(root, 12);
+        // succ(root, 12);
+        // succ2(root, 12);
+        // pred(root, 12);
+        // pred2(root, 12);
     }
 }
