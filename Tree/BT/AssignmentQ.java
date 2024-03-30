@@ -90,9 +90,11 @@ public class AssignmentQ {
                 return null;
             }
 
+            // first build left and right side for a node
             TreeNode left = invertBT(root.left);
             TreeNode right = invertBT(root.right);
 
+            // second assign the left side as right(vice versa)
             root.left = right;
             root.right = left;
 
