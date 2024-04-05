@@ -290,7 +290,9 @@ public class BuildBST {
             max[0] = Math.max(size(root), max[0]);
         }
 
+        @SuppressWarnings("unused")
         int left = largBSTSize(root.left, max);
+        @SuppressWarnings("unused")
         int right = largBSTSize(root.right, max);
 
         return max[0];

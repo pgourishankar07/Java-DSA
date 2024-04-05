@@ -1,12 +1,12 @@
 //Find shortest Unique Prefix for every word (Assume no word is prefix of another)
 public class PrefixPrblm {
 
-    static class TrieNode {
-        TrieNode[] children = new TrieNode[26];
+    static class TrieNodeF {
+        TrieNodeF[] children = new TrieNodeF[26];
         boolean end = false;
         int freq;
 
-        TrieNode() {
+        TrieNodeF() {
             for (int i = 0; i < 26; i++) {
                 children[i] = null;
             }
@@ -14,23 +14,27 @@ public class PrefixPrblm {
         }
     }
 
-    public static TrieNode root = new TrieNode();
+    public static TrieNodeF root = new TrieNodeF();
 
     public static void insert(String word) {
-        TrieNode curr = root;
+
+        TrieNodeF curr = root;
         for (int i = 0; i < word.length(); i++) {
             int idx = word.charAt(i) - 'a';
+
             if (curr.children[idx] == null) {
-                curr.children[idx] = new TrieNode();
+                curr.children[idx] = new TrieNodeF();
             } else {
                 curr.children[idx].freq++;
             }
+
             curr = curr.children[idx];
         }
+
         curr.end = true;
     }
 
-    public static void findPrefix(TrieNode root, String key) {
+    public static void findPrefix(TrieNodeF root, String key) {
         if (root == null) {
             return;
         }
@@ -40,7 +44,7 @@ public class PrefixPrblm {
             return;
         }
 
-        for (int i = 0; i < 26; i++) {
+        for (int i = 0; i < 26; i++) { // 1. check words starting from which node go until reaching freq = 1
             if (root.children[i] != null) {
                 findPrefix(root.children[i], key + (char) (i + 'a'));
             }
@@ -54,7 +58,8 @@ public class PrefixPrblm {
             insert(i);
         }
 
-        root.freq = -1;
+        root.freq = -1; // so that it should not stop by reaching node itself which has freq = 1 as
+                        // default
 
         findPrefix(root, "");
 
