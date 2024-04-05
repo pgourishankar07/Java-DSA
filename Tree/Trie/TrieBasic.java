@@ -106,9 +106,43 @@ public class TrieBasic {
         return true;
     }
 
+    // Largest Word in Trie
+    public static String largWrd(TrieNode root, String temp, String res) {
+        if (root.end) {
+            if (temp.length() > res.length()) {
+                res = temp;
+            }
+        }
+
+        for (int i = 0; i < 26; i++) {
+            if (root.children[i] != null) {
+                res = largWrd(root.children[i], temp + (char) ('a' + i), res);
+            }
+        }
+
+        return res;
+    }
+
+    // word search
+    public static void wrdSrch(String key) {
+        TrieNode curr = root;
+
+        for (int i = 0; i < key.length(); i++) {
+            int idx = key.charAt(i) - 'a';
+
+            if (curr.children[idx] == null) {
+                break;
+            }
+
+            curr = curr.children[idx];
+        }
+
+        printWords(curr, key);
+    }
+
     public static void main(String args[]) {
         // String words[] = { "the", "a", "there", "their", "any", "thee" };
-        String words[] = { "apple", "mango", "man", "woman", "app" };
+        String words[] = { "apple", "mangoose", "man", "woman", "app" };
 
         for (String i : words) {
             insert(i);
@@ -130,5 +164,13 @@ public class TrieBasic {
 
         int[] c = { 0 };
         System.out.println(countNodes(root, c));
+
+        System.out.println();
+        System.out.println(largWrd(root, "", ""));
+        // System.out.println(res);
+
+        System.out.println();
+
+        wrdSrch("man");
     }
 }
