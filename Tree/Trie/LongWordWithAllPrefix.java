@@ -1,3 +1,5 @@
+// Print the Longest word from the Dictionary(Trie) such that every prefix of that word is in Trie/words[] (in Lexicographically small order)
+
 public class LongWordWithAllPrefix {
 
     static class TrieNode {
@@ -33,7 +35,7 @@ public class LongWordWithAllPrefix {
 
     public static void LongWord(TrieNode root, String temp) {
 
-        for (int i = 0; i < 26; i++) {
+        for (int i = 0; i < 26; i++) { // for Lexicographically large order, reverse the traverse
             if (root.children[i] != null && root.children[i].end) {
                 temp = temp + (char) ('a' + i);
 
@@ -49,6 +51,28 @@ public class LongWordWithAllPrefix {
 
     }
 
+    /*
+     * //Another method
+     * public static String LongWord(TrieNode root, String temp, String res) {
+     * 
+     * for (int i = 0; i < 26; i++) {
+     * if (root.children[i] != null && root.children[i].end) {
+     * temp = temp + (char) ('a' + i);
+     * 
+     * if (temp.length() > res.length()) {
+     * res = temp;
+     * }
+     * 
+     * res = LongWord(root.children[i], temp, res);
+     * 
+     * temp = temp.substring(0, temp.length() - 1);
+     * }
+     * }
+     * 
+     * return res;
+     * 
+     * }
+     */
     public static void main(String[] args) {
         String words[] = { "a", "banana", "app", "ap", "apple", "apply", "appl" };
 
@@ -56,8 +80,17 @@ public class LongWordWithAllPrefix {
             insert(i);
         }
 
-        LongWord(root, "");
+        // System.out.println(LongWord(root, "", ""));
 
+        LongWord(root, "");
         System.out.println(res);
+
+        /*
+         * 1. Traverse all the nodes
+         * 2. append the char which has end = true;
+         * 3. if the temp.len() > ans.len() then only store the ans = temp;
+         * 4. Backtrack : remove the last char in temp, then it will append next char on
+         * same level
+         */
     }
 }
