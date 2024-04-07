@@ -4,7 +4,7 @@ public class TrieBasic {
         TrieNode children[] = new TrieNode[26];
         boolean end = false; // for marking the words last char as end
 
-        TrieNode() {
+        TrieNode() { // this loop is not necessary for java
             for (int i = 0; i < 26; i++) { // 26 - using only alphabets
                 children[i] = null;
             }
