@@ -29,7 +29,7 @@ public class TrieBasic {
         curr.end = true;
     }
 
-    // search a word in the Trie
+    // search a word in the Trie and delete
     public static boolean search(String key) {
         TrieNode curr = root;
         for (int i = 0; i < key.length(); i++) {
@@ -42,7 +42,9 @@ public class TrieBasic {
             curr = curr.children[idx];
         }
 
-        return curr.end;
+        boolean res = curr.end;
+        // curr.end = false; // just mark it as false; to delete a word in Trie
+        return res;
     }
 
     // count number of nodes or chars in the Trie
@@ -142,35 +144,37 @@ public class TrieBasic {
 
     public static void main(String args[]) {
         // String words[] = { "the", "a", "there", "their", "any", "thee" };
-        String words[] = { "apple", "mangoose", "man", "woman", "app" };
+        // String words[] = { "apple", "mangoose", "man", "woman", "app" };
+        String words[] = { "mobile", "mouse", "moneypot", "monitor", "mousepad" };
 
         for (String i : words) {
             insert(i);
         }
         // print();
-        System.out.println(search("theeep"));
-        System.out.println(search("thee"));
-        System.out.println(wordBreak("theatherei"));
+        // System.out.println(search("theeep"));
+        // System.out.println(search("thee"));
+        // System.out.println(wordBreak("theatherei"));
+        System.out.println();
 
-        System.out.println(startsWith("app"));
-        System.out.println(startsWith("moon"));
-        System.out.println(startsWith("man"));
+        // System.out.println(startsWith("app"));
+        // System.out.println(startsWith("moon"));
+        // System.out.println(startsWith("man"));
 
         System.out.println();
 
         printWords(root, "");
 
-        System.out.println();
+        // System.out.println();
 
-        int[] c = { 0 };
-        System.out.println(countNodes(root, c));
+        // int[] c = { 0 };
+        // System.out.println(countNodes(root, c));
 
-        System.out.println();
-        System.out.println(largWrd(root, "", ""));
-        // System.out.println(res);
+        // System.out.println();
+        // System.out.println(largWrd(root, "", ""));
+        // // System.out.println(res);
 
-        System.out.println();
+        System.out.println("apple".substring(0, 0 + 1));
 
-        wrdSrch("man");
+        // wrdSrch("mouse");
     }
 }
