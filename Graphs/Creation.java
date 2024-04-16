@@ -358,16 +358,19 @@ public class Creation {
     }
 
     // All Paths From Source to Destination(similar to has path)// _________//
-    public static void allPath(ArrayList<Edge> graph[], int src, int dest, String res) {
-        if (src == dest) {
-            System.out.println(res + Integer.toString(src));
+    public static void allPath(ArrayList<Edge>[] graph, boolean[] visited, int s, int d, String path) {
+        visited[s] = true;
+        if (s == d) {
+            System.out.println(path + Integer.toString(s));
             return;
         }
-
-        for (int i = 0; i < graph[src].size(); i++) {
-            int curr = graph[src].get(i).dest;
-            allPath(graph, curr, dest, res + Integer.toString(src) + " -> ");
+        for (int i = 0; i < graph[s].size(); i++) {
+            int curr = graph[s].get(i).dest;
+            if (!visited[curr]) {
+                allPath(graph, visited, curr, d, path + Integer.toString(s) + " -> ");
+            }
         }
+        visited[s] = false;
     }
 
     // _________// _________// _________// _________// _________// _________//
@@ -544,7 +547,6 @@ public class Creation {
         topologicalSortBFS(graph6);
         topologicalSortDFS(graph6);
         System.out.println();
-        allPath(graph6, 5, 1, "");
 
     }
 }
