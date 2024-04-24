@@ -34,7 +34,6 @@ public class PrimsAlgo {
 
     public static void prims(ArrayList<Edge>[] graph) {
         boolean visi[] = new boolean[graph.length];
-        int path[] = new int[graph.length];
         PriorityQueue<Pair> pq = new PriorityQueue<>();
 
         pq.add(new Pair(0, 0));
@@ -46,11 +45,13 @@ public class PrimsAlgo {
             if (!visi[curr.node]) {
                 visi[curr.node] = true;
                 minWht += curr.wht;
-                path[curr.node] = curr.wht;
 
                 for (int i = 0; i < graph[curr.node].size(); i++) {
                     Edge e = graph[curr.node].get(i);
-                    pq.add(new Pair(e.dest, e.wht));
+                    int v = e.dest;
+                    int wht = e.wht;
+
+                    pq.add(new Pair(v, wht));
                 }
 
             }
@@ -69,37 +70,37 @@ public class PrimsAlgo {
             graph[i] = new ArrayList<>();
         }
 
-        // graph[0].add(new Edge(0, 1, 10));
-        // graph[0].add(new Edge(0, 2, 15));
-        // graph[0].add(new Edge(0, 3, 30));
+        graph[0].add(new Edge(0, 1, 10));
+        graph[0].add(new Edge(0, 2, 15));
+        graph[0].add(new Edge(0, 3, 30));
 
-        // graph[1].add(new Edge(1, 0, 10));
-        // graph[1].add(new Edge(1, 3, 40));
+        graph[1].add(new Edge(1, 0, 10));
+        graph[1].add(new Edge(1, 3, 40));
 
-        // graph[2].add(new Edge(2, 0, 15));
-        // graph[2].add(new Edge(2, 3, 50));
+        graph[2].add(new Edge(2, 0, 15));
+        graph[2].add(new Edge(2, 3, 50));
 
-        // graph[3].add(new Edge(3, 1, 40));
-        // graph[3].add(new Edge(3, 2, 50));
+        graph[3].add(new Edge(3, 1, 40));
+        graph[3].add(new Edge(3, 2, 50));
 
-        graph[0].add(new Edge(0, 1, 1));
-        graph[0].add(new Edge(0, 2, 2));
-        graph[0].add(new Edge(0, 3, 3));
-        graph[0].add(new Edge(0, 4, 4));
+        // graph[0].add(new Edge(0, 1, 1));
+        // graph[0].add(new Edge(0, 2, 2));
+        // graph[0].add(new Edge(0, 3, 3));
+        // graph[0].add(new Edge(0, 4, 4));
 
-        graph[1].add(new Edge(1, 0, 1));
-        graph[1].add(new Edge(1, 2, 5));
-        graph[1].add(new Edge(1, 4, 7));
+        // graph[1].add(new Edge(1, 0, 1));
+        // graph[1].add(new Edge(1, 2, 5));
+        // graph[1].add(new Edge(1, 4, 7));
 
-        graph[2].add(new Edge(2, 0, 2));
-        graph[2].add(new Edge(2, 1, 5));
-        graph[2].add(new Edge(2, 3, 6));
+        // graph[2].add(new Edge(2, 0, 2));
+        // graph[2].add(new Edge(2, 1, 5));
+        // graph[2].add(new Edge(2, 3, 6));
 
-        graph[3].add(new Edge(3, 0, 3));
-        graph[3].add(new Edge(3, 2, 6));
+        // graph[3].add(new Edge(3, 0, 3));
+        // graph[3].add(new Edge(3, 2, 6));
 
-        graph[4].add(new Edge(4, 0, 4));
-        graph[4].add(new Edge(4, 1, 7));
+        // graph[4].add(new Edge(4, 0, 4));
+        // graph[4].add(new Edge(4, 1, 7));
 
         prims(graph);
     }

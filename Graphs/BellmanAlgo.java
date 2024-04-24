@@ -24,8 +24,10 @@ public class BellmanAlgo {
         dist[src] = 0;
 
         for (int i = 0; i < graph.length - 1; i++) { // repeat iteration for nodes-1// times //O(V) src is not included
-            for (int node = 0; node < graph.length; node++) { // O(E)
-                for (int k = 0; k < graph[node].size(); k++) {
+
+            for (int node = 0; node < graph.length; node++) { // O(E) // for each node
+
+                for (int k = 0; k < graph[node].size(); k++) { // visit their neighbours
                     Edge e = graph[node].get(k);
                     int u = e.src;
                     int v = e.dest;

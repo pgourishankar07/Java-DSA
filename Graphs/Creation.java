@@ -181,14 +181,14 @@ public class Creation {
         boolean visi[] = new boolean[graph.length];
 
         for (int i = 0; i < graph.length; i++) {
-            if (!visi[i] && detectCycleUtilBfs(graph, i, visi))
+            if (!visi[i] && detectCycleBfsUtil(graph, i, visi))
                 return true;
         }
 
         return false;
     }
 
-    public static boolean detectCycleUtilBfs(ArrayList<Edge> graph[], int s, boolean visi[]) {
+    public static boolean detectCycleBfsUtil(ArrayList<Edge> graph[], int s, boolean visi[]) {
         int parent[] = new int[graph.length];
         Arrays.fill(parent, -1);
 
@@ -198,52 +198,21 @@ public class Creation {
 
         while (!q.isEmpty()) {
             int u = q.remove();
+
             for (int i = 0; i < graph[u].size(); i++) {
                 int v = graph[u].get(i).dest;
+
                 if (!visi[v]) {
                     visi[v] = true;
                     q.add(v);
                     parent[v] = u;
-                } else if (parent[u] != v) {
+                } else if (parent[u] != v) { // if any node node has 2 different parent
                     return true;
                 }
             }
         }
 
         return false;
-    }
-
-    // BiPartite graph or not _________// _________// _________// _________//
-    public static boolean biPartite(ArrayList<Edge>[] graph) {
-        int[] color = new int[graph.length];
-        Arrays.fill(color, -1);
-
-        Queue<Integer> q = new LinkedList<>();
-
-        for (int i = 0; i < graph.length; i++) {
-            if (color[i] == -1) {
-                q.add(i);
-                color[i] = 0;
-
-                while (!q.isEmpty()) {
-                    int node = q.remove();
-
-                    for (int j = 0; j < graph[node].size(); j++) {
-                        int temp = graph[node].get(j).dest;
-
-                        if (color[temp] == -1) {
-                            color[temp] = color[node] == 0 ? 1 : 0; // toggle color
-                            q.add(temp);
-                        } else if (color[node] == color[temp]) {
-                            return false;
-                        }
-
-                    }
-                }
-            }
-        }
-        return true;
-
     }
 
     // Detect Cycle in Directed Graph_______________//_______________
@@ -281,6 +250,40 @@ public class Creation {
         return false;
     }
 
+    // BiPartite graph or not _________// _________// _________// _________//
+    public static boolean biPartite(ArrayList<Edge>[] graph) {
+        int[] color = new int[graph.length];
+        Arrays.fill(color, -1);
+
+        Queue<Integer> q = new LinkedList<>();
+
+        for (int i = 0; i < graph.length; i++) {
+            if (color[i] == -1) {
+                q.add(i);
+                color[i] = 0;
+
+                while (!q.isEmpty()) {
+                    int node = q.remove();
+
+                    for (int j = 0; j < graph[node].size(); j++) {
+                        int temp = graph[node].get(j).dest;
+
+                        if (color[temp] == -1) {
+                            color[temp] = color[node] == 0 ? 1 : 0; // toggle color
+                            q.add(temp);
+                        } else if (color[node] == color[temp]) {
+                            return false;
+                        }
+
+                    }
+                }
+            }
+        }
+
+        return true;
+
+    }
+
     // Topological SortingBFS_________// _________// _________// _________//
     public static void topologicalSortBFS(ArrayList<Edge> graph[]) {
         boolean[] visi = new boolean[graph.length];
@@ -292,7 +295,9 @@ public class Creation {
             }
         }
 
-        System.out.println(stk);
+        while (!stk.isEmpty()) {
+            System.out.print(stk.pop() + " ");
+        }
     }
 
     public static void topoSortUtilBFS(ArrayList<Edge> graph[], int node, boolean[] visi, Stack<Integer> stk) {
@@ -474,9 +479,9 @@ public class Creation {
         // connectedCompBfs(graph3);
 
         // ________________// ________________// ________________// ________________
-        System.out.println(detectCycle(graph2));
-        System.out.println(detectCycle(graph3));
-        System.out.println(detectCycleBfs(graph3));
+        // System.out.println(detectCycle(graph2));
+        // System.out.println(detectCycle(graph3));
+        // System.out.println(detectCycleBfs(graph3));
         // ________________// ________________// ________________// ________________
 
         @SuppressWarnings("unchecked")
@@ -544,7 +549,9 @@ public class Creation {
         graph6[5].add(new Edge(5, 0));
         graph6[5].add(new Edge(5, 2));
 
-        topologicalSortBFS(graph6);
+        System.out.println(detectDirCycle(graph6));
+
+        // topologicalSortBFS(graph6);
         topologicalSortDFS(graph6);
         System.out.println();
 

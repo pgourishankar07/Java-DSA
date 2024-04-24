@@ -10,7 +10,7 @@ public class DisjointSet {
         }
     }
 
-    public static int find(int x) { // find parent of the node
+    public static int find(int x) { // find parent of the node -- recursively finds the main parent of the nodes
         if (par[x] == x) {
             return x;
         }
@@ -22,7 +22,7 @@ public class DisjointSet {
         int parA = find(a);
         int parB = find(b);
 
-        if (rank[parA] == rank[parB]) {
+        if (rank[parA] == rank[parB]) { // whose height is more joining to that parent
             par[parB] = parA;
             rank[parA]++;
         } else if (rank[parA] < rank[parB]) {

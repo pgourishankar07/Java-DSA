@@ -35,15 +35,16 @@ public class DijkistraAlgo {
     public static void dijkistra(ArrayList<Edge>[] graph, int src) { // O(V + E.LogV)
         int dist[] = new int[graph.length];
         Arrays.fill(dist, Integer.MAX_VALUE);
-        dist[src] = 0;
+        dist[src] = 0; // 1. create distance[] and assign for src is 0
 
         boolean[] visi = new boolean[graph.length];
 
         PriorityQueue<Pair> pq = new PriorityQueue<>();
-        pq.add(new Pair(src, 0));
+        pq.add(new Pair(src, dist[src]));
 
         while (!pq.isEmpty()) {
             Pair curr = pq.remove();
+
             if (!visi[curr.node]) {
                 visi[curr.node] = true;
 

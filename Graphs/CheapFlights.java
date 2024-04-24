@@ -56,7 +56,8 @@ public class CheapFlights {
                 int v = e.dest;
                 int wt = e.wht;
 
-                if (curr.wht + wt < dist[v] && curr.stops <= k) {
+                if (curr.wht + wt < dist[v] && curr.stops <= k) { // we use this curr.wht bcoz of corner case orelse we
+                                                                  // would have used dijKistras algo
                     dist[v] = curr.wht + wt;
                     q.add(new Pair(v, dist[v], curr.stops + 1));
                 }
@@ -87,6 +88,25 @@ public class CheapFlights {
         graph[2].add(new Edge(2, 3, 200));
 
         System.out.println(cheapFlights(graph, src, dest, k));
+
+        /*
+         * Corner TestCase
+         * n =
+         * 4
+         * flights =
+         * [[0,1,1],[0,2,5],[1,2,1],[2,3,1]]
+         * src =
+         * 0
+         * dst =
+         * 3
+         * k =
+         * 1
+         * 
+         * Output
+         * 3
+         * Expected
+         * 6
+         */
 
     }
 }

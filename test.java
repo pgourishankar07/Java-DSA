@@ -21,7 +21,7 @@ public class test {
 
 class Solution {
 
-    public long sumUp(int n) {
+    ic long sumUp(int n) {
         return (long) n * (n + 1) / 2;
     }
 

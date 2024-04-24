@@ -69,15 +69,18 @@ public class KruskalsAlgo {
         int minWht = 0;
         int count = 0;
 
-        for (int i = 0; count < n - 1; i++) { // O(V)
+        for (int i = 0; count < n - 1; i++) { // O(V) -- boc u need to connect n-1 times
             Edge e = graph.get(i);
+            int u = e.src;
+            int v = e.dest;
+            int wht = e.wht;
 
-            int parA = find(e.src);
-            int parB = find(e.dest);
+            int parA = find(u);
+            int parB = find(v);
 
             if (parA != parB) { // not cycle condition then only join the nodes
-                union(e.src, e.dest);
-                minWht += e.wht;
+                union(u, v);
+                minWht += wht;
                 count++;
             }
 
