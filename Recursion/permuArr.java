@@ -24,18 +24,35 @@ class permuArr {
 
     }
 
+    public static void myPermu(int[] nums, int i, List<Integer> list) {
+
+        if (i == nums.length) {
+            System.out.println(list);
+            return;
+        }
+
+        list.add(nums[i]);
+        myPermu(nums, i + 1, list);
+
+        list.remove(list.size() - 1);
+        myPermu(nums, i + 1, list);
+    }
+
     public static void main(String args[]) {
 
         int nums[] = { 1, 2, 3 };
 
-        List<List<Integer>> res = new ArrayList<>();
-        List<Integer> ds = new ArrayList<>();
-        int n = nums.length;
-        boolean[] map = new boolean[n];
+        // List<List<Integer>> res = new ArrayList<>();
+        // List<Integer> ds = new ArrayList<>();
+        // int n = nums.length;
+        // boolean[] map = new boolean[n];
 
-        permutations(nums, ds, map, res);
+        // permutations(nums, ds, map, res);
 
-        System.out.println(res);
+        // System.out.println(res);
 
+        List<Integer> list = new ArrayList<>();
+
+        myPermu(nums, 0, list);
     }
 }
