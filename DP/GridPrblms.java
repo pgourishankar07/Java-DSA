@@ -93,14 +93,16 @@ public class GridPrblms {
 
         // ____________________________________
 
-        int[][] arr = {
-                { 1 },
-                { 2, 3 },
-                { 3, 6, 7 },
-                { 8, 9, 6, 10 }
-        };
-        int n = arr.length;
-        System.out.println(triangle2(arr, 0, 0, 0, n - 1));
+        // int[][] arr = {
+        // { 1 },
+        // { 2, 3 },
+        // { 3, 6, 7 },
+        // { 8, 9, 6, 10 }
+        // };
+        // int n = arr.length;
+        // System.out.println(triangle2(arr, 0, 0, 0, n - 1));
+
+        // ____________________________________
 
     }
 }

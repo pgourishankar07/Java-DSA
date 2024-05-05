@@ -188,6 +188,7 @@ public class KnapSack {
         }
 
         if (dp[w][n] != 0) {
+
             return dp[w][n];
         }
 
