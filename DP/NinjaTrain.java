@@ -98,7 +98,7 @@ public class NinjaTrain {
                 { 20, 50, 80 },
                 { 30, 60, 90 }
         };
-        int[][] dp = new int[arr.length][3];
+        // int[][] dp = new int[arr.length][3];
 
         // System.out.println(ninja(arr, arr.length - 1, 2, dp));
         System.out.println(ninjaTab(arr));

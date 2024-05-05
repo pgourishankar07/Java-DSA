@@ -52,7 +52,7 @@ public class CheapFlights {
 
             for (int i = 0; i < graph[curr.node].size(); i++) {
                 Edge e = graph[curr.node].get(i);
-                int u = e.src;
+                // int u = e.src;
                 int v = e.dest;
                 int wt = e.wht;
 
