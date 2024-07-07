@@ -1,11 +1,19 @@
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.PriorityQueue;
+
 public class test {
     record Pair(int s, int d) {
     }
 
     public static void main(String[] args) {
-        Pair p = new Pair(10, 20);
-        System.out.println(p.s());
-        System.out.println(p.d());
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+
+        pq.add(1);
+        pq.add(2);
+        pq.add(3);
+
+        System.out.println(pq.contains(3));
     }
 
 }
