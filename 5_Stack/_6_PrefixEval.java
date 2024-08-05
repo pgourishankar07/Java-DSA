@@ -44,7 +44,7 @@ public class _6_PrefixEval {
         String[] tokens = str.split("\\s+"); // Split the input string into tokens(substrings) wherever space is
                                              // encountered
         // If str is, for example, "+ 9 * 12 6", then the resulting array (tokens) would
-        // be ["+","9","*","12","6"].
+        // be ["+","9","*","12","6"]
         for (int i = tokens.length - 1; i >= 0; i--) {
             if (tokens[i].matches("\\d+")) { // Check if the token is a number
                 stack.push(Integer.parseInt(tokens[i]));
@@ -88,3 +88,25 @@ public class _6_PrefixEval {
         sc.close();
     }
 }
+
+// Study Prefix,Infix,Postfix
+/*
+ * https://www.youtube.com/watch?v=4pIc9UBHJtk&list=
+ * PLgUwDviBIf0pOd5zvVVSzgpo6BaCpHT9c&index=3
+ * 1. postfix evaluation - go from left to right beacause at left end only
+ * contains alphabet
+ * 2. prefix evaluation - go from right to left beacause at right end only
+ * contains alphabet
+ * 3. infix to postfix
+ * 4. infix to prefix - i. reverse the input -> and change the brackets -> do
+ * infix to postfix ops -> reverse the ans
+ * 5. postfix to infix - i. go from left to right -> whenever operator comes u
+ * pop two operands and place operator btwn them and close with bracket -> push
+ * into stack
+ * 6. prefix to infix - i. same as above but go from right to left and sequece
+ * of chars should be same as in q.
+ * 7. postfix to prefix - i.go from left to right -> if operator comes then pop
+ * top1 and top2 -> and push in stack in the format 'op-t2-t1'
+ * 8. prefix to postfix - i.go from right to left -> same as above format is
+ * 't1-t2-op'
+ */

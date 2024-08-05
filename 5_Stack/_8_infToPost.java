@@ -20,8 +20,8 @@ public class _8_infToPost {
         String res = "";
 
         for (int i = 0; i <= str.length() - 1; i++) {
-            if (str.charAt(i) >= 'a' && str.charAt(i) <= 'z' || str.charAt(i) >= 'A' && str.charAt(i) <= 'Z'
-                    || str.charAt(i) >= '0' && str.charAt(i) <= '9') {
+            if ((str.charAt(i) >= 'a' && str.charAt(i) <= 'z') || (str.charAt(i) >= 'A' && str.charAt(i) <= 'Z')
+                    || (str.charAt(i) >= '0' && str.charAt(i) <= '9')) {
                 res += str.charAt(i);
             } else if (str.charAt(i) == '(') {
                 stack.push(str.charAt(i));

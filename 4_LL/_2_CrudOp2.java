@@ -62,14 +62,21 @@ public class _2_CrudOp2 {
     // DISPLAY______________________________________________________________________________
     static void display(Node[] head) {
 
-        Node temp = head[0];
+        // Node temp = head[0];
+
+        // System.out.print("Now the Linked List is: ");
+
+        // while (temp != null) {
+        // System.out.print(temp.data + " --> ");
+        // temp = temp.next;
+        // }
 
         System.out.print("Now the Linked List is: ");
-
-        while (temp != null) {
+        
+        for (Node temp = head[0]; temp != null; temp = temp.next) {
             System.out.print(temp.data + " --> ");
-            temp = temp.next;
         }
+
         System.out.println("NULL");
     }
 
@@ -145,14 +152,15 @@ public class _2_CrudOp2 {
         }
 
         // Recursive case: Reverse the rest of the list
-        Node newHead = revRec(head.next);
+        Node newHead = revRec(head.next); // making last element as new head
+        Node nxt = head.next;
 
         // Reverse the current node
-        head.next.next = head;
+        nxt.next = head; // assigning last element's ptr to the head
         head.next = null;
 
         // Return the new head of the reversed list
-        return newHead;
+        return newHead; // returning newHead as the head for further step
     }
 
     // MIDDLE of the node___________________________________________________
