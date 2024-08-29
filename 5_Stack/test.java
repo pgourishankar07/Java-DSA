@@ -2,52 +2,32 @@ import java.util.Scanner;
 import java.util.Stack;
 
 public class test {
+    public int[] asteroidCollision(int[] nums) {
 
-    public static int prec(char c) {
-        if (c == '^') {
-            return 3;
-        } else if (c == '/' || c == '*') {
-            return 2;
-        } else if (c == '+' || c == '-') {
-            return 1;
-        } else {
-            return -1;
-        }
-    }
+        int n = nums.length;
+        Stack<Integer> stk = new Stack<>();
+        int i = 0;
+        stk.push(nums[i]);
+        i++;
 
-    public static String infixToPostfix(String str) {
-        Stack<Character> stack = new Stack<>();
-        String res = "";
+        while (i < n) {
+            if ((nums[i] < 0 && stk.peek() > 0) || (stk.peek() < 0 && nums[i] > 0)) {
 
-        for (int i = 0; i <= str.length() - 1; i++) {
-            if (str.charAt(i) >= 'a' && str.charAt(i) <= 'z' || str.charAt(i) >= 'A' && str.charAt(i) <= 'Z'
-                    || str.charAt(i) >= '0' && str.charAt(i) <= '9') {
-                res += str.charAt(i);
-            } else if (str.charAt(i) == '(') {
-                stack.push(str.charAt(i));
-            } else if (str.charAt(i) == ')') {
-                while (stack.peek() != '(') {
-                    res += stack.pop();
+                boolean neg1 = nums[i] < 0;
+                boolean neg2 = stk.peek() < 0;
+
+                while (Math.abs(nums[i]) == Math.abs(stk.peek())) {
+                    stk.pop();
+                    i++;
                 }
-                stack.pop();
+
+                if (Math.abs(nums[i]) < Math.abs(stk.peek())) {
+                    stk.pop();
+                }
+
             } else {
-                while (!stack.isEmpty() && prec(stack.peek()) >= prec(str.charAt(i))) {
-                    res += stack.pop();
-                }
-                stack.push(str.charAt(i));
+                stk.push(nums[i]);
             }
         }
-        while (!stack.isEmpty()) {
-            res += stack.pop();
-        }
-        return res;
-    }
-
-    public static void main(String args[]) {
-        Scanner sc = new Scanner(System.in);
-        System.out.print('(' - ']');
-        // String str = sc.nextLine();
-        // System.out.println(infixToPostfix(str));
-        sc.close();
     }
 }

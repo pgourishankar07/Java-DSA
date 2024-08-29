@@ -1,3 +1,4 @@
+import java.util.Arrays;
 
 public class AllBasics {
 
@@ -19,11 +20,12 @@ public class AllBasics {
         }
     }
 
-    public static void SelectionSort(int arr[]) {
+    public static void SelectionSort(int arr[]) { // -----find the samllest no. between 'i' and 'n' and swap it with the
+                                                  // ith index at each itertation
         int n = arr.length;
         for (int i = 0; i < n - 1; i++) {
             int minIndex = i;
-            for (int j = i + 1; j < n; j++) {
+            for (int j = i; j < n; j++) {
                 if (arr[j] < arr[minIndex]) { // for descending order > is used
                     minIndex = j;
                 }
@@ -39,14 +41,14 @@ public class AllBasics {
     public static void InsertionSort(int arr[]) {
         int n = arr.length;
         for (int i = 1; i < n; i++) {
-            int curr = arr[i];
+            int curr = i;
             int prev = i - 1;
 
-            while (prev >= 0 && arr[prev] > curr) { // traversing in reverse order from i to 0
+            while (prev >= 0 && arr[prev] > arr[curr]) { // traversing in reverse order from i to 0
                 arr[prev + 1] = arr[prev]; // moving the larger no.
                 prev--;
             }
-            arr[prev + 1] = curr; // insertion
+            arr[prev + 1] = arr[curr]; // insertion
         }
     }
 
@@ -83,6 +85,9 @@ public class AllBasics {
     }
 
     public static void main(String args[]) {
+        int[] arr = { 2, 8, 5, 3, 9, 4, 1 };
+        SelectionSort(arr);
+        System.out.println(Arrays.toString(arr));
 
     }
 }

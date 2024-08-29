@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class WaveSort {
     // Function to swap elements in the array
     static void swap(int[] arr, int x, int y) {
@@ -21,11 +23,13 @@ public class WaveSort {
             if (i + 1 < n && arr[i] > arr[i + 1]) {
                 swap(arr, i, i + 1);
             }
+            System.out.println(Arrays.toString(arr));
+
         }
 
+        System.out.println("Sorted Array is :");
+
         // Display the sorted array in wave form
-        for (int i = 0; i < n; i++) {
-            System.out.print(arr[i] + " ");
-        }
+        System.out.println(Arrays.toString(arr));
     }
 }

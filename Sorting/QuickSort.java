@@ -33,13 +33,15 @@ public class QuickSort {
         int pi = partition(arr, low, high); // divide the array into two : small - pivot - high and return the index of
                                             // pivot element
 
+        System.out.println(Arrays.toString(arr));
+
         quickSort(arr, low, pi - 1);
         quickSort(arr, pi + 1, high);
     }
 
     public static void main(String[] args) {
 
-        int[] arr = { 6, 3, 9, 5, 5, -2, 8, 7 };
+        int[] arr = { -1, 3, 9, 5, -2, 7, 8, 1 };
 
         quickSort(arr, 0, arr.length - 1);
 

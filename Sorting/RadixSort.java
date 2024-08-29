@@ -30,12 +30,14 @@ public class RadixSort {
 
         // Build output array by placing elements in their correct position
         for (int i = n - 1; i >= 0; i--) {
-            output[count[(arr[i] / div) % 10] - 1] = arr[i];
+            int pos = count[(arr[i] / div) % 10];
+            output[pos - 1] = arr[i];
             count[(arr[i] / div) % 10]--;
         }
 
         // Copy the sorted output array back to the original array
         System.arraycopy(output, 0, arr, 0, n);
+        System.out.println();
     }
 
     // Radix Sort algorithm

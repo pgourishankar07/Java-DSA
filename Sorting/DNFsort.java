@@ -2,6 +2,9 @@
 /*
 sorting the array consits of 0,1,2
 */
+
+import java.util.Arrays;
+
 public class DNFsort {
     static void swap(int arr[], int m, int h) {
         int temp = arr[m];
