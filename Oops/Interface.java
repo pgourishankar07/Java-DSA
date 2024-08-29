@@ -8,7 +8,7 @@ interface Rectangle {
 }
 
 // Class implementing the interface
-class Printer implements Shape {
+class Printer implements Shape, Rectangle {
     // Implementation of the interface method
     public void print() {
         System.out.println("All Shapes");
