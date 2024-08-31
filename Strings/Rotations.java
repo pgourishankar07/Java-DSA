@@ -25,6 +25,10 @@ public class Rotations {
             }
         }
 
+        // instead of this u can use this method
+        StringBuilder ans = new StringBuilder(str);
+        ans.append(str);
+        System.out.println(ans.toString().contains(str2));
         sc.close();
     }
 }

@@ -73,6 +73,7 @@ public class Hashing {
             }
         }
 
+        // put____________
         public void put(K key, V val) {
 
             int bi = hashFunction(key); // bucket index
@@ -80,6 +81,7 @@ public class Hashing {
 
             if (di == -1) {
                 buckets[bi].add(new Node(key, val));
+                n++;
             } else {
                 Node node = buckets[bi].get(di);
                 node.val = val;
