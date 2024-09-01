@@ -5,7 +5,7 @@ public class ActivitySelection {
         int[] start = { 1, 3, 0, 5, 8, 5 };
         int[] end = { 2, 4, 6, 7, 9, 9 }; // the end time for activities should be sorted or else sort it
 
-        // if end array not sorted ,sort using HashMap
+        // if end array not sorted , sort using HashMap
 
         int maxAxtivity = 0;
         ArrayList<Integer> ans = new ArrayList<>();
@@ -26,3 +26,20 @@ public class ActivitySelection {
 
     }
 }
+
+/*
+ * General Guidelines for Deciding the Sorting Index:
+ * Overlapping Intervals Problems (e.g., Merge Intervals, Meeting Rooms):
+ * 
+ * Sort by the start time (0th index): This allows you to process intervals in a
+ * sequence where you can easily detect overlaps.
+ * Maximizing Non-Overlapping Intervals (e.g., Activity Selection):
+ * 
+ * Sort by the end time (1st index): This facilitates making a greedy choice of
+ * the earliest ending interval, maximizing the count of non-overlapping
+ * intervals.
+ * Covering Intervals or Points (e.g., Interval Cover):
+ * 
+ * Sort by the start time (0th index): This helps in identifying the starting
+ * point and covering intervals efficiently.
+ */

@@ -11,7 +11,7 @@ public class MaxLenChainOfPairs {
                 { 50, 90 }
         };
 
-        Arrays.sort(pairs, Comparator.comparingDouble(o -> o[1]));
+        Arrays.sort(pairs, Comparator.comparingInt(i -> i[1]));
 
         int chainLen = 1;
         int chainEnd = pairs[0][1];
