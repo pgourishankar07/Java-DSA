@@ -6,7 +6,7 @@ import java.util.Queue;
 public class Problems {
 
     // Weakest Soldier
-    class ArrayWithIndex {
+    static class ArrayWithIndex {
         int[] array;
         int index;
 
@@ -16,7 +16,7 @@ public class Problems {
         }
     }
 
-    public int[] kWeakestRows(int[][] mat, int k) {
+    public static int[] kWeakestRows(int[][] mat, int k) {
 
         int n = mat.length;
 
