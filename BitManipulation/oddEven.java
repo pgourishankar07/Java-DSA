@@ -36,11 +36,16 @@ public class oddEven {
         return ans;
     }
 
+    static int noOfDigi(int n) {
+        return (int) Math.log10(n) + 1;
+    }
+
     public static void main(String args[]) {
         oddOrEven(5);
         oddOrEven(4);
         System.out.println(powerOf2(7));
         System.out.println(count_1s(3));
         System.out.println(fastExpo(3, 5));
+        System.out.println(noOfDigi(16));
     }
 }

@@ -11,7 +11,7 @@ public class BitOperations {
         } else {
             return 1;
         }
-        // return (n & bitMask); //this will return the decimal of that ith position
+        // return (n & bitMask); // this will return the decimal of that ith position
     }
 
     static int set_ith_bit(int n, int i) { // set ith bit as 1
@@ -44,11 +44,38 @@ public class BitOperations {
         return n & bitMask;
     }
 
+    static int toggle_ith_bit(int n, int i) {
+        int bitMask = (1 << i);
+        return n ^ bitMask;
+    }
+
+    static void convertToBin(int n) {
+        StringBuilder ans = new StringBuilder();
+        while (n > 0) {
+            if ((n & 1) == 1) {
+                ans.append(Integer.toString(1));
+            } else {
+                ans.append(Integer.toString(0));
+            }
+            n = n / 2;
+        }
+        System.out.println(ans.reverse());
+    }
+
     public static void main(String args[]) {
-        System.out.println(get_ith_bit(7, 2));
-        System.out.println(set_ith_bit(10, 2));
-        System.out.println(clear_ith_bit(10, 1));
-        System.out.println(update_ith_bit(10, 1, 0));
-        System.out.println(clear_i_bits(10, 4));
+
+        int n = 678883006;
+        int i = 16;
+
+        // System.out.println(get_ith_bit(n, i - 1));
+        // convertToBin(n);
+        // convertToBin(set_ith_bit(n, i - 1));
+        // System.out.println(set_ith_bit(n, i - 1));
+        // System.out.println(clear_ith_bit(n, i - 1));
+        // System.out.println(update_ith_bit(10, 1, 0));
+        // System.out.println(clear_i_bits(15, 2));
+        // System.out.println(45 ^ 15);
+        convertToBin(34);
+        convertToBin(toggle_ith_bit(34, 3));
     }
 }
