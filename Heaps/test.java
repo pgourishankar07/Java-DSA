@@ -2,18 +2,17 @@ import java.util.PriorityQueue;
 
 public class test {
     public static void main(String args[]) {
-        PriorityQueue<Integer> pq = new PriorityQueue<>((a, b) -> b - a);
+        PriorityQueue<Integer> top5Queue = new PriorityQueue<>(5);
 
-        pq.add(1);
-        pq.add(6);
-        pq.add(2);
-        pq.add(9);
-        pq.add(3);
+        // Add elements to the queue
+        top5Queue.add(10);
+        top5Queue.add(5);
+        top5Queue.add(20);
+        top5Queue.add(15);
+        top5Queue.add(8);
+        top5Queue.add(25); // This element will be discarded as the queue is full
 
-        System.out.println(pq.contains(3));
-
-        while (!pq.isEmpty()) {
-            System.out.println(pq.remove()); // remove : o(logn)
-        }
+        // The queue will now contain the top 5 elements: 5, 8, 10, 15, 20
+        System.out.println(top5Queue);
     }
 }

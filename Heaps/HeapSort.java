@@ -5,10 +5,10 @@ public class HeapSort {
         int left = 2 * i + 1;
         int right = 2 * i + 2;
 
-        if (left < size && arr[node] < arr[left]) {// change of sign
+        if (left < size && arr[node] < arr[left]) { // change of sign
             node = left;
         }
-        if (right < size && arr[node] < arr[right]) {// change of sign
+        if (right < size && arr[node] < arr[right]) { // change of sign
             node = right;
         }
 

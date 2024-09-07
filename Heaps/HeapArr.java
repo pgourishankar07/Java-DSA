@@ -5,6 +5,11 @@ public class HeapArr {
     static class MinHeap {
         ArrayList<Integer> heap = new ArrayList<>();
 
+        // add -- while adding check parent and swap
+        // remove -- while deleting swap the root with last and heapify
+        // heapify -- ensure root is in correct position if not then swap with its
+        // children
+
         public void add(int num) {
             heap.add(num);
 
@@ -21,6 +26,7 @@ public class HeapArr {
                 nodeIdx = parentIdx;
                 parentIdx = (nodeIdx - 1) / 2;
             }
+
         }
 
         public int peek() {
@@ -50,6 +56,10 @@ public class HeapArr {
             }
         }
 
+        public String toString() {
+            return "Heap : " + heap;
+        }
+
         public int remove() {
             int data = heap.get(0);
             // swap the 1st and last node
@@ -74,9 +84,10 @@ public class HeapArr {
         h.add(1);
         h.add(4);
         h.add(3);
+        h.add(0);
 
-        while (!h.isEmpty()) {
-            System.out.println(h.remove());
-        }
+        // while (!h.isEmpty()) {
+        // System.out.println(h.remove());
+        // }
     }
 }
