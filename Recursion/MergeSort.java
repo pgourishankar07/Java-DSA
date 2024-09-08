@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.Arrays;
 
 class MergeSort {
 
@@ -5,33 +7,36 @@ class MergeSort {
     {
         int p1 = start; // start pointer at first array [ start , mid ]
         int p2 = mid + 1; // start pointer at second array [ mid+1 , end]
-        int size = end - start + 1; // doubt
-        int[] narr = new int[size];
+        ArrayList<Integer> narr = new ArrayList<>();
         int i = 0;
         while (p1 <= mid && p2 <= end) {
             if (arr[p1] < arr[p2]) {
-                narr[i] = arr[p1];
+                narr.add(arr[p1]);
                 i++;
                 p1++;
             } else {
-                narr[i] = arr[p2];
+                narr.add(arr[p2]);
                 i++;
                 p2++;
             }
         }
         while (p1 <= mid) {
-            narr[i] = arr[p1];
+            narr.add(arr[p1]);
             i++;
             p1++;
         }
         while (p2 <= end) {
-            narr[i] = arr[p2];
+            narr.add(arr[p2]);
             i++;
             p2++;
         }
+        System.out.println(start + " " + mid + " " + end);
+        System.out.println(Arrays.toString(arr));
+        System.out.println("List :" + narr);
+        System.out.println();
 
-        for (i = 0, p1 = start; i < size; i++, p1++) {
-            arr[p1] = narr[i]; // doubt
+        for (int j = 0; j < narr.size(); j++) {
+            arr[start + j] = narr.get(j);
         }
 
     }

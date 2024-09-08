@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class RemoveDupli {
 
     public static StringBuilder RemoveDuplicates(String str, int i, StringBuilder strB, boolean[] map) {

@@ -2,23 +2,26 @@ import java.util.ArrayList;
 
 public class permuStr {
 
+    // https://www.youtube.com/watch?v=f2ic2Rsc9pU
+
     private static String swap(String str, int i, int j) {
-        char[] charArray = str.toCharArray();
-        char temp = charArray[i];
-        charArray[i] = charArray[j];
-        charArray[j] = temp;
-        return new String(charArray);
+        StringBuilder sb = new StringBuilder(str);
+        char temp = sb.charAt(i);
+        sb.setCharAt(i, sb.charAt(j));
+        sb.setCharAt(j, temp);
+        return sb.toString();
     }
 
-    public static void printPermutations(String str, int start, int end) {
+    public static void printPermutations(String str, int start, int end, int[] count) { // n! -- no. of permutations
         if (start == end) {
             System.out.println(str);
+            count[0]++;
             return;
         }
 
         for (int i = start; i <= end; i++) {
             str = swap(str, start, i);
-            printPermutations(str, start + 1, end);
+            printPermutations(str, start + 1, end, count);// curr pos is swapped pass +1 for next position swaps
             str = swap(str, start, i); // Backtrack to restore the original string
         }
     }
@@ -31,8 +34,9 @@ public class permuStr {
         }
 
         for (int i = 0; i < str.length(); i++) {
+            // exclude curr char for next pass
             String newStr = str.substring(0, i) + str.substring(i + 1);
-            printPermu(newStr, permu + str.charAt(i));
+            printPermu(newStr, permu + str.charAt(i)); // include curr char in the res string
         }
 
     }
@@ -49,12 +53,14 @@ public class permuStr {
     }
 
     public static void main(String[] args) {
-        // String str = "123";
-        // printPermutations(str, 0, str.length() - 1);
+        String str = "abc";
+        int[] count = { 0 };
+        printPermutations(str, 0, str.length() - 1, count);
+        System.out.println(count[0]);
         // printPermu(str, "");
 
-        ArrayList<String> arr = new ArrayList<>();
+        // ArrayList<String> arr = new ArrayList<>();
 
-        printPermu(8, "", arr);
+        // printPermu(3, "", arr);
     }
 }

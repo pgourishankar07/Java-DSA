@@ -107,8 +107,8 @@ public class Basic {
     }
 
     public static int optPow(int num, int pow) {
-        if (pow == 0) {
-            return 1;
+        if (pow == 1) {
+            return num;
         }
         if (num == 0) {
             return 0;
@@ -257,31 +257,31 @@ public class Basic {
     }
 
     // print all subsequence of a string
-    public static void subSeq(String str, int i, String currStr) {
+    public static void subSeq(String str, int i, String res) {
 
         if (i == str.length()) {
-            System.out.println(currStr);
+            System.out.println(res);
             return;
         }
 
-        subSeq(str, i + 1, currStr + str.charAt(i));
-        subSeq(str, i + 1, currStr);
+        subSeq(str, i + 1, res); // exclude
+        subSeq(str, i + 1, res + str.charAt(i)); // include
 
     }
 
     // print all unique subsequence of a string
-    public static void unqSubSeq(String str, int i, String currStr, HashSet<String> hSet) {
+    public static void unqSubSeq(String str, int i, String res, HashSet<String> hSet) {
 
         if (i == str.length()) {
-            if (!hSet.contains(currStr)) {
-                System.out.println(currStr);
-                hSet.add(currStr);
+            if (!hSet.contains(res)) {
+                System.out.println(res);
+                hSet.add(res);
             }
             return;
         }
 
-        unqSubSeq(str, i + 1, currStr + str.charAt(i), hSet);
-        unqSubSeq(str, i + 1, currStr, hSet);
+        unqSubSeq(str, i + 1, res + str.charAt(i), hSet);
+        unqSubSeq(str, i + 1, res, hSet);
 
     }
 
@@ -313,6 +313,12 @@ public class Basic {
          * }
          */
 
+        // ____________________________________________________________________
+        /*
+         * Permutation is all types of arrangements = "abc","bca","cab",....
+         * Combination is same as subsequence
+         */
+
     }
 
     public static void main(String args[]) {
@@ -340,7 +346,7 @@ public class Basic {
         // }
 
         // System.out.println(calPow(num, pow));
-        // System.out.println(optPow(num, pow));
+        // System.out.println(optPow(2, 5));
 
         // len("bunty", 0);
 
@@ -359,13 +365,13 @@ public class Basic {
 
         // movX("abxcxxd", 0, "", "");
 
-        subSeq("123", 0, "");
+        // subSeq("1234", 0, "");
 
         // HashSet<String> hSet = new HashSet<>();
         // unqSubSeq("aaa", 0, "", hSet);
 
         // subStr("hello", 0, 0);
-        // subStr("hello", 0);
+        subStr("hello", 0);
 
         sc.close();
     }

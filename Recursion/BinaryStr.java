@@ -30,8 +30,8 @@ public class BinaryStr {
 
     public static void main(String args[]) {
 
-        binStrNoConsecutive1(2, 0, "");
+        binStrNoConsecutive1(3, 0, "");
         System.out.println();
-        binStrNoConsecutive0(2, 1, "");
+        binStrNoConsecutive0(3, 1, "");
     }
 }

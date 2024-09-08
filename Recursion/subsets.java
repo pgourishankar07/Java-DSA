@@ -1,5 +1,5 @@
 //print all subsets of a set of 1st n natural numbers
-//it is similar to printing the subsequence of the string
+//it is similar to printing the subsequence of the string (combinations)
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,9 +12,9 @@ public class subsets {
             return;
         }
 
-        list.add(arr[i]);
+        list.add(arr[i]); // include
         subSets(arr, i + 1, list);
-        list.remove(list.size() - 1);
+        list.remove(list.size() - 1); // exclude
         subSets(arr, i + 1, list);
     }
 
