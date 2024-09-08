@@ -91,6 +91,7 @@ public class Comparatorr {
         Collections.sort(list2); // without implementing the Comparable interface u cant able to sort it
 
         System.out.println(list2);
+
     }
 
 }

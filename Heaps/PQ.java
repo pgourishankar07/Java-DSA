@@ -46,7 +46,13 @@ public class PQ {
             pq2.remove();
         }
 
-        TreeSet<Integer> set = new TreeSet<>((a, b) -> b - a);
+        Comparator<Integer> comp = new Comparator<Integer>() {
+            public int compare(Integer a, Integer b) {
+                return a - b;
+            }
+        };
+
+        TreeSet<Integer> set = new TreeSet<>(comp);
 
         set.add(2);
         set.add(1);
@@ -60,6 +66,7 @@ public class PQ {
         set.add(3);
         set.add(1);
 
+        System.out.println("TreeSet : ");
         System.out.println(set);
 
     }
