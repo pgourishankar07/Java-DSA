@@ -239,27 +239,19 @@ public class BuilTraversedBT {
             int leftHeight = height(root.left);
             int righttHeight = height(root.right);
 
+            int selfDia = leftHeight + righttHeight + 1;
+
             int leftDia = diameter(root.left);
             int rightDia = diameter(root.right);
-
-            int selfDia = leftHeight + righttHeight + 1;
 
             return Math.max(selfDia, Math.max(leftDia, rightDia));
         }
 
         // Diameter Optimized using class and object (calculating both height and
         // diameter in 1 go)
-        static class Info {
-            int dia;
-            int ht;
+        // static
 
-            Info() {
-            }
-
-            Info(int dia, int ht) {
-                this.dia = dia;
-                this.ht = ht;
-            }
+        record Info(int dia, int ht) {
         }
 
         public Info diameterOpt(TreeNode root) {
@@ -270,8 +262,8 @@ public class BuilTraversedBT {
             Info leftInfo = diameterOpt(root.left);
             Info rightInfo = diameterOpt(root.right);
 
-            int dia = Math.max(Math.max(leftInfo.dia, rightInfo.dia), leftInfo.ht + rightInfo.ht + 1);
             int ht = Math.max(leftInfo.ht, rightInfo.ht) + 1;
+            int dia = Math.max(leftInfo.ht + rightInfo.ht + 1, Math.max(leftInfo.dia, rightInfo.dia));
 
             return new Info(dia, ht);
         }
@@ -604,12 +596,15 @@ public class BuilTraversedBT {
         }
 
         public TreeNode lca2(TreeNode root, int n1, int n2) {
-            if (root == null || root.val == n1 || root.val == n2) {
+            if (root == null) {
+                return null;
+            }
+            if (root.val == n1 || root.val == n2) {
                 return root;
             }
 
-            TreeNode leftLca = lca2(root.left, n1, n2);
-            TreeNode rightLca = lca2(root.right, n1, n2);
+            TreeNode leftLca = lca2(root.left, n1, n2); // check leftSubTree has the node
+            TreeNode rightLca = lca2(root.right, n1, n2);// check rightSubTree has the node
 
             if (leftLca == null) {
                 return rightLca;
@@ -618,6 +613,9 @@ public class BuilTraversedBT {
             if (rightLca == null) {
                 return leftLca;
             }
+
+            // if both found that means left and right or not null then send the root thats
+            // the ancestor which has the both right and left val
 
             return root;
         }
@@ -689,6 +687,7 @@ public class BuilTraversedBT {
             if (root == null) {
                 return;
             }
+
             if (root.left == null && root.right == null) {
                 list.add(root.val);
             }
@@ -751,11 +750,10 @@ public class BuilTraversedBT {
 
             // get left side exclude leaf node
             while (root1.left != null && root1.right != null) {
+                list.add(root1.val);
                 if (root1.left != null) {
-                    list.add(root1.val);
                     root1 = root1.left;
                 } else {
-                    list.add(root1.val);
                     root1 = root1.right;
                 }
             }
@@ -764,11 +762,10 @@ public class BuilTraversedBT {
 
             // get right side exclude leaf node
             while (root1.left != null || root1.right != null) {
+                list.add(root1.val);
                 if (root1.right != null) {
-                    list.add(root1.val);
                     root1 = root1.right;
                 } else {
-                    list.add(root1.val);
                     root1 = root1.left;
                 }
             }
@@ -793,63 +790,67 @@ public class BuilTraversedBT {
         BinaryTree bt = new BinaryTree();
         TreeNode root = bt.preorderBuild(nodes);
 
-        System.out.println("PreOrder Traversal :");
-        bt.preorderTraverse(root);
-        System.out.println();
+        // System.out.println("PreOrder Traversal :");
+        // bt.preorderTraverse(root);
+        // System.out.println();
 
-        System.out.println("InOrder Traversal :");
-        bt.inorderTraverse(root);
-        System.out.println();
+        // System.out.println("InOrder Traversal :");
+        // bt.inorderTraverse(root);
+        // System.out.println();
 
-        System.out.println("PostOrder Traversal :");
-        bt.postorderTraverse(root);
-        System.out.println();
+        // System.out.println("PostOrder Traversal :");
+        // bt.postorderTraverse(root);
+        // System.out.println();
 
-        System.out.println("LevelOrder Traversal :");
-        bt.levelOrderTraversal(root);
+        // System.out.println("LevelOrder Traversal :");
+        // bt.levelOrderTraversal(root);
 
-        System.out.println("Reverse LevelOrder Traversal :");
-        bt.RevlevelOrderTraversal(root);
+        // System.out.println("Reverse LevelOrder Traversal :");
+        // bt.RevlevelOrderTraversal(root);
 
-        System.out.println("Height of a Tree  : " + bt.height(root));
-        System.out.println("Number of Nodes : " + bt.count(root));
-        System.out.println("Sum Of Nodes : " + bt.sum(root));
+        // System.out.println("Height of a Tree : " + bt.height(root));
+        // System.out.println("Number of Nodes : " + bt.count(root));
+        // System.out.println("Sum Of Nodes : " + bt.sum(root));
 
-        System.out.println("Diameter of the Tree : " + bt.diameter(root));
+        // System.out.println("Diameter of the Tree : " + bt.diameter(root));
 
-        System.out.println("Diameter of the Tree (Optimized): " + bt.diameterOpt(root).dia);
+        // System.out.println("Diameter of the Tree (Optimized): " +
+        // bt.diameterOpt(root).dia);
 
-        System.out.println(" __________________________________________________________");
-        int nodes2[] = { 3, -1, 6, -1, -1 };
+        // System.out.println("
+        // __________________________________________________________");
+        // int nodes2[] = { 3, -1, 6, -1, -1 };
 
-        BinaryTree bt2 = new BinaryTree();
-        TreeNode root2 = bt2.preorderBuild(nodes2);
+        // BinaryTree bt2 = new BinaryTree();
+        // TreeNode root2 = bt2.preorderBuild(nodes2);
 
-        System.out.println("SubTree is Present in the Tree : " + bt.isSubTree(root, root2));
+        // System.out.println("SubTree is Present in the Tree : " + bt.isSubTree(root,
+        // root2));
 
-        bt.topView(root);
-        bt.bottomView(root);
-        bt.leftView(root);
-        bt.rightView(root);
+        // bt.topView(root);
+        // bt.bottomView(root);
+        // bt.leftView(root);
+        // bt.rightView(root);
 
-        bt.kthLevel(root, 3);
+        // bt.kthLevel(root, 3);
 
-        bt.lca(root, 4, 5);
+        // System.out.println(bt.lca2(root, 4, 5).val);
 
-        bt.minDis(root, 4, 6);
+        // bt.minDis(root, 4, 6);
 
-        bt.kthAnces(root, 4, 3);
+        // bt.kthAnces(root, 4, 3);
 
-        System.out.println(bt.sumTree(root));
-        System.out.println("ZigZag Traversal : ");
-        bt.zigZag(root);
+        // System.out.println(bt.sumTree(root));
+        // System.out.println("ZigZag Traversal : ");
+        // bt.zigZag(root);
 
-        int nodes3[] = { 8, 3, 1, -1, -1, 6, 4, -1, -1, 7, -1, -1, 10, -1, 5, 2, -1, -1, -1 };
+        int nodes3[] = { 8, 3, 1, -1, -1, 6, 4, -1, -1, 7, -1, -1, 10, -1, 5, 2, -1,
+                -1, -1 };
         BinaryTree bt3 = new BinaryTree();
         TreeNode root3 = bt3.preorderBuild(nodes3);
 
-        System.out.println("Diagnol Traversal : ");
-        bt3.diagnolTraversal(root3);
+        // System.out.println("Diagnol Traversal : ");
+        // bt3.diagnolTraversal(root3);
 
         System.out.println("Boundry Traversal : ");
         bt3.boundryTraversal(root3);

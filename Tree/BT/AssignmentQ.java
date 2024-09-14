@@ -47,27 +47,17 @@ public class AssignmentQ {
 
             Queue<TreeNode> q = new LinkedList<>();
             q.add(root);
-            q.add(null);
 
             while (!q.isEmpty()) {
 
                 TreeNode temp = q.remove();
+                System.out.println(temp.val);
 
-                if (temp == null) {
-                    if (q.isEmpty()) {
-                        break;
-                    } else {
-                        System.out.println();
-                        q.add(null);
-                    }
-                } else {
-                    System.out.print(temp.val + " ");
-                    if (temp.left != null) {
-                        q.add(temp.left);
-                    }
-                    if (temp.right != null) {
-                        q.add(temp.right);
-                    }
+                if (temp.left != null) {
+                    q.add(temp.left);
+                }
+                if (temp.right != null) {
+                    q.add(temp.right);
                 }
             }
             System.out.println();
@@ -107,9 +97,9 @@ public class AssignmentQ {
             }
 
             String s = Integer.toString(root.val) + "," + isDupli(root.left, map, list) + ","
-                    + isDupli(root.right, map, list);
+                    + isDupli(root.right, map, list); // converting the order to string (any order - in,pre,post)
 
-            if (map.get(s) == 1) {
+            if (map.get(s) == 1) { // checking that order hsa occured before or not
                 list.add(root);
             }
 
@@ -133,12 +123,12 @@ public class AssignmentQ {
     }
 
     public static void main(String args[]) {
-        int nodes[] = { 2, 2, 2, -1, -1, 2, -1, -1, 2, -1, 2, -1, -1 };
+        int nodes[] = { 2, 5, 3, -1, -1, 6, -1, -1, 7, -1, 8, -1, -1 };
         BinaryTree bt = new BinaryTree();
         TreeNode root = bt.preorderBuild(nodes);
         bt.levelOrderTraversal(root);
 
-        System.out.println(bt.univalue(root, root.val));
+        // System.out.println(bt.univalue(root, root.val));
 
     }
 }
