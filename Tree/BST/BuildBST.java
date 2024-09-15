@@ -88,8 +88,9 @@ public class BuildBST {
             }
         }
 
-        // for deleting nodes having 2 child (replace with inOrder successor and deelete
-        // the node)
+        // for deleting nodes having 2 child (replace with inOrder successor and delete
+        // the node) -- inorder successor always has 0 or 1 child -- (left most node in
+        // the right subtree)
         if (root.val == key && root.left != null && root.right != null) {
             TreeNode temp = root.right;
             while (temp.left != null) {
@@ -97,7 +98,7 @@ public class BuildBST {
             }
 
             root.val = temp.val;
-            root.right = deleteNode(root.right, root.val);
+            root.right = deleteNode(root.right, temp.val);
         }
 
         if (root.val > key) {
@@ -123,7 +124,7 @@ public class BuildBST {
             printInRange(root.right, low, high);
         } else if (root.val < low) {
             printInRange(root.right, low, high);
-        } else {
+        } else if (root.val > high) {
             printInRange(root.left, low, high);
         }
 
@@ -179,6 +180,9 @@ public class BuildBST {
             return false;
         }
 
+        // left SubTree should be in range MIN_VALUE to root.val
+        // right SubTree should be in range root.val to MAX_VALUE
+
         return isBST(root.left, min, root.val) && isBST(root.right, root.val, max);
     }
 
@@ -219,6 +223,7 @@ public class BuildBST {
         }
 
         int mid = low + ((high - low) / 2);
+
         TreeNode root = new TreeNode(nums[mid]);
         root.left = buildTree(nums, low, mid - 1);
         root.right = buildTree(nums, mid + 1, high);
@@ -256,7 +261,7 @@ public class BuildBST {
     // presence of BST in BT
     public static boolean isBSTinBT(TreeNode root) {
         if (root == null) {
-            return true;
+            return false;
         }
 
         boolean valid = isBST(root, Integer.MAX_VALUE, Integer.MIN_VALUE);
@@ -319,19 +324,23 @@ public class BuildBST {
             return new Info1(true, 0, Integer.MAX_VALUE, Integer.MIN_VALUE);
         }
 
-        Info1 leftInfo = largBSTSize2(root.left, maxBST);
-        Info1 rightInfo = largBSTSize2(root.right, maxBST);
+        Info1 left = largBSTSize2(root.left, maxBST);
+        Info1 right = largBSTSize2(root.right, maxBST);
 
-        int size = leftInfo.size + rightInfo.size + 1;
+        int size = left.size + right.size + 1;
 
-        int min = Math.min(root.val, Math.min(leftInfo.min, rightInfo.min));
-        int max = Math.max(root.val, Math.max(leftInfo.max, rightInfo.max));
+        int min = Math.min(root.val, Math.min(left.min, right.min));
+        int max = Math.max(root.val, Math.max(left.max, right.max));
 
-        if (root.val <= leftInfo.max || root.val >= rightInfo.min) {
+        // CONDITIONS FOR !BST
+        // in left SubTree find the max value, if this value > root.val
+        // in right SubTree find the min value, if this value < root.val
+
+        if (root.val <= left.max || root.val >= right.min) {
             return new Info1(false, size, min, max);
         }
 
-        if (leftInfo.isBST && rightInfo.isBST) {
+        if (left.isBST && right.isBST) {
             maxBST[0] = Math.max(maxBST[0], size);
             return new Info1(true, size, min, max);
         }
@@ -429,7 +438,7 @@ public class BuildBST {
         return root;
     }
 
-    // Ceil of a node in BST
+    // Ceil of a node in BST -- inOrder Successor
     public static void ceil(TreeNode root, int key) {
         if (root == null) {
             return;
@@ -466,7 +475,7 @@ public class BuildBST {
         System.out.println("Ceil of the given value in the BST is : " + ceil);
     }
 
-    // Floor of a node in BST
+    // Floor of a node in BST -- inOrder Predecessor
     public static void floor(TreeNode root, int key) {
         if (root == null) {
             return;
@@ -510,7 +519,7 @@ public class BuildBST {
         }
 
         recover(root.left, list);
-        root.val = list.remove(0);
+        root.val = list.remove(0); // over-ridding the values
         recover(root.right, list);
     }
 
@@ -550,11 +559,11 @@ public class BuildBST {
 
         int res = 0;
         while (root != null) {
-            if (root.val <= key) {
-                root = root.right;
-            } else {
+            if (root.val > key) {
                 res = root.val;
                 root = root.left;
+            } else {
+                root = root.right;
             }
         }
 
@@ -609,22 +618,23 @@ public class BuildBST {
 
         List<Integer> list = new ArrayList<>();
         // root = mirror(root);
-        // inorderTraverse(root, list);
+        inorderTraverse(root, list);
+        System.out.println(list);
         // printInRange(root, 5, 12);
-        System.out.println();
+        // System.out.println();
         // System.out.println(size(root));
 
-        TreeNode root2 = new TreeNode(50);
-        root2.left = new TreeNode(30);
-        root2.left.left = new TreeNode(5);
-        root2.left.right = new TreeNode(20);
+        // TreeNode root2 = new TreeNode(50);
+        // root2.left = new TreeNode(30);
+        // root2.left.left = new TreeNode(5);
+        // root2.left.right = new TreeNode(20);
 
-        rootToLeaf(root, root.left.right, list);
-        root2.right = new TreeNode(60);
-        root2.right.left = new TreeNode(45);
-        root2.right.right = new TreeNode(70);
-        root2.right.right.left = new TreeNode(65);
-        root2.right.right.right = new TreeNode(80);
+        // rootToLeaf(root, root.left.right, list);
+        // root2.right = new TreeNode(60);
+        // root2.right.left = new TreeNode(45);
+        // root2.right.right = new TreeNode(70);
+        // root2.right.right.left = new TreeNode(65);
+        // root2.right.right.right = new TreeNode(80);
 
         // int max[] = { 0 };
         // System.out.println(largBSTSize(root2, max));
@@ -638,7 +648,7 @@ public class BuildBST {
 
         // ______________________________________________
 
-        System.out.println(lcaBST(root, root.left.left, root.left.right).val);
+        // System.out.println(lcaBST(root, root.left.left, root.left.right).val);
 
         // ceil(root, 12);
         // ceil2(root, 12);
