@@ -1,17 +1,11 @@
 public class TrieBasic {
 
+    public static TrieNode root = new TrieNode();
+
     static class TrieNode {
         TrieNode children[] = new TrieNode[26];
         boolean end = false; // for marking the words last char as end
-
-        TrieNode() { // this loop is not necessary for java
-            for (int i = 0; i < 26; i++) { // 26 - using only alphabets
-                children[i] = null;
-            }
-        }
     }
-
-    public static TrieNode root = new TrieNode();
 
     // insert words in the Trie
     public static void insert(String word) { // Time : O(L) -- Length of the Largest word
@@ -82,7 +76,8 @@ public class TrieBasic {
             return true;
         }
 
-        for (int i = 1; i <= key.length(); i++) { // finding all possible substrings and searching in Trie
+        for (int i = 1; i <= key.length(); i++) { // finding all possible substrings and searching in Trie 1. search
+                                                  // 2.then break
             if (search(key.substring(0, i)) && wordBreak(key.substring(i))) {
                 return true;
             }
@@ -139,7 +134,10 @@ public class TrieBasic {
             curr = curr.children[idx];
         }
 
-        printWords(curr, key);
+        if (startsWith(key)) {
+            printWords(curr, key);
+        }
+
     }
 
     public static void main(String args[]) {
@@ -153,7 +151,7 @@ public class TrieBasic {
         // print();
         // System.out.println(search("theeep"));
         // System.out.println(search("thee"));
-        // System.out.println(wordBreak("theatherei"));
+        System.out.println(wordBreak("mobilemousemonitor"));
         System.out.println();
 
         // System.out.println(startsWith("app"));
@@ -162,7 +160,7 @@ public class TrieBasic {
 
         System.out.println();
 
-        printWords(root, "");
+        // printWords(root, "");
 
         // System.out.println();
 
@@ -173,8 +171,8 @@ public class TrieBasic {
         // System.out.println(largWrd(root, "", ""));
         // // System.out.println(res);
 
-        System.out.println("apple".substring(0, 0 + 1));
+        // System.out.println("apple".substring(0, 0 + 1));
 
-        // wrdSrch("mouse");
+        wrdSrch("mo");
     }
 }

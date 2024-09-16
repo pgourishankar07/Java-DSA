@@ -2,6 +2,8 @@
 
 public class LongWordWithAllPrefix {
 
+    public static TrieNode root = new TrieNode();
+
     static class TrieNode {
         TrieNode[] children = new TrieNode[26];
         boolean end = false;
@@ -12,8 +14,6 @@ public class LongWordWithAllPrefix {
             }
         }
     }
-
-    public static TrieNode root = new TrieNode();
 
     public static void insert(String word) {
         TrieNode curr = root;
@@ -45,7 +45,7 @@ public class LongWordWithAllPrefix {
 
                 LongWord(root.children[i], temp);
 
-                temp = temp.substring(0, temp.length() - 1);
+                temp = temp.substring(0, temp.length() - 1); // removing the last char
             }
         }
 

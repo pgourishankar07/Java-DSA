@@ -34,9 +34,10 @@ public class buildST {
     // qi - query index
     // which segment lies between the queries, we add that nodes val
     public static int getSumUtil(int i, int si, int sj, int qi, int qj) {
-        if (qi > sj || qj < si) { // no overlap -- out of range from the segment
+        if (qi > sj || si > qj) { // no overlap -- out of range from the segment if start > end(other)
             return 0;
-        } else if ((qi <= si && qj >= sj)) { // complete overlap condition -- segment inside the query
+        } else if ((qi <= si && qj >= sj)) { // complete overlap condition -- segment inside the query //--
+                                             // -- then take that segment
             return tree[i];
         } else { // half overlap
             int mid = (si + sj) / 2;

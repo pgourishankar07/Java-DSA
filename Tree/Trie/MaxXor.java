@@ -1,5 +1,8 @@
 public class MaxXor {
     class Solution {
+
+        public TrieNode root = new TrieNode();
+
         class TrieNode {
             TrieNode zero, one;
 
@@ -8,8 +11,6 @@ public class MaxXor {
                 one = null;
             }
         }
-
-        public TrieNode root = new TrieNode();
 
         // inserting binary representation of the num from 000....101 (32-bit) for 5
         public void insert(int num) {

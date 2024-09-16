@@ -50,23 +50,22 @@ public class MaxST {
 
     public static void update(int[] nodes, int idx, int newVal) {
         int n = nodes.length;
-        int diff = newVal - nodes[idx];
 
         nodes[idx] = newVal; // update that node
-        updateUtil(0, 0, n - 1, idx, diff); // update the ST
+        updateUtil(0, 0, n - 1, idx, newVal); // update the ST
     }
 
-    public static void updateUtil(int i, int si, int sj, int idx, int diff) {
+    public static void updateUtil(int i, int si, int sj, int idx, int newVal) {
         if (idx < si || idx > sj) { // out of range
             return;
         }
 
-        tree[i] += diff;
+        tree[i] = Math.max(tree[i], newVal);
 
         if (si != sj) { // until reachinf leaf nodes
             int mid = (si + sj) / 2;
-            updateUtil(2 * i + 1, si, mid, idx, diff);
-            updateUtil(2 * i + 2, mid + 1, sj, idx, diff);
+            updateUtil(2 * i + 1, si, mid, idx, newVal);
+            updateUtil(2 * i + 2, mid + 1, sj, idx, newVal);
         }
     }
 

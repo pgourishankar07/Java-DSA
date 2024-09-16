@@ -4,6 +4,11 @@ import java.util.List;
 import java.util.Set;
 
 public class Assignments {
+
+    public static List<List<String>> res = new ArrayList<>();
+    public static Set<String> groupedWords = new HashSet<>();
+    public static TrieNode root = new TrieNode();
+
     static class TrieNode {
         TrieNode[] children = new TrieNode[26];
         boolean end = false;
@@ -14,8 +19,6 @@ public class Assignments {
             }
         }
     }
-
-    public static TrieNode root = new TrieNode();
 
     public static void insert(String word) {
         TrieNode curr = root;
@@ -48,9 +51,6 @@ public class Assignments {
         return curr.end;
     }
 
-    public static List<List<String>> res = new ArrayList<>();
-    public static Set<String> groupedWords = new HashSet<>();
-
     public static void permutation(String str, String permu, List<String> list) {
         if (str.length() == 0) {
             list.add(permu);
@@ -69,9 +69,9 @@ public class Assignments {
         for (String i : words) {
             if (!groupedWords.contains(i)) {
                 List<String> list = new ArrayList<>();
-                List<String> ans = new ArrayList<>();
                 permutation(i, "", list);
 
+                List<String> ans = new ArrayList<>();
                 for (String j : list) {
                     if (search(j)) {
                         ans.add(j);
