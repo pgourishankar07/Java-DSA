@@ -30,11 +30,17 @@ public class KruskalsAlgo {
         }
     }
 
-    static int n = 4;
-    static int[] par = new int[n];
-    static int[] rank = new int[n];
+    static int n = 4; // no. of vertices
+    static int[] par;
+    static int[] rank;
 
-    public static void init() {
+    public static void init(ArrayList<Edge> graph) {
+        for (Edge i : graph) {
+            n = Math.max(i.src, i.dest);
+        }
+        n = n + 1;
+        par = new int[n];
+        rank = new int[n];
         for (int i = 0; i < n; i++) {
             par[i] = i;
         }
@@ -63,8 +69,8 @@ public class KruskalsAlgo {
     }
 
     public static void kruskal(ArrayList<Edge> graph) {
-        init();
-        Collections.sort(graph); // O(E.LogE)
+        init(graph);
+        Collections.sort(graph); // 1. sort O(E.LogE) -- based on the edges
 
         int minWht = 0;
         int count = 0;
@@ -75,11 +81,11 @@ public class KruskalsAlgo {
             int v = e.dest;
             int wht = e.wht;
 
-            int parA = find(u);
+            int parA = find(u); // 2. find they are connected or not
             int parB = find(v);
 
             if (parA != parB) { // not cycle condition then only join the nodes
-                union(u, v);
+                union(u, v); // 3. connect the nodes
                 minWht += wht;
                 count++;
             }

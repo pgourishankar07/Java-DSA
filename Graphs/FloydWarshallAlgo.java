@@ -4,19 +4,20 @@
 public class FloydWarshallAlgo {
 
     final static int INF = 99999;
-    final static int V = 4;
+    static int V = 4;
 
     public static void floydWarshall(int graph[][]) {
+        V = graph.length;
         int dist[][] = new int[V][V];
 
-        for (int i = 0; i < V; i++)
+        for (int i = 0; i < V; i++) // Copying the graph
             for (int j = 0; j < V; j++)
                 dist[i][j] = graph[i][j];
 
-        for (int k = 0; k < V; k++) {
-            for (int i = 0; i < V; i++) {
-                for (int j = 0; j < V; j++) {
-                    if (dist[i][k] + dist[k][j] < dist[i][j])
+        for (int k = 0; k < V; k++) { // Helper node -- through this
+            for (int i = 0; i < V; i++) { // Src node
+                for (int j = 0; j < V; j++) { // Dest node
+                    if (dist[i][k] + dist[k][j] < dist[i][j]) // Formula
                         dist[i][j] = dist[i][k] + dist[k][j];
                 }
             }

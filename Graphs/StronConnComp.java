@@ -74,7 +74,7 @@ public class StronConnComp {
             }
         }
 
-        // Step 3: Perform DFS on transposed graph
+        // Step 3: Perform DFS on transposed graph using stk order
         Arrays.fill(visi, false);
         while (!stk.isEmpty()) {
             int node = stk.pop();
@@ -85,7 +85,7 @@ public class StronConnComp {
         }
     }
 
-    // in this order will be wrong but it gives SCC(reverse DFS)
+    // in this, order will be wrong but it gives SCC(reverse DFS)
     public static void miniKosaraju(ArrayList<Edge> graph[]) {
         boolean[] visi = new boolean[graph.length];
         for (int i = graph.length - 1; i >= 0; i--) {
@@ -93,6 +93,38 @@ public class StronConnComp {
                 dfs(graph, i, visi);
             }
             System.out.println();
+        }
+    }
+    // ______________________________
+    // My custom miniKosaraju
+
+    public static void dfs(ArrayList<Edge> graph[], int curr, boolean visi[], ArrayList<Integer> list) {
+        visi[curr] = true;
+        list.add(0, curr);
+
+        for (int i = 0; i < graph[curr].size(); i++) {
+            int node = graph[curr].get(i).dest;
+            if (!visi[node]) {
+                dfs(graph, node, visi, list);
+            }
+        }
+    }
+
+    public static void myMiniKosaraju(ArrayList<Edge> graph[]) {
+        boolean[] visi = new boolean[graph.length];
+        Stack<ArrayList<Integer>> stk = new Stack<>();
+        for (int i = graph.length - 1; i >= 0; i--) {
+            ArrayList<Integer> list = new ArrayList<>();
+            if (!visi[i]) {
+                dfs(graph, i, visi, list);
+            }
+            if (list.size() != 0) {
+                stk.push(list);
+            }
+        }
+
+        while (!stk.isEmpty()) {
+            System.out.println(stk.pop());
         }
     }
 
@@ -114,5 +146,9 @@ public class StronConnComp {
         graph[3].add(new Edge(3, 4));
 
         miniKosaraju(graph);
+        System.out.println("______");
+        kosaraju(graph);
+        System.out.println("______");
+        myMiniKosaraju(graph);
     }
 }

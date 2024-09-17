@@ -22,8 +22,8 @@ public class DisjointSet {
         int parA = find(a);
         int parB = find(b);
 
-        if (rank[parA] == rank[parB]) { // whose height is more joining to that parent
-            par[parB] = parA;
+        if (rank[parA] == rank[parB]) { // whose height is more joining to that parent (which parent is more rich)
+            par[parB] = parA; // joining the B to group A
             rank[parA]++;
         } else if (rank[parA] < rank[parB]) {
             par[parA] = parB;

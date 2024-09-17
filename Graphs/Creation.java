@@ -27,7 +27,8 @@ public class Creation {
     // Get the nighbours of a node// _________// _________//// _________//
     public static void getNext(ArrayList<Edge> graph[], int node) {
         for (int i = 0; i < graph[node].size(); i++) {
-            System.out.println(graph[node].get(i).dest);
+            System.out.println(graph[node].get(i).src + " --- " +
+                    graph[node].get(i).dest);
         }
     }
 
@@ -42,14 +43,14 @@ public class Creation {
         while (!q.isEmpty()) {
             int node = q.remove();
 
-            if (!visi[node]) { // 1. check visi or not
-                System.out.println(node); // 2. print
-                visi[node] = true; // 3. mark visted
+            System.out.println(node); // 2. print
+            visi[node] = true; // 3. mark visted
 
-                // 4. add there neighbours
-                for (int i = 0; i < graph[node].size(); i++) {
-                    int temp = graph[node].get(i).dest;
-                    q.add(temp);
+            // 4. add there unvisited neighbours
+            for (int i = 0; i < graph[node].size(); i++) {
+                int neigh = graph[node].get(i).dest;
+                if (!visi[neigh]) {
+                    q.add(neigh);
                 }
             }
         }
@@ -61,22 +62,22 @@ public class Creation {
         visi[node] = true;
 
         for (int i = 0; i < graph[node].size(); i++) {
-            int curr = graph[node].get(i).dest;
-            if (!visi[curr]) {
-                dfs(graph, curr, visi);
+            int neigh = graph[node].get(i).dest;
+            if (!visi[neigh]) {
+                dfs(graph, neigh, visi);
             }
         }
     }
 
     // Has Path from src to dest// _________// _________//// _________// _________//
     public static void hasPath(ArrayList<Edge> graph[], int src, int dest, boolean[] visi) {
-        if (src == dest) {
-            System.out.println("Reached " + src);
-            visi[src] = true;
-            return;
-        }
 
         visi[src] = true;
+
+        if (src == dest) {
+            System.out.println("Reached " + src);
+            return;
+        }
 
         for (int i = 0; i < graph[src].size(); i++) {
             int curr = graph[src].get(i).dest;
@@ -161,15 +162,19 @@ public class Creation {
         visi[node] = true;
 
         for (int i = 0; i < graph[node].size(); i++) {
-            int temp = graph[node].get(i).dest;
-            if (!visi[temp]) {
-                if (detectCycleUtil(graph, visi, temp, node)) { // recursion part
+            int neigh = graph[node].get(i).dest;
+            if (!visi[neigh]) {
+                if (detectCycleUtil(graph, visi, neigh, node)) { // recursion part
                     return true;
                 }
-            } else if (visi[temp] && temp != par) { // base case
+            } else if (visi[neigh] && neigh != par) { // base case -In an undirected graph, each edge is bidirectional,
+                                                      // so when you traverse from node A to node B, you can also
+                                                      // traverse back from B to A. If you do not check whether neigh is
+                                                      // the parent, you might incorrectly interpret this backtracking
+                                                      // as a cycle.
                 return true;
-            } else if (visi[temp] && temp == par) {
-                continue; // checking while backtracking
+            } else if (visi[neigh] && neigh == par) {
+                continue; // checking while backtracking -- this is for understanding (no need code)
             }
         }
 
@@ -206,7 +211,7 @@ public class Creation {
                     visi[v] = true;
                     q.add(v);
                     parent[v] = u;
-                } else if (parent[u] != v) { // if any node node has 2 different parent
+                } else if (parent[v] != u) { // if any node node has 2 different parent
                     return true;
                 }
             }
@@ -235,14 +240,16 @@ public class Creation {
         stk[node] = true;
 
         for (int i = 0; i < graph[node].size(); i++) {
-            int temp = graph[node].get(i).dest;
+            int neigh = graph[node].get(i).dest;
 
-            if (stk[temp]) { // cycle exists
+            if (stk[neigh]) { // cycle exists -- neighbour already visited
                 return true;
             }
 
-            if (!visi[temp] && detectDirCycleUtil(graph, temp, visi, stk)) {
-                return true;
+            if (!visi[neigh]) {
+                if (detectDirCycleUtil(graph, neigh, visi, stk)) {
+                    return true;
+                }
             }
         }
 
@@ -252,26 +259,26 @@ public class Creation {
 
     // BiPartite graph or not _________// _________// _________// _________//
     public static boolean biPartite(ArrayList<Edge>[] graph) {
-        int[] color = new int[graph.length];
-        Arrays.fill(color, -1);
+        int[] set = new int[graph.length];
+        Arrays.fill(set, -1);
 
         Queue<Integer> q = new LinkedList<>();
 
         for (int i = 0; i < graph.length; i++) {
-            if (color[i] == -1) {
+            if (set[i] == -1) {
                 q.add(i);
-                color[i] = 0;
+                set[i] = 0;
 
                 while (!q.isEmpty()) {
                     int node = q.remove();
 
                     for (int j = 0; j < graph[node].size(); j++) {
-                        int temp = graph[node].get(j).dest;
+                        int neigh = graph[node].get(j).dest;
 
-                        if (color[temp] == -1) {
-                            color[temp] = color[node] == 0 ? 1 : 0; // toggle color
-                            q.add(temp);
-                        } else if (color[node] == color[temp]) {
+                        if (set[neigh] == -1) {
+                            set[neigh] = set[node] == 0 ? 1 : 0; // toggle color
+                            q.add(neigh);
+                        } else if (set[node] == set[neigh]) {
                             return false;
                         }
 
@@ -285,13 +292,14 @@ public class Creation {
     }
 
     // Topological SortingBFS_________// _________// _________// _________//
-    public static void topologicalSortBFS(ArrayList<Edge> graph[]) {
+    // the graph should be DAG
+    public static void topologicalSortDFS(ArrayList<Edge> graph[]) {
         boolean[] visi = new boolean[graph.length];
         Stack<Integer> stk = new Stack<>();
 
         for (int i = 0; i < graph.length; i++) {
             if (!visi[i]) {
-                topoSortUtilBFS(graph, i, visi, stk);
+                topoSortUtilDFS(graph, i, visi, stk);
             }
         }
 
@@ -300,14 +308,14 @@ public class Creation {
         }
     }
 
-    public static void topoSortUtilBFS(ArrayList<Edge> graph[], int node, boolean[] visi, Stack<Integer> stk) {
+    public static void topoSortUtilDFS(ArrayList<Edge> graph[], int node, boolean[] visi, Stack<Integer> stk) {
         visi[node] = true;
 
         for (int i = 0; i < graph[node].size(); i++) {
             int temp = graph[node].get(i).dest;
 
             if (!visi[temp]) {
-                topoSortUtilBFS(graph, temp, visi, stk);
+                topoSortUtilDFS(graph, temp, visi, stk);
             }
         }
 
@@ -334,7 +342,7 @@ public class Creation {
     }
 
     // Topological SortingBFS_________// _________// _________// _________//
-    public static void topologicalSortDFS(ArrayList<Edge> graph[]) {
+    public static void topologicalSortBFS(ArrayList<Edge> graph[]) {
         int inDeg[] = new int[graph.length];
         inDegCal(graph, inDeg);
 
@@ -352,11 +360,11 @@ public class Creation {
             System.out.print(node + " ");
 
             for (int i = 0; i < graph[node].size(); i++) {
-                int temp = graph[node].get(i).dest;
-                inDeg[temp]--;
+                int neigh = graph[node].get(i).dest;
+                inDeg[neigh]--;
 
-                if (inDeg[temp] == 0) {
-                    q.add(temp);
+                if (inDeg[neigh] == 0) {
+                    q.add(neigh);
                 }
             }
         }
@@ -409,7 +417,10 @@ public class Creation {
 
         graph[4].add(new Edge(4, 1, 1));
 
-        // getNext(graph, 3);
+        getNext(graph, 3);
+        hasPath(graph, 0, 4, new boolean[5]);
+        topologicalSortBFS(graph);
+        // dfs(graph, 0, new boolean[5]);
         System.out.println();
 
         // _________// _________// _________// _________// _________// _________//

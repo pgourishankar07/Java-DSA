@@ -35,7 +35,7 @@ public class TarjansBridge {
         }
     }
 
-    public static void dfs(ArrayList<Edge>[] graph, int curr, int par, int time, int[] dt, int low[], boolean[] visi) {
+    public static void dfs(ArrayList<Edge>[] graph, int curr, int par, int time, int[] dt, int[] low, boolean[] visi) {
 
         visi[curr] = true;
         dt[curr] = low[curr] = ++time;
@@ -48,7 +48,7 @@ public class TarjansBridge {
                 continue;
             } else if (!visi[neigh]) { // if node is not visited then call dfs
                 dfs(graph, neigh, curr, time, dt, low, visi);
-                low[curr] = Math.min(low[curr], low[neigh]);
+                low[curr] = Math.min(low[curr], low[neigh]); // lowest among all its neigh
 
                 if (dt[curr] < low[neigh]) { // bridge condition -- if discovery time of node is greater then it has
                                              // been travelled from other way through v to u
@@ -57,7 +57,7 @@ public class TarjansBridge {
 
             } else { // if neighbour is visited then there is defenitely another way, store the lower
                      // discovery time -- that is lowest(all discovery time of neighbours)
-                low[curr] = Math.min(low[curr], dt[neigh]);
+                low[curr] = Math.min(low[curr], dt[neigh]); // lowest among all its neigh's dt
             }
         }
     }

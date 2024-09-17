@@ -1,0 +1,22 @@
+* DIJKISTRAS ALGO -- shortest paths from src to all nodes -- Greedy based -- O(V + E.LogV)
+
+* BELLMAN FORD --- shortest paths from src to all nodes(-ve edges) -- DP based -- (V.E)
+
+* FLOYD WARSHALS ALGO --- or finding the shortest path between all the pairs of vertices -- O(V^3)
+
+----
+MST --- Minimum Weight Spanning Tree -- connects all the vertices with minimum cost edge with no cycle (edge weighted undirected graph) -- minimum possible total edge weight
+
+
+* PRIMS ALGO --- to find MST -- same as BFS u need to use pq and add all their edges 
+
+* KRUSKALS ALGO --- to find MST -- based on Disjoint Set(to detect cycle)
+
+----
+* FLOOD FILL --- graph traversal technique llly to DFS with conditions (in implicit graph) like rat in a maze
+
+----
+* TARJANS ALGO --- to find strongly connected components,articulation points,find bridge(edge)
+
+* KOSARAJUS ALGO --- to find strongly connected components, ( 1.reverse DFS 2.reverse o/p  or 1.topoSort 2.Transpose graph 3.DFS)
+
