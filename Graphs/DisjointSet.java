@@ -15,7 +15,7 @@ public class DisjointSet {
             return x;
         }
 
-        return par[x] = find(par[x]);
+        return par[x] = find(par[x]); // path compression so no unecessary calls upto top
     }
 
     public static void union(int a, int b) {

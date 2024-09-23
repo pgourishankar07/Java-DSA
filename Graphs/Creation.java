@@ -211,7 +211,7 @@ public class Creation {
                     visi[v] = true;
                     q.add(v);
                     parent[v] = u;
-                } else if (parent[v] != u) { // if any node node has 2 different parent
+                } else if (parent[u] != v) { // if any node node has 2 different parent
                     return true;
                 }
             }

@@ -30,7 +30,7 @@ public class KruskalsAlgo {
         }
     }
 
-    static int n = 4; // no. of vertices
+    static int n; // no. of vertices
     static int[] par;
     static int[] rank;
 

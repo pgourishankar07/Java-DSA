@@ -5,18 +5,46 @@
 * FLOYD WARSHALS ALGO --- or finding the shortest path between all the pairs of vertices -- O(V^3)
 
 ----
-MST --- Minimum Weight Spanning Tree -- connects all the vertices with minimum cost edge with no cycle (edge weighted undirected graph) -- minimum possible total edge weight
+MST --- Minimum Weight Spanning Tree -- connects all the vertices with minimum cost edge with no cycle (edge weighted undirected graph) -- minimum possible total edge weight  --- n Vertices and n-1 edges; all nodes are reachable from each other (all nodes should be connected) --- sum of all edges should be minimum
 
 
 * PRIMS ALGO --- to find MST -- same as BFS u need to use pq and add all their edges 
 
-* KRUSKALS ALGO --- to find MST -- based on Disjoint Set(to detect cycle)
+* KRUSKALS ALGO --- to find MST -- based on Disjoint Set(to detect cycle) (Edge List as graph -- sort it)
 
 ----
 * FLOOD FILL --- graph traversal technique llly to DFS with conditions (in implicit graph) like rat in a maze
 
 ----
+* KOSARAJUS ALGO --- to find strongly connected components, ( 1.reverse DFS 2.reverse o/p  or 1.topoSort 2.Transpose graph 3.DFS)
+
 * TARJANS ALGO --- to find strongly connected components,articulation points,find bridge(edge)
 
-* KOSARAJUS ALGO --- to find strongly connected components, ( 1.reverse DFS 2.reverse o/p  or 1.topoSort 2.Transpose graph 3.DFS)
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Check presence of cycle
+ - in undirected graph
+    * BFS : parent array
+    * DFS : pass parent to next call
+    * disjoint set
+
+- in directed graph
+    * explicit stk (DFS)
+    * Topological sorting (inDegree Method) -- Kahn's Algo
+    * Union-Find (Disjoint Set)
+    * Tarjans Algo
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+* Topological Sorting - only can be for DAG, so u can use Kahns' Algo to chech DAG then u can perform topological sorting
+
+* Kahn's Algo - inDegree + BFS (it is like deleting the nodes and their edges where inDegree is 0 and if all nodes is visited then valid DAG)
+steps :
+1. Find the inDegree of all nodes
+2. Do BFS with condition inDegree = 0
+3. Put those nodes whose inDegree = 0
+4. Then for that node's neighbours reduce their inDegree by 1
+5. Put those node's neighbours whose inDegree = 0
+
 

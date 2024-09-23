@@ -97,3 +97,77 @@ public class DijkistraAlgo {
 
     }
 }
+
+class DijkistrasSolution {
+
+    static class Edge {
+        int src;
+        int dest;
+        int wht;
+
+        Edge(int src, int dest) {
+            this.src = src;
+            this.dest = dest;
+            this.wht = 1;
+        }
+    }
+
+    static class Pair implements Comparable<Pair> {
+        int node;
+        int path;
+
+        Pair(int n, int p) {
+            node = n;
+            path = p;
+        }
+
+        public int compareTo(Pair a) {
+            return this.path - a.path;
+        }
+    }
+
+    public int[] shortestPath(int[][] edges, int n, int m, int src) {
+        // Code here
+
+        ArrayList<Edge>[] graph = new ArrayList[n];
+        for (int i = 0; i < n; i++) {
+            graph[i] = new ArrayList<>();
+        }
+
+        for (int[] i : edges) {
+            graph[i[0]].add(new Edge(i[0], i[1]));
+            graph[i[1]].add(new Edge(i[1], i[0])); // if this is undirected graph
+        }
+
+        int[] dist = new int[n];
+        Arrays.fill(dist, Integer.MAX_VALUE);
+
+        PriorityQueue<Pair> pq = new PriorityQueue<>();
+        dist[src] = 0;
+        pq.add(new Pair(src, dist[src]));
+
+        while (!pq.isEmpty()) {
+            Pair curr = pq.remove();
+
+            for (int i = 0; i < graph[curr.node].size(); i++) {
+                Edge e = graph[curr.node].get(i);
+                int u = e.src;
+                int v = e.dest;
+                int wht = e.wht;
+
+                if (dist[v] > dist[u] + wht) {
+                    dist[v] = dist[u] + wht;
+                    pq.add(new Pair(v, dist[v]));
+                }
+            }
+        }
+
+        for (int i = 0; i < n; i++) {
+            if (dist[i] == Integer.MAX_VALUE) {
+                dist[i] = -1;
+            }
+        }
+
+        return dist;
+    }
+}
