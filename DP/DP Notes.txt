@@ -1,0 +1,35 @@
+Revise from Striver Sheet
+
+patterns
+- basics (fibo,tribo,etc)
+- onestep or twostep
+- subseq. + target (take or notTake)
+- grids
+- String(lcs)
+- lis
+- mcm
+
+tips
+- express everything in terms of index
+- recursion - memoization - tabulation
+
+subsequence
+- returning boolean value
+- return 1 or 0 (adding the values)
+- getting Minimum / Maximum (add 1 along with the call)
+- finding 2 subsets where both hav same total sum(1.take TotalSum and find targetSum(TotalSum/2))
+- Partition Set Into 2 Subsets With Min Absolute Sum Diff (TotalSum-s1 = s2; so find allpossible sums of s1 then u will can calculate s2 ;now get the min.diff)
+- Target Sum with +/- (s1-s2 == target)
+
+string problems
+- match / not match(if matched add 1 and call)
+- lcs 
+- lcSubsString (Tabulation)
+- LPS (Longest Palindromic Subseq) :::: Approach : lcs(str,reverse(str))
+- Min. operations to make String palindrome :::: Approach : str.length() - Longest Palindromic Subsequence
+-  Minimum Insertions/Deletions to Convert String1 to String2 ::::: Approach : no. of insertion : str2.len() - lcs and no. of deletion : str1.len()-lcs
+
+- Shortest common Superseq :::: largest common super sequence of two strings is : str1 + str2 (concat them) for finding only the length of the shortest super seq. is : str1.len() + str2.len() - lcs
+- Count Distinct Subsequence(how many times the str2 appears in str1) -- just same as lcs but here u need ti add not find max
+
+

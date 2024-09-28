@@ -93,18 +93,37 @@ public class StringPrblms {
             return dp[i1][i2];
         }
 
-        String notMatch = lcs1(str1, str2, i1 - 1, i2, dp);
-        String match = "";
-
         if (str1.charAt(i1) == str2.charAt(i2)) {
-            match = lcs1(str1, str2, i1 - 1, i2 - 1, dp) + str1.charAt(i1);
+            return dp[i1][i2] = lcs1(str1, str2, i1 - 1, i2 - 1, dp) + str1.charAt(i1);
         }
 
-        return dp[i1][i2] = notMatch.length() > match.length() ? notMatch : match;
+        String option1 = lcs1(str1, str2, i1 - 1, i2, dp); // Move `i1` back
+        String option2 = lcs1(str1, str2, i1, i2 - 1, dp); // Move `i2` back
+
+        return dp[i1][i2] = option1.length() > option2.length() ? option1 : option2;
     }
 
     // _______________//_______________//______________________
     // LCS (Longest Common Substring)
+
+    public static int lcsub(String str1, String str2, int i1, int i2, int count) {
+        if (i1 < 0 || i2 < 0) {
+            return count;
+        }
+
+        int match = count;
+
+        // If characters match, increase the count
+        if (str1.charAt(i1) == str2.charAt(i2)) {
+            match = lcsub(str1, str2, i1 - 1, i2 - 1, count + 1);
+        }
+
+        // If characters don't match, reset the count and check other options
+        int notMatch = Math.max(lcsub(str1, str2, i1 - 1, i2, 0), lcsub(str1, str2, i1, i2 - 1, 0));
+
+        // Return the maximum of match and notMatch
+        return Math.max(match, notMatch);
+    }
 
     public static int lcstr(String s1, String s2, int n, int m) {
 
@@ -177,7 +196,7 @@ public class StringPrblms {
         int i = n;
         int j = m;
 
-        String ans = "";
+        String ans = ""; // this part os for getting the string
 
         while (i > 0 && j > 0) {
             if (s1.charAt(i - 1) == s2.charAt(j - 1)) {
@@ -208,7 +227,8 @@ public class StringPrblms {
     }
 
     // _______________//_______________//______________________
-    // Count Distinct Subsequence
+    // Count Distinct Subsequence(how many times the str2 appears in str1) -- just
+    // same as lcs but here u need ti add not find max
 
     public static int countLcs(String str1, String str2, int i, int j, int[][] memo) {
 
@@ -254,7 +274,8 @@ public class StringPrblms {
     }
 
     // _______________//_______________//______________________
-    // edit distance
+    // edit distance - min. no. of operations to make the string same as another
+    // string (insert+delete+replace)
 
     public static int editDist(String s1, String s2, int i, int j, int[][] dp) {
         if (i < 0) {
@@ -341,15 +362,15 @@ public class StringPrblms {
 
         // _______________//_______________//______________________
 
-        // String text1 = "adebc";
-        // String text2 = "dcadb";
+        String text1 = "abaaa"; // adebc
+        String text2 = "baabaca"; // dcadb
 
-        // int n1 = text1.length();
-        // int n2 = text2.length();
+        int n1 = text1.length();
+        int n2 = text2.length();
 
-        // String[][] dp = new String[n1 + 1][n2 + 1];
+        String[][] dp = new String[n1 + 1][n2 + 1];
 
-        // System.out.println(lcs1(text1, text2, n1 - 1, n2 - 1, dp));
+        System.out.println(lcs1(text1, text2, n1 - 1, n2 - 1, dp));
         // _______________//_______________//______________________
 
         // String text1 = "abcjklp";
@@ -398,16 +419,16 @@ public class StringPrblms {
         // System.out.println(countLcsTab(text1, text2));
 
         // _______________//_______________//______________________
-        String s1 = "horse";
-        String s2 = "ros";
-        int n = s1.length();
-        int m = s2.length();
+        // String s1 = "horse";
+        // String s2 = "ros";
+        // int n = s1.length();
+        // int m = s2.length();
 
-        int[][] dp = new int[n][m];
-        for (int row[] : dp)
-            Arrays.fill(row, -1);
+        // int[][] dp = new int[n][m];
+        // for (int row[] : dp)
+        // Arrays.fill(row, -1);
 
-        System.out.println(editDist(s1, s2, n - 1, m - 1, dp));
+        // System.out.println(editDist(s1, s2, n - 1, m - 1, dp));
 
     }
 }

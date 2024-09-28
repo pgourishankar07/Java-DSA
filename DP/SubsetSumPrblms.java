@@ -133,6 +133,18 @@ public class SubsetSumPrblms {
     }
 
     // // ________//__________//__________//__________//__________
+    // ALL POSSIBLE SUBSET SUM
+    public static void helper(int[] arr, int n, List<Integer> list, int sum) {
+        if (n < 0) {
+            list.add(sum);
+            return;
+        }
+
+        helper(arr, n - 1, list, sum + arr[n]);
+        helper(arr, n - 1, list, sum);
+
+    }
+    // // ________//__________//__________//__________//__________
 
     // Q.2. Find two subsets in which their sum are equal (Partition Equal Subset
     // Sum)
@@ -391,6 +403,26 @@ public class SubsetSumPrblms {
         }
 
         return dp[i][len] = Math.max(take, notTake);
+    }
+
+    // LAtest
+    // RodCutting___________________________________________________________________________________________________________________________________________________
+    public int helper(int[] price, int n, int length, int[][] dp) {
+        if (n == 0 || length == 0) {
+            return 0;
+        }
+
+        if (dp[n][length] != -1) {
+            return dp[n][length];
+        }
+
+        int notTake = helper(price, n - 1, length, dp);
+        int take = 0;
+        if (n <= length) {
+            take = price[n - 1] + helper(price, n, length - n, dp);
+        }
+
+        return dp[n][length] = Math.max(take, notTake);
     }
 
     public static void main(String args[]) {

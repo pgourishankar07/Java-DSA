@@ -55,6 +55,11 @@ public class Basics {
     }
 
     // catalana's no. // mountain ranges // count BSTs
+    // C0 = 1
+    // C1 = 1
+    // C2 = C0.C1 + C1.C0 = 2
+    // C3 = C0.C2 + C1.C1 + C2.C0 = 5
+
     public static int catalana(int n) {
         int[] dp = new int[n + 1];
 
