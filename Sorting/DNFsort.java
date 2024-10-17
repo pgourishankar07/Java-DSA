@@ -13,21 +13,20 @@ public class DNFsort {
     }
 
     static void dnfSort(int arr[], int n) {
-        int low = 0; // pointing the first element
-        int mid = 0;
-        int h = n - 1; // pointing the last element
-        for (int i = 0; i < n;) {
-            if (mid > h) {
-                break;
+        int low = 0; // pointing to the first element
+        int mid = 0; // starting from the first element
+        int h = n - 1; // pointing to the last element
+
+        while (mid <= h) {
+            if (arr[mid] == 0) {
+                swap(arr, low, mid);
+                low++;
+                mid++; // to progress
             } else if (arr[mid] == 1) {
                 mid++;
             } else if (arr[mid] == 2) {
                 swap(arr, mid, h);
                 h--;
-            } else if (arr[mid] == 0) {
-                swap(arr, low, mid);
-                low++;
-                mid++; // Increment mid as we have processed arr[mid] == 0
             }
         }
     }

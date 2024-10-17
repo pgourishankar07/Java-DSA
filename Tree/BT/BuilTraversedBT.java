@@ -703,7 +703,7 @@ public class BuilTraversedBT {
                 return;
             }
             if (root.left != null && root.left.left == null && root.left.right == null) {
-                list.add(root.val);
+                list.add(root.left.val);
             }
 
             leftLeafs(root.left, list);
@@ -746,27 +746,27 @@ public class BuilTraversedBT {
 
             List<Integer> list = new ArrayList<>();
 
-            TreeNode root1 = root;
+            TreeNode temp = root;
 
             // get left side exclude leaf node
-            while (root1.left != null && root1.right != null) {
-                list.add(root1.val);
-                if (root1.left != null) {
-                    root1 = root1.left;
+            while (temp.left != null && temp.right != null) {
+                list.add(temp.val);
+                if (temp.left != null) {
+                    temp = temp.left;
                 } else {
-                    root1 = root1.right;
+                    temp = temp.right;
                 }
             }
 
-            root1 = root.right;
+            temp = root.right;
 
             // get right side exclude leaf node
-            while (root1.left != null || root1.right != null) {
-                list.add(root1.val);
-                if (root1.right != null) {
-                    root1 = root1.right;
+            while (temp.left != null && temp.right != null) {
+                list.add(temp.val);
+                if (temp.right != null) {
+                    temp = temp.right;
                 } else {
-                    root1 = root1.left;
+                    temp = temp.left;
                 }
             }
 

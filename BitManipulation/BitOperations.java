@@ -73,9 +73,9 @@ public class BitOperations {
         // System.out.println(set_ith_bit(n, i - 1));
         // System.out.println(clear_ith_bit(n, i - 1));
         // System.out.println(update_ith_bit(10, 1, 0));
-        // System.out.println(clear_i_bits(15, 2));
+        System.out.println(clear_i_bits(15, 2));
         // System.out.println(45 ^ 15);
-        convertToBin(34);
-        convertToBin(toggle_ith_bit(34, 3));
+        // convertToBin(34);
+        // convertToBin(toggle_ith_bit(34, 3));
     }
 }

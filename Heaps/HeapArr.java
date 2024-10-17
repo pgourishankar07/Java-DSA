@@ -7,8 +7,7 @@ public class HeapArr {
 
         // add -- while adding check parent and swap
         // remove -- while deleting swap the root with last and heapify
-        // heapify -- ensure root is in correct position if not then swap with its
-        // children
+        // heapify -- ensure root is in correct position if not then swap with its child
 
         public void add(int num) {
             heap.add(num);
@@ -29,8 +28,17 @@ public class HeapArr {
 
         }
 
-        public int peek() {
-            return heap.get(0);
+        public int remove() {
+            int data = heap.get(0);
+            // swap the 1st and last node
+            heap.set(0, heap.get(heap.size() - 1));
+            // remove the last node
+            heap.remove(heap.size() - 1);
+            // heapify
+            heapify(0);
+
+            return data;
+
         }
 
         private void heapify(int i) {
@@ -56,25 +64,16 @@ public class HeapArr {
             }
         }
 
-        public String toString() {
-            return "Heap : " + heap;
-        }
-
-        public int remove() {
-            int data = heap.get(0);
-            // swap the 1st and last node
-            heap.set(0, heap.get(heap.size() - 1));
-            // remove the last node
-            heap.remove(heap.size() - 1);
-            // heapify
-            heapify(0);
-
-            return data;
-
+        public int peek() {
+            return heap.get(0);
         }
 
         public boolean isEmpty() {
             return heap.isEmpty();
+        }
+
+        public String toString() {
+            return "Heap : " + heap;
         }
     }
 

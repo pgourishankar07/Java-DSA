@@ -15,6 +15,7 @@ public class PQ {
 
         public int compareTo(Student s) {
             return this.rank - s.rank;
+
         };
 
     }

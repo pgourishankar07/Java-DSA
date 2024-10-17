@@ -1,11 +1,13 @@
 Revision for stack
 
+postfix - operators at right end
+
 // Study Prefix,Infix,Postfix
 
   https://www.youtube.com/watch?v=4pIc9UBHJtk&list=PLgUwDviBIf0pOd5zvVVSzgpo6BaCpHT9c&index=3
   1. postfix evaluation - go from left to right beacause at left end only contains alphabet
   2. prefix evaluation - go from right to left beacause at right end only contains alphabet
-  3. infix to postfix
+  3. infix to postfix - based on precedence of operator (using stk)
   4. infix to prefix - i. reverse the input -> and change the brackets -> do infix to postfix ops -> reverse the ans
   5. postfix to infix - i. go from left to right -> whenever operator comes u pop two operands and place operator btwn them and close with bracket -> push into stack
   6. prefix to infix - i. same as above but go from right to left and sequece of chars should be same as in q.
@@ -21,3 +23,4 @@ Revision for stack
 //Queue uisng stack
 
 1. 2 stacks needed
+

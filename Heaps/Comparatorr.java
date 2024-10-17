@@ -24,7 +24,7 @@ public class Comparatorr {
 
         @Override
         public String toString() {
-            return "Student [rrn=" + rrn + ", name=" + name + ", marks=" + marks + "]";
+            return "Student [rrn =" + rrn + ", name =" + name + ", marks =" + marks + "]";
         }
 
     }

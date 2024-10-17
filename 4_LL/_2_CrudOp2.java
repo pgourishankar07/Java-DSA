@@ -72,7 +72,7 @@ public class _2_CrudOp2 {
         // }
 
         System.out.print("Now the Linked List is: ");
-        
+
         for (Node temp = head[0]; temp != null; temp = temp.next) {
             System.out.print(temp.data + " --> ");
         }
@@ -151,6 +151,7 @@ public class _2_CrudOp2 {
             return head;
         }
 
+        // think that u have only 2 nodes (head -> head.next -> null)
         // Recursive case: Reverse the rest of the list
         Node newHead = revRec(head.next); // making last element as new head
         Node nxt = head.next;
