@@ -10,8 +10,9 @@ public class FrogJum {
             return dp[i];
         }
 
-        int one = Math.abs(nums[i] - nums[i - 1]) + frogJump(nums, i - 1, dp);
-        int two = Integer.MAX_VALUE;
+        int one = Math.abs(nums[i] - nums[i - 1]) + frogJump(nums, i - 1, dp); // include
+        int two = Integer.MAX_VALUE; // exclude
+
         if (i > 1) {
             two = Math.abs(nums[i] - nums[i - 2]) + frogJump(nums, i - 2, dp);
         }

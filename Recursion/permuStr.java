@@ -41,6 +41,29 @@ public class permuStr {
 
     }
 
+    public static void printPermuOptimized(String str, StringBuilder permu, boolean[] used) {
+        if (permu.length() == str.length()) {
+            System.out.println(permu.toString());
+            return;
+        }
+
+        for (int i = 0; i < str.length(); i++) {
+            if (!used[i]) {
+                // Mark the character as used
+                used[i] = true;
+                permu.append(str.charAt(i));
+
+                // Recurse with the current character included in the permutation
+                printPermuOptimized(str, permu, used);
+
+                // Backtrack: remove the character and mark it as unused
+                permu.deleteCharAt(permu.length() - 1);
+                used[i] = false;
+            }
+        }
+    }
+
+    // permutation of 0s and 1s
     public static void printPermu(int n, String str, ArrayList<String> arr) {
         if (n == 0) {
             System.out.println(str);
@@ -49,6 +72,19 @@ public class permuStr {
 
         printPermu(n - 1, str + '1', arr);
         printPermu(n - 1, str + '0', arr);
+
+    }
+
+    // combination or subsequence
+    public static void subSeq(String str, int i, String res) {
+
+        if (i == str.length()) {
+            System.out.println(res);
+            return;
+        }
+
+        subSeq(str, i + 1, res); // exclude
+        subSeq(str, i + 1, res + str.charAt(i)); // include
 
     }
 

@@ -140,8 +140,8 @@ public class SubsetSumPrblms {
             return;
         }
 
-        helper(arr, n - 1, list, sum + arr[n]);
-        helper(arr, n - 1, list, sum);
+        helper(arr, n - 1, list, sum + arr[n]); // include
+        helper(arr, n - 1, list, sum); // exclude
 
     }
     // // ________//__________//__________//__________//__________

@@ -19,7 +19,6 @@ public class StringPrblms {
     }
 
     // _______________//_______________//______________________
-    // permutation
 
     public static void subSeq(String str, int i, String currStr) {
 

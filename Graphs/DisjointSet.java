@@ -1,10 +1,11 @@
 public class DisjointSet {
 
-    static int n = 7;
+    static int n;
     static int[] par = new int[n];
     static int[] rank = new int[n]; // store the height of the graph
 
-    public static void init() {
+    public static void init(int num) {
+        n = num;
         for (int i = 0; i < n; i++) {
             par[i] = i;
         }
@@ -33,7 +34,7 @@ public class DisjointSet {
     }
 
     public static void main(String args[]) {
-        init();
+        init(7);
 
         System.out.println(find(3));
         union(1, 3);

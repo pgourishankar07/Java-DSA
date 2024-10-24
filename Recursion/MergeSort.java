@@ -30,10 +30,10 @@ class MergeSort {
             i++;
             p2++;
         }
-        System.out.println(start + " " + mid + " " + end);
-        System.out.println(Arrays.toString(arr));
-        System.out.println("List :" + narr);
-        System.out.println();
+        // System.out.println(start + " " + mid + " " + end);
+        // System.out.println(Arrays.toString(arr));
+        // System.out.println("List :" + narr);
+        // System.out.println();
 
         for (int j = 0; j < narr.size(); j++) {
             arr[start + j] = narr.get(j);
@@ -58,6 +58,7 @@ class MergeSort {
     public static void main(String[] args) throws java.lang.Exception {
         int[] arr = { 7, 6, 2, 1, 9, 5, 4, 3, 8 };
         divide(arr, 0, arr.length - 1); // sort( array , start , end)
+
         for (int i = 0; i < arr.length; i++) {
             System.out.print(arr[i] + " ");
         }

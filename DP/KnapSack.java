@@ -146,6 +146,7 @@ public class KnapSack {
 
         boolean notTake = targetSum(arr, n - 1, target, dp);
         boolean take = false;
+
         if (arr[n] <= target) {
             take = targetSum(arr, n - 1, target - arr[n], dp);
         }
@@ -284,7 +285,7 @@ public class KnapSack {
         int profit2 = Integer.MIN_VALUE;
 
         if (wgt[n] <= w) {
-            profit2 = val[n] + unknapSack(val, wgt, w - wgt[n], n, dp); // include
+            profit2 = val[n] + unknapSack(val, wgt, w - wgt[n], n, dp); // include (here only changes)
         }
 
         return dp[w][n] = Math.max(profit1, profit2);

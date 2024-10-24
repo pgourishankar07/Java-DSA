@@ -13,9 +13,10 @@ public class KnightsTour {
     public static boolean isVisited(int x, int y, int board[][]) { // move should be inside the board and not visited
                                                                    // position
         if (x >= 0 && x < N && y >= 0 && y < N && board[x][y] == -1) {
-            return true;
+            return false;
         }
-        return false;
+
+        return true;
     }
 
     public static boolean helper(int x, int y, int pos, int[][] solu, int xMove[], int yMove[]) {
@@ -28,7 +29,7 @@ public class KnightsTour {
             int nextX = x + xMove[k];
             int nextY = y + yMove[k];
 
-            if (isVisited(nextX, nextY, solu)) {
+            if (!isVisited(nextX, nextY, solu)) {
                 solu[nextX][nextY] = pos;
                 if (helper(nextX, nextY, pos + 1, solu, xMove, yMove)) {
                     return true;

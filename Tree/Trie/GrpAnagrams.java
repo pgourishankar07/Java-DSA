@@ -3,70 +3,68 @@ import java.util.Arrays;
 import java.util.List;
 
 public class GrpAnagrams {
+
     static class TrieNode {
         List<String> data;
-        TrieNode children[] = new TrieNode[26];
+        TrieNode[] children = new TrieNode[26];
         boolean end;
 
         TrieNode() {
             data = new ArrayList<>();
-            for (int i = 0; i < 26; i++) {
-                children[i] = null;
-            }
+            Arrays.fill(children, null);
             end = false;
         }
     }
 
-    public static TrieNode root = new TrieNode();
-    public static List<List<String>> res = new ArrayList<>();
+    private TrieNode root = new TrieNode();;
+    private List<List<String>> res = new ArrayList<>();
 
-    public static void insert(String word) {
+    private void insert(String word) {
         TrieNode curr = root;
-
         char[] charArr = word.toCharArray();
-        Arrays.sort(charArr);
+        Arrays.sort(charArr); // Sorting characters to group anagrams
 
         for (char c : charArr) {
             int idx = c - 'a';
-
             if (curr.children[idx] == null) {
                 curr.children[idx] = new TrieNode();
             }
-
             curr = curr.children[idx];
         }
 
         curr.end = true;
-        curr.data.add(word);
+        curr.data.add(word); // Add original word to the Trie node
     }
 
-    public static void grpAnag(TrieNode root) {
+    private void groupAnagramsHelper(TrieNode root) {
         if (root.end) {
-            res.add(root.data);
+            res.add(new ArrayList<>(root.data)); // Add the group of anagrams
         }
 
         for (int i = 0; i < 26; i++) {
             if (root.children[i] != null) {
-                grpAnag(root.children[i]);
+                groupAnagramsHelper(root.children[i]);
             }
         }
     }
 
-    public static void main(String args[]) {
-        String words[] = { "eat", "tea", "tan", "ate", "nat", "bat" };
-        for (String i : words) {
-            insert(i);
+    public List<List<String>> groupAnagrams(String[] strs) {
+        root = new TrieNode();
+        res = new ArrayList<>();
+
+        for (String str : strs) {
+            insert(str);
         }
 
-        grpAnag(root);
+        groupAnagramsHelper(root);
 
-        System.out.println(res);
-
-        /*
-         * 1.create another attribute List<String> to store word
-         * 2.while inserting sort the chars in the word and insert in Trie and add the
-         * word to the list
-         * 3.then traverse Trie and add the list of node when reaching end
-         */
+        return res;
     }
 }
+
+/*
+ * 1.create another attribute List<String> to store word
+ * 2.while inserting sort the chars in the word and insert in Trie and add the
+ * word to the list
+ * 3.then traverse Trie and add the list of node when reaching end
+ */
