@@ -24,7 +24,7 @@ public class Hashing {
         @SuppressWarnings("unchecked")
 
         HashMapp() {
-            this.N = 4;
+            this.N = 16;
             this.buckets = new LinkedList[N];
 
             for (int i = 0; i < N; i++) {
@@ -89,7 +89,7 @@ public class Hashing {
 
             double lambda = (double) n / N; // threshold value
 
-            if (lambda > 2.0) { // the lesser the num more fast performance
+            if (lambda >= 0.75) { // the lesser the num more fast performance
                 rehash();
             }
 

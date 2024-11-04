@@ -45,8 +45,9 @@ public class Genericss {
 
 /*
  * 
- * Generics -- it helps to create classes interfaces methids with type safety by
- * passing type of data as a parameter , before this we were using Object class
+ * Generics -- it helps to create classes, interfaces, methods with type safety
+ * by
+ * passing data type as a parameter , before this we were using Object class
  * which covers all subclass like Integer,Float,etc but it has lead to unsafe
  * casting. Generics solve this problem by allowing you to define the data type
  * only when needed, keeping everything type-safe at compile-time.

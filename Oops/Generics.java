@@ -1,9 +1,9 @@
 public class Generics {
-    static class Gen<T1> {
-        T1 val; // you need to declare it as private, or else obj.val = "some other data type"
-                // and use get(),set()
+    static class Gen<T> {
+        T val; // you need to declare it as private, or else obj.val = "some other data type"
+               // and use get(),set()
 
-        Gen(T1 v) {
+        Gen(T v) {
             val = v;
         }
     }

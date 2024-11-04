@@ -1,6 +1,6 @@
 // Interface
 interface Shape {
-    void print(); // only declare no body is written inside the interface
+    void display(); // only declare no body is written inside the interface
 }
 
 interface Rectangle {
@@ -18,13 +18,14 @@ interface Calculator {
 // Class implementing the interface
 class Printer implements Shape, Rectangle {
     // Implementation of the interface method
-    public void print() {
+    public void display() {
         System.out.println("All Shapes");
     }
 
     public void area() {
         System.out.println("Area of the rectangle ");
     }
+
 }
 
 public class Interface {

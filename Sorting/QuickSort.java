@@ -26,17 +26,17 @@ public class QuickSort {
 
     public static void quickSort(int[] arr, int low, int high) {
 
-        if (low >= high) {
-            return;
+        if (low < high) {
+
+            int pi = partition(arr, low, high); // divide the array into two : small - pivot - high and return the index
+                                                // of
+            // pivot element
+
+            // System.out.println(Arrays.toString(arr));
+
+            quickSort(arr, low, pi - 1);
+            quickSort(arr, pi + 1, high);
         }
-
-        int pi = partition(arr, low, high); // divide the array into two : small - pivot - high and return the index of
-                                            // pivot element
-
-        // System.out.println(Arrays.toString(arr));
-
-        quickSort(arr, low, pi - 1);
-        quickSort(arr, pi + 1, high);
     }
 
     public static void main(String[] args) {

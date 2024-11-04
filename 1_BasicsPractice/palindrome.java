@@ -4,12 +4,13 @@ public class palindrome {
 
     static int Fsize(int num) {
 
-        int size = 0;
-        while (num != 0) {
-            num = num / 10;
-            size++;
-        }
-        return size;
+        // int size = 0;
+        // while (num != 0) {
+        // num = num / 10;
+        // size++;
+        // }
+        // return size;
+        return (int) Math.log10(num) + 1;
 
     }
 
@@ -36,6 +37,7 @@ public class palindrome {
         System.out.print("Enter a number to check Palindrome or not : ");
         int num = sc.nextInt();
         System.out.println(num == reversed(num));
+        // System.out.println(Arrays.toString(args));
         sc.close();
     }
 }
