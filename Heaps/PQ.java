@@ -47,7 +47,7 @@ public class PQ {
             pq2.remove();
         }
 
-        Comparator<Integer> comp = new Comparator<Integer>() {
+        Comparator<Integer> comp = new Comparator<>() {
             public int compare(Integer a, Integer b) {
                 return a - b;
             }

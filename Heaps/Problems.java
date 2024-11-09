@@ -46,6 +46,7 @@ public class Problems {
                 }
             }
         };
+
         PriorityQueue<ArrayWithIndex> pq = new PriorityQueue<>(comp);
 
         for (int i = 0; i < n; i++) {

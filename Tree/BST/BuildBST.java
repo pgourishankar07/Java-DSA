@@ -355,7 +355,7 @@ public class BuildBST {
     public TreeNode mergeTrees(TreeNode root1, TreeNode root2) {
 
         if (root1 == null && root2 == null) {
-            return root1;
+            return null;
         }
 
         if (root1 == null) {

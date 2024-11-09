@@ -277,7 +277,10 @@ public class BuilTraversedBT {
                 return false;
             }
 
-            if (!isSame(root.left, subRoot.left) || !isSame(root.right, subRoot.right)) {
+            boolean leftSide = isSame(root.left, subRoot.left);
+            boolean rightSide = isSame(root.right, subRoot.right);
+
+            if (!leftSide || !rightSide) {
                 return false;
             }
 

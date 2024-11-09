@@ -97,7 +97,7 @@ public class AssignmentQ {
             }
 
             String s = Integer.toString(root.val) + "," + isDupli(root.left, map, list) + ","
-                    + isDupli(root.right, map, list); // converting the order to string (any order - in,pre,post)
+                    + isDupli(root.right, map, list); // converting the order to string (any order - root,left,right)
 
             if (map.get(s) == 1) { // checking that order hsa occured before or not
                 list.add(root);
