@@ -1,3 +1,6 @@
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+
 public class Practice1 {
 
     static class Thread1 extends Thread { // using class Thread
@@ -20,16 +23,23 @@ public class Practice1 {
     }
 
     public static void main(String[] args) {
+
         System.out.println("Main Thread Starts");
+
         // Thread1 t1 = new Thread1();
         Thread t1 = new Thread(new Thread1(), "t1");
         // Thread t1 = new Thread(new Thread1(()->{..code}), "t1");
+
         System.out.println("Child user thread Starts");
         t1.start();
+
         // t1.setDaemon(true); // setting it as daemon thread - this will stop when all
         // user threads stops exe.
+
         Thread t2 = new Thread(new Thread2(), "t2");
+
         t2.start();
+
         System.out.println("Main Thread Ends");
 
     }
