@@ -11,8 +11,8 @@ public class test extends Thread {
     }
 
     public static void main(String args[]) {
-        test t1 = new test();
-        test t2 = new test();
+        asteroidCollision t1 = new asteroidCollision();
+        asteroidCollision t2 = new asteroidCollision();
 
         t1.start(); // Starts the thread
         t2.start();

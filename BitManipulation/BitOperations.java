@@ -57,7 +57,7 @@ public class BitOperations {
             } else {
                 ans.append(Integer.toString(0));
             }
-            n = n / 2;
+            n = n >> 1;
         }
         System.out.println(ans.reverse());
     }

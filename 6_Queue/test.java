@@ -1,6 +1,9 @@
 import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
+import java.util.TreeMap;
 
 public class test {
 
@@ -44,6 +47,13 @@ public class test {
         while (!q.isEmpty()) {
             System.out.println(q.remove());
         }
+
+        System.out.println("___________");
+
+        TreeMap<String, Integer> temp = new TreeMap<>();
+        temp.put("Gouri", 92);
+        temp.put("Rupali", 32);
+        temp.put("Niru", 52);
 
     }
 }

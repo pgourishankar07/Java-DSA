@@ -2,7 +2,7 @@ import java.util.Arrays;
 
 public class AllBasics {
 
-    public static void bubleSort(int arr[]) {
+    public static void bubleSort(int arr[]) { // think of 2-2 bubble and compare
         int n = arr.length;
         for (int i = 1; i < n; i++) {
             int swaps = 0;
@@ -38,7 +38,7 @@ public class AllBasics {
         }
     }
 
-    public static void InsertionSort(int arr[]) {
+    public static void InsertionSort(int arr[]) { // insert at the correct position
         int n = arr.length;
         for (int i = 1; i < n; i++) {
             int curr = i;

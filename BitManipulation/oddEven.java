@@ -31,6 +31,7 @@ public class oddEven {
                 ans = ans * a;
             }
             a = a * a;
+            System.out.println(a + " " + ans + " " + n);
             n = n >> 1;
         }
         return ans;
@@ -41,11 +42,11 @@ public class oddEven {
     }
 
     public static void main(String args[]) {
-        oddOrEven(5);
-        oddOrEven(4);
-        System.out.println(powerOf2(7));
-        System.out.println(count_1s(3));
-        System.out.println(fastExpo(3, 5));
-        System.out.println(noOfDigi(16));
+        // oddOrEven(5);
+        // oddOrEven(4);
+        // System.out.println(powerOf2(7));
+        // System.out.println(count_1s(3));
+        System.out.println(fastExpo(2, 9));
+        // System.out.println(noOfDigi(16));
     }
 }

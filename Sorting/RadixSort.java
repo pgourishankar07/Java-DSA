@@ -52,7 +52,7 @@ public class RadixSort {
 
     public static void main(String[] args) {
         int[] arr = { 1, 12, 113, 10, 90 };
-        int n = 5;
+        int n = arr.length;
 
         radixSort(arr, n);
 

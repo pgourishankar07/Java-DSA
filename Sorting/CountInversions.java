@@ -5,7 +5,7 @@ if a[i]>a[j] and i<j
 public class CountInversions {
     public static void main(String[] args) {
         int[] arr = { 6, 3, 9, 5, 2, 8, 7, 1 };
-        int n = 8;
+        int n = arr.length;
         int inversions = 0;
 
         for (int i = 0; i < n; i++) {
