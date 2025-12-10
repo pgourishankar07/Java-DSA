@@ -1,0 +1,1318 @@
+>>>components/about-engagement.tsx
+"use client";
+
+import * as motion from "motion/react-client";
+import Image from "next/image";
+import { UserProfiles } from "./ui/UserProfiles";
+import { CargillLeaders } from "./ui/CargillLeaders";
+import { useRouter } from "next/navigation";
+import {
+  Landmark,
+  CheckCircle,
+  TrendingUp,
+  Shield,
+  Settings,
+  DollarSign,
+  X,
+  Users,
+  ShieldUser,
+  Handshake,
+  Ticket,
+  LayoutGrid,
+  Earth,
+} from "lucide-react";
+import { useState } from "react";
+import { slaData } from "../lib/sla-data";
+import { kpiData } from "../lib/kpi-data";
+import GeographyModal from "./modals/GeographyModal";
+import RegionImageModal from "./modals/RegionImageModal";
+import ScopeModal from "./modals/ScopeModal";
+import DomainModal from "./modals/DomainModal";
+import TicketsModal from "./modals/TicketsModal";
+import SLAModal from "./modals/SLAModal";
+
+export default function AboutEngagement() {
+  const router = useRouter();
+  const [showScopeModal, setShowScopeModal] = useState(false);
+  const [showGeographyModal, setShowGeographyModal] = useState(false);
+  const [showDomainModal, setShowDomainModal] = useState(false);
+  const [showTicketsModal, setShowTicketsModal] = useState(false);
+  const [showRegionImageModal, setShowRegionImageModal] = useState(false);
+  const [showSLAModal, setShowSLAModal] = useState(false);
+  const [selectedRegionImage, setSelectedRegionImage] = useState("");
+  const [selectedRegionName, setSelectedRegionName] = useState("");
+
+  const handleValueSavingsClick = () => {
+    router.push("/dashboard#value-capture");
+  };
+
+  const handleRegionClick = (regionName: string, imagePath: string) => {
+    setSelectedRegionName(regionName);
+    setSelectedRegionImage(imagePath);
+    setShowRegionImageModal(true);
+  };
+
+  return (
+    <section className="py-20 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <p className="font-bold text-xl md:text-4xl dark:text-white text-black">
+            About Engagement{" "}
+            <span className="text-neutral-400">
+              {"Program".split("").map((char, idx) => (
+                <motion.span
+                  key={idx}
+                  className="inline-block"
+                  initial={{ x: -5, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ duration: 0.3, delay: 0.1 + idx * 0.02 }}
+                >
+                  {char}
+                </motion.span>
+              ))}
+            </span>
+          </p>
+          <p className="text-sm md:text-lg text-neutral-500 max-w-4xl mx-auto py-4">
+            The Cargill and Cognizant engagement program is a strategic
+            collaboration aimed at driving digital transformation and
+            operational efficiency across Cargill’s global operations. Through
+            this partnership, Cognizant provides technology consulting,
+            application development, and managed services, helping Cargill
+            streamline supply chain processes, enhance data-driven
+            decision-making, and modernize legacy systems.
+          </p>
+        </motion.div>
+
+        {/* Side-by-side layout: Images on left, UserProfiles on right */}
+        <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 items-start">
+          {/* Left side - Grids */}
+          <div className="lg:w-2/3 w-full space-y-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              {/* Commented out original image */}
+              {/* <div className="relative w-full h-auto rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300">
+                <Image 
+                  width={1200}
+                  height={800}
+                  src="/images/enterprises.png"
+                  alt="Cargill and Cognizant Engagement - Image 1"
+                  className="w-full h-auto object-contain transition-transform duration-500 hover:scale-[1.02]"
+                  priority
+                />
+              </div> */}
+
+              {/* New Grid Component */}
+              <div className="mb-6">
+                <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-4 text-center">
+                  Cognizant - Cargill Engagement Overview
+                </h2>
+              </div>
+              <div className="w-full grid grid-cols-3 grid-rows-2 gap-3 h-[320px]">
+                {/* Column 1 - Single box spanning 2 rows */}
+                <div
+                  className="row-span-2 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] p-4 flex flex-col justify-center items-center text-white cursor-pointer"
+                  style={{
+                    background:
+                      "linear-gradient(to bottom right, #009B76, #008C45)",
+                  }}
+                  onClick={() => setShowScopeModal(true)}
+                >
+                  <div className="text-center">
+                    <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mb-3 mx-auto">
+                      <Landmark className="w-6 h-6" />
+                    </div>
+                    <h3 className="text-lg font-bold mb-1">
+                      Scope of Services
+                    </h3>
+                    <p className="text-sm opacity-90">
+                      Scope of services and Delivery Model
+                    </p>
+                  </div>
+                </div>
+
+                {/* Column 2, Row 1 */}
+                <div
+                  className="rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] p-3 flex flex-col justify-center items-center text-white"
+                  style={{
+                    background:
+                      "linear-gradient(to bottom right, #658D1B, #285E2C)",
+                  }}
+                >
+                  <div className="text-center">
+                    <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center mb-2 mx-auto">
+                      <ShieldUser className="w-6 h-6" />
+                    </div>
+                    <h4 className="text-base font-bold mb-1">VSAT</h4>
+                    <p className="text-xs opacity-90">
+                      Vendor Satisfaction Survey
+                    </p>
+                  </div>
+                </div>
+
+                {/* Column 2, Row 2 */}
+                <div
+                  className="rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] p-3 flex flex-col justify-center items-center text-white cursor-pointer"
+                  style={{
+                    background:
+                      "linear-gradient(to bottom right, #008C45, #285E2C)",
+                  }}
+                  onClick={() => setShowSLAModal(true)}
+                >
+                  <div className="text-center">
+                    <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center mb-2 mx-auto">
+                      <TrendingUp className="w-5 h-5" />
+                    </div>
+                    <h4 className="text-base font-bold mb-1">55 SLA's & KPI</h4>
+                    <p className="text-xs opacity-90">for AMS</p>
+                  </div>
+                </div>
+
+                {/* Column 3, Row 1 */}
+                <div
+                  className="rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] p-3 flex flex-col justify-center items-center text-white"
+                  style={{
+                    background:
+                      "linear-gradient(to bottom right, #285E2C, #009B76)",
+                  }}
+                >
+                  <div className="text-center">
+                    <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center mb-2 mx-auto">
+                      <Handshake className="w-6 h-6" />
+                    </div>
+                    <h4 className="text-base font-bold mb-1">CSAT</h4>
+                    <p className="text-xs opacity-90">
+                      Customer Satisfaction Survey
+                    </p>
+                  </div>
+                </div>
+
+                {/* Column 3, Row 2 */}
+                <div
+                  className="rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] p-3 flex flex-col justify-center items-center text-white"
+                  style={{
+                    background:
+                      "linear-gradient(to bottom right, #009B76, #658D1B)",
+                  }}
+                >
+                  <div className="w-full space-y-2">
+                    {/* Automation Section */}
+                    <div className="relative group bg-white/10 rounded-xl p-3 backdrop-blur-sm border border-white/20 hover:bg-white/15 transition-all duration-200">
+                      <div className="flex items-center justify-center space-x-2">
+                        <div className="w-6 h-6 bg-white/30 rounded-full flex items-center justify-center">
+                          <Settings className="w-3 h-3" />
+                        </div>
+                        <h5 className="text-sm font-bold">Automation</h5>
+                      </div>
+
+                      {/* Tooltip */}
+                      <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all duration-300 translate-y-2 group-hover:translate-y-0 z-50">
+                        <div className="bg-gradient-to-br from-white via-gray-50 to-white dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 rounded-lg p-3 shadow-2xl border border-gray-200/60 dark:border-gray-700/40 w-32 text-center backdrop-blur-lg relative">
+                          {/* Arrow pointing down */}
+                          <div className="absolute top-full left-1/2 transform -translate-x-1/2">
+                            <div className="w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[6px] border-t-gray-200 dark:border-t-gray-700"></div>
+                            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-px w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-t-[5px] border-t-white dark:border-t-gray-800"></div>
+                          </div>
+
+                          <div className="text-xs text-gray-800 dark:text-white space-y-1">
+                            <div className="flex justify-between items-center">
+                              <span className="font-medium">Non SAP :</span>
+                              <span
+                                className="font-bold"
+                                style={{ color: "#009B76" }}
+                              >
+                                490
+                              </span>
+                            </div>
+                            <div className="w-full h-px bg-gray-300 dark:bg-gray-600"></div>
+                            <div className="flex justify-between items-center">
+                              <span className="font-medium">SAP :</span>
+                              <span
+                                className="font-bold"
+                                style={{ color: "#658D1B" }}
+                              >
+                                109
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Divider */}
+                    <div className="w-full h-px bg-white/20"></div>
+
+                    {/* Value Savings Section */}
+                    <div
+                      className="bg-white/10 rounded-xl p-3 backdrop-blur-sm border border-white/20 hover:bg-white/15 transition-all duration-200 cursor-pointer"
+                      onClick={handleValueSavingsClick}
+                    >
+                      <div className="flex items-center justify-center space-x-2">
+                        <div className="w-6 h-6 bg-white/30 rounded-full flex items-center justify-center">
+                          <DollarSign className="w-3 h-3" />
+                        </div>
+                        <h5 className="text-sm font-bold">Value Savings</h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Second Row - Additional 3 Grids */}
+              <div className="w-full grid grid-cols-3 gap-3 h-[160px] mt-3">
+                {/* Grid 1 - Key geographies + Support language */}
+                <div
+                  className="rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] p-3 flex flex-col justify-center items-center text-white cursor-pointer"
+                  style={{
+                    background:
+                      "linear-gradient(to bottom right, #658D1B, #008C45)",
+                  }}
+                  onClick={() => setShowGeographyModal(true)}
+                >
+                  <div className="text-center">
+                    <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center mb-2 mx-auto">
+                      <Earth className="w-6 h-6" />
+                    </div>
+                    <h4 className="text-base font-bold mb-1">
+                      Key Geographies
+                    </h4>
+                    <p className="text-xs opacity-90">Support Language</p>
+                  </div>
+                </div>
+
+                {/* Grid 2 - Domain + applications + Technology */}
+                <div
+                  className="rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] p-3 flex flex-col justify-center items-center text-white cursor-pointer"
+                  style={{
+                    background:
+                      "linear-gradient(to bottom right, #285E2C, #009B76)",
+                  }}
+                  onClick={() => setShowDomainModal(true)}
+                >
+                  <div className="text-center">
+                    <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center mb-2 mx-auto">
+                      <LayoutGrid className="w-6 h-6" />
+                    </div>
+                    <h4 className="text-base font-bold mb-1">Domain</h4>
+                    <p className="text-xs opacity-90">
+                      Applications + Technology
+                    </p>
+                  </div>
+                </div>
+
+                {/* Grid 3 - Tickets + Support coverage */}
+                <div
+                  className="rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] p-3 flex flex-col justify-center items-center text-white cursor-pointer"
+                  style={{
+                    background:
+                      "linear-gradient(to bottom right, #009B76, #285E2C)",
+                  }}
+                  onClick={() => setShowTicketsModal(true)}
+                >
+                  <div className="text-center">
+                    <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center mb-2 mx-auto">
+                      <Ticket className="w-6 h-6" />
+                    </div>
+                    <h4 className="text-base font-bold mb-1">Tickets</h4>
+                    <p className="text-xs opacity-90">Support Coverage</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Right side - User Profiles */}
+          <div className="lg:w-1/5 w-full flex justify-center">
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="w-full max-w-sm"
+            >
+              <div className="sticky top-20 bg-gradient-to-br from-white/80 to-blue-50/80 dark:from-gray-900/90 dark:to-blue-900/70 backdrop-blur-md rounded-3xl pt-4 px-8 pb-8">
+                {/* Header Section */}
+                <div className="text-center mb-6 border-b border-gray-200/50 dark:border-gray-700/50 pb-4">
+                  {/* <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full mb-3 shadow-lg">
+                     <svg
+                      className="w-6 h-6 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                      />
+                    </svg> 
+                  </div> */}
+                  <h3 className="text-xl font-bold bg-gradient-to-r from-gray-800 to-blue-800 dark:from-gray-200 dark:to-blue-200 bg-clip-text text-transparent mb-2">
+                    Cognizant Engagement Team
+                  </h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 font-medium">
+                    Key Stakeholders & Leadership
+                  </p>
+                </div>
+
+                {/* Profiles Section */}
+                <div className="relative">
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950/30 dark:to-indigo-950/30 rounded-2xl -m-2 opacity-50"></div>
+                  <div className="relative z-10 py-2">
+                    <UserProfiles />
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Partnership Evolution Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          {/* New Timeline Component */}
+          <div className="relative mt-6 w-full bg-gradient-to-br from-white via-blue-50/30 to-orange-50/30 dark:from-gray-900 dark:via-blue-950/50 dark:to-orange-950/30 rounded-2xl overflow-visible shadow-xl hover:shadow-2xl transition-all duration-500 p-6 border border-white/20 dark:border-gray-700/30 backdrop-blur-sm">
+            {/* Background Pattern */}
+            <div className="absolute inset-0 opacity-3 dark:opacity-5">
+              <div className="absolute top-2 left-2 w-12 h-12 bg-blue-500 rounded-full blur-xl"></div>
+              <div className="absolute top-2 right-2 w-10 h-10 bg-purple-500 rounded-full blur-xl"></div>
+              <div className="absolute bottom-2 left-1/3 w-14 h-14 bg-green-500 rounded-full blur-xl"></div>
+              <div className="absolute bottom-2 right-2 w-12 h-12 bg-orange-500 rounded-full blur-xl"></div>
+            </div>
+
+            {/* Timeline Header */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="text-center mb-6 pb-3 relative z-10 p-4"
+            >
+              <h3 className="text-2xl font-bold bg-gradient-to-r from-gray-900 via-blue-800 to-orange-800 dark:from-white dark:via-blue-200 dark:to-orange-200 bg-clip-text text-transparent mb-2">
+                Partnership Evolution
+              </h3>
+              <p className="text-sm text-gray-600 dark:text-gray-300 max-w-xl mx-auto leading-relaxed">
+                From a Staffing Augmentation relationship to a Value-Driven
+                Application Services Partnership in 10 years
+              </p>
+            </motion.div>
+
+            {/* Timeline Container with overflow handling */}
+            <div className="relative mb-6 px-4 sm:px-8">
+              {/* Enhanced Timeline Line with Glow Effect */}
+              <div
+                className="absolute top-1/2 left-4 sm:left-8 right-4 sm:right-8 h-1.5 rounded-full transform -translate-y-1/2 shadow-md"
+                style={{
+                  background:
+                    "linear-gradient(to right, #009B76, #658D1B, #008C45, #285E2C)",
+                }}
+              >
+                <div
+                  className="absolute inset-0 rounded-full blur-sm opacity-50"
+                  style={{
+                    background:
+                      "linear-gradient(to right, #009B76, #658D1B, #008C45, #285E2C)",
+                  }}
+                ></div>
+              </div>
+
+              {/* Enhanced Arrow with Glow */}
+              <div className="absolute top-1/2 right-4 sm:right-8 transform -translate-y-1/2 translate-x-1.5">
+                <div className="relative">
+                  <div
+                    className="w-0 h-0 border-t-[8px] border-t-transparent border-b-[8px] border-b-transparent shadow-md"
+                    style={{
+                      borderLeftWidth: "12px",
+                      borderLeftColor: "#285E2C",
+                    }}
+                  ></div>
+                  <div
+                    className="absolute top-1/2 left-0 transform -translate-y-1/2 w-0 h-0 border-t-[8px] border-t-transparent border-b-[8px] border-b-transparent blur-sm opacity-50"
+                    style={{
+                      borderLeftWidth: "12px",
+                      borderLeftColor: "#285E2C",
+                    }}
+                  ></div>
+                </div>
+              </div>
+
+              {/* Enhanced Start indicator */}
+              <div className="absolute top-1/2 left-4 sm:left-8 transform -translate-y-1/2 -translate-x-1.5">
+                <div className="relative">
+                  <div
+                    className="w-3 h-3 rounded-full border-2 border-white dark:border-gray-900 shadow-lg"
+                    style={{ backgroundColor: "#009B76" }}
+                  ></div>
+                  <div
+                    className="absolute inset-0 w-3 h-3 rounded-full blur-sm opacity-50"
+                    style={{ backgroundColor: "#009B76" }}
+                  ></div>
+                </div>
+              </div>
+
+              {/* Timeline Items */}
+              <div className="relative flex justify-between items-center px-6 sm:px-10 overflow-visible">
+                {/* 2015 - Staff Augmentation */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{
+                    duration: 0.6,
+                    delay: 0.1,
+                    type: "spring",
+                    stiffness: 120,
+                  }}
+                  className="relative flex flex-col items-center group cursor-pointer"
+                >
+                  <div className="relative mb-4 z-20">
+                    <div
+                      className="w-5 h-5 rounded-full border-3 border-white dark:border-gray-900 shadow-lg group-hover:shadow-xl transition-all duration-300"
+                      style={{
+                        background:
+                          "linear-gradient(to right, #009B76, #008C45)",
+                      }}
+                    ></div>
+                    <div
+                      className="absolute inset-0 w-5 h-5 rounded-full blur-sm opacity-40 group-hover:opacity-70 transition-opacity duration-300"
+                      style={{ backgroundColor: "#009B76" }}
+                    ></div>
+                    <div
+                      className="absolute inset-0 w-5 h-5 rounded-full animate-ping opacity-15"
+                      style={{ backgroundColor: "#009B76" }}
+                    ></div>
+                  </div>
+
+                  {/* Always visible card */}
+                  <div className="bg-gradient-to-br from-white to-blue-50/50 dark:from-gray-800 dark:to-blue-950/30 rounded-xl p-3 shadow-lg border border-blue-200/50 dark:border-blue-800/30 w-32 text-center backdrop-blur-sm group-hover:shadow-xl transition-all duration-300">
+                    <div className="text-lg font-bold bg-gradient-to-r from-green-600 to-green-700 dark:from-blue-400 dark:to-blue-500 bg-clip-text text-transparent mb-2">
+                      2015
+                    </div>
+                    <h4 className="text-xs font-bold text-gray-900 dark:text-white mb-1">
+                      Staff Augmentation
+                    </h4>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-2">
+                      CBS India - augmentation for Cargill team
+                    </p>
+                    <div
+                      className="inline-flex items-center px-2 py-1 rounded-full"
+                      style={{ backgroundColor: "rgba(0, 155, 118, 0.2)" }}
+                    >
+                      <span
+                        className="text-xs font-bold"
+                        style={{ color: "#285E2C" }}
+                      >
+                        80+ People
+                      </span>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Mid Point - Managed Services (Hover only) */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{
+                    duration: 0.6,
+                    delay: 0.2,
+                    type: "spring",
+                    stiffness: 120,
+                  }}
+                  className="relative flex flex-col items-center group cursor-pointer focus:outline-none"
+                  tabIndex={0}
+                >
+                  <div className="relative mb-4 z-20">
+                    <div
+                      className="w-5 h-5 rounded-full border-3 border-white dark:border-gray-900 shadow-lg group-hover:shadow-xl transition-all duration-300"
+                      style={{
+                        background:
+                          "linear-gradient(to right, #658D1B, #008C45)",
+                      }}
+                    ></div>
+                    <div
+                      className="absolute inset-0 w-5 h-5 rounded-full blur-sm opacity-40 group-hover:opacity-70 transition-opacity duration-300"
+                      style={{ backgroundColor: "#658D1B" }}
+                    ></div>
+                    <div
+                      className="absolute inset-0 w-5 h-5 rounded-full animate-ping opacity-15"
+                      style={{ backgroundColor: "#658D1B" }}
+                    ></div>
+                  </div>
+
+                  {/* Always visible card - positioned above with smart positioning and mobile support */}
+                  <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 opacity-100 pointer-events-auto transition-all duration-300 z-50">
+                    <div
+                      className="bg-gradient-to-br from-white to-white dark:from-gray-800 dark:to-gray-800 rounded-xl p-3 shadow-2xl w-48 sm:w-52 max-w-[90vw] text-center backdrop-blur-lg relative"
+                      style={{
+                        borderColor: "#658D1B60",
+                        borderWidth: "1px",
+                        borderStyle: "solid",
+                      }}
+                    >
+                      {/* Arrow pointing down */}
+                      <div className="absolute top-full left-1/2 transform -translate-x-1/2">
+                        <div
+                          className="w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[6px]"
+                          style={{ borderTopColor: "#658D1B60" }}
+                        ></div>
+                        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-px w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-t-[5px] border-t-white dark:border-t-gray-800"></div>
+                      </div>
+
+                      <h4 className="text-sm font-bold text-gray-900 dark:text-white mb-1.5">
+                        Managed Services @ Scale
+                      </h4>
+                      <p className="text-xs text-gray-600 dark:text-gray-300 leading-relaxed">
+                        Industrialization through CAC™ Automation, BVM &
+                        Business Health Dashboard
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Modernization (Hover only) */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{
+                    duration: 0.6,
+                    delay: 0.3,
+                    type: "spring",
+                    stiffness: 120,
+                  }}
+                  className="relative flex flex-col items-center group cursor-pointer focus:outline-none"
+                  tabIndex={0}
+                >
+                  <div className="relative mb-4 z-20">
+                    <div
+                      className="w-5 h-5 rounded-full border-3 border-white dark:border-gray-900 shadow-lg group-hover:shadow-xl transition-all duration-300"
+                      style={{
+                        background:
+                          "linear-gradient(to right, #008C45, #285E2C)",
+                      }}
+                    ></div>
+                    <div
+                      className="absolute inset-0 w-5 h-5 rounded-full blur-sm opacity-40 group-hover:opacity-70 transition-opacity duration-300"
+                      style={{ backgroundColor: "#008C45" }}
+                    ></div>
+                    <div
+                      className="absolute inset-0 w-5 h-5 rounded-full animate-ping opacity-15"
+                      style={{ backgroundColor: "#008C45" }}
+                    ></div>
+                  </div>
+
+                  {/* Always visible card - positioned above with smart positioning and mobile support */}
+                  <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 opacity-100 pointer-events-auto transition-all duration-300 z-50">
+                    <div
+                      className="rounded-xl p-3 bg-gradient-to-br from-white to-white dark:from-gray-800 dark:to-gray-800 shadow-2xl w-48 sm:w-52 max-w-[90vw] text-center backdrop-blur-lg relative"
+                      style={{
+                        borderColor: "#285E2C",
+                        borderWidth: "1px",
+                        borderStyle: "solid",
+                      }}
+                    >
+                      {/* Arrow pointing down */}
+                      <div className="absolute top-full left-1/2 transform -translate-x-1/2">
+                        <div
+                          className="w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[6px]"
+                          style={{ borderTopColor: "#285E2C" }}
+                        ></div>
+                        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-px w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-t-[5px] border-t-white dark:border-t-gray-800"></div>
+                      </div>
+
+                      <h4 className="text-sm font-bold text-gray-900 dark:text-white mb-1.5">
+                        Modernization
+                      </h4>
+                      <p className="text-xs text-gray-600 dark:text-gray-300 leading-relaxed">
+                        Global MES Modernization part of Smart Manufacturing and
+                        modernizing Digital Cx applications
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Product Mindset */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{
+                    duration: 0.6,
+                    delay: 0.4,
+                    type: "spring",
+                    stiffness: 120,
+                  }}
+                  className="relative flex flex-col items-center group cursor-pointer"
+                >
+                  <div className="relative mb-4 z-20">
+                    <div
+                      className="w-5 h-5 rounded-full border-3 border-white dark:border-gray-900 shadow-lg group-hover:shadow-xl transition-all duration-300"
+                      style={{
+                        background:
+                          "linear-gradient(to right, #285E2C, #658D1B)",
+                      }}
+                    ></div>
+                    <div
+                      className="absolute inset-0 w-5 h-5 rounded-full blur-sm opacity-40 group-hover:opacity-70 transition-opacity duration-300"
+                      style={{ backgroundColor: "#285E2C" }}
+                    ></div>
+                    <div
+                      className="absolute inset-0 w-5 h-5 rounded-full animate-ping opacity-15"
+                      style={{ backgroundColor: "#285E2C" }}
+                    ></div>
+                  </div>
+
+                  {/* Always visible card */}
+                  <div className="bg-gradient-to-br from-white to-orange-50/50 dark:from-gray-800 dark:to-orange-950/30 rounded-xl p-3 shadow-lg border border-orange-200/50 dark:border-orange-800/30 w-32 text-center backdrop-blur-sm group-hover:shadow-xl transition-all duration-300">
+                    <div className="text-lg font-bold bg-gradient-to-r from-green-600 to-green-700 dark:from-orange-400 dark:to-orange-500 bg-clip-text text-transparent mb-2">
+                      2025
+                    </div>
+                    <h4 className="text-xs font-bold text-gray-900 dark:text-white mb-1">
+                      Product Mindset @ Ops
+                    </h4>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-2">
+                      Modernization, Cloud Enablement and Product Mindset in
+                      Operations
+                    </p>
+                    <div
+                      className="inline-flex items-center px-2 py-1 rounded-full"
+                      style={{ backgroundColor: "rgba(40, 94, 44, 0.2)" }}
+                    >
+                      <span
+                        className="text-xs font-bold"
+                        style={{ color: "#285E2C" }}
+                      >
+                        1500+ People
+                      </span>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Cargill Leaders Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="mt-16"
+        >
+          <div className="flex justify-center">
+            <div className="w-full max-w-4xl">
+              <div
+                className="backdrop-blur-md rounded-3xl p-8 border border-gray-200/60 dark:border-gray-700/60 shadow-xl hover:shadow-2xl transition-all duration-300"
+                style={{
+                  background:
+                    "linear-gradient(to bottom right, rgba(219, 228, 147, 0.8), rgba(101, 141, 27, 0.7))",
+                }}
+              >
+                <CargillLeaders />
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Key Geographies Modal */}
+        <GeographyModal
+          showModal={showGeographyModal}
+          setShowModal={setShowGeographyModal}
+          handleRegionClick={handleRegionClick}
+        />
+
+        {/* Region Image Modal */}
+        <RegionImageModal
+          showModal={showRegionImageModal}
+          setShowModal={setShowRegionImageModal}
+          selectedRegionImage={selectedRegionImage}
+          selectedRegionName={selectedRegionName}
+        />
+
+        {/* Scope of Services Modal */}
+        <ScopeModal
+          showModal={showScopeModal}
+          setShowModal={setShowScopeModal}
+        />
+
+        {/* Domain Modal */}
+        <DomainModal
+          showModal={showDomainModal}
+          setShowModal={setShowDomainModal}
+        />
+
+        {/* Tickets Modal */}
+        <TicketsModal
+          showModal={showTicketsModal}
+          setShowModal={setShowTicketsModal}
+        />
+
+        {/* SLA & KPI Modal */}
+        <SLAModal showModal={showSLAModal} setShowModal={setShowSLAModal} />
+      </div>
+    </section>
+  );
+}
+
+>>>components/CategoriesSection.tsx
+"use client";
+
+import * as motion from "motion/react-client";
+import { categories } from "@/lib/data";
+import { useState } from "react";
+import CategoryModal from "@/components/modals/CategoryModal";
+import { Sparkles } from "lucide-react";
+
+export default function CategoriesSection() {
+  const [selectedCategory, setSelectedCategory] = useState<
+    (typeof categories)[0] | null
+  >(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleCategoryClick = (category: (typeof categories)[0]) => {
+    setSelectedCategory(category);
+    setIsModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+    setSelectedCategory(null);
+  };
+
+  return (
+    <>
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-50 via-blue-50/30 to-green-50/20 dark:from-gray-900 dark:via-blue-900/20 dark:to-green-900/10 relative overflow-hidden">
+        {/* Animated background elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <motion.div
+            animate={{
+              scale: [1, 1.2, 1],
+              opacity: [0.1, 0.2, 0.1],
+              rotate: [0, 180, 360],
+            }}
+            transition={{
+              duration: 30,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+            className="absolute -top-40 -right-40 w-96 h-96 bg-gradient-to-br from-blue-400/10 to-green-400/10 rounded-full blur-3xl"
+          />
+          <motion.div
+            animate={{
+              scale: [1, 0.8, 1],
+              opacity: [0.05, 0.15, 0.05],
+              rotate: [360, 180, 0],
+            }}
+            transition={{
+              duration: 25,
+              repeat: Infinity,
+              ease: "linear",
+              delay: 5,
+            }}
+            className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-tr from-emerald-400/10 to-cyan-400/10 rounded-full blur-2xl"
+          />
+        </div>
+
+        <div className="max-w-7xl mx-auto relative">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <motion.div
+              initial={{ scale: 0.8 }}
+              whileInView={{ scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500/10 to-green-500/10 px-4 py-2 rounded-full mb-6 border border-blue-200/30 dark:border-blue-700/30"
+            >
+              <Sparkles className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+              <span className="text-sm font-medium text-blue-700 dark:text-blue-300">
+                Discover Our Solutions
+              </span>
+            </motion.div>
+
+            <motion.h2
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 bg-gradient-to-r from-gray-900 via-blue-900 to-green-900 dark:from-gray-100 dark:via-blue-100 dark:to-green-100 bg-clip-text text-transparent"
+            >
+              Explore Products & Services
+            </motion.h2>
+
+            <motion.div
+              initial={{ width: 0 }}
+              whileInView={{ width: "120px" }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              viewport={{ once: true }}
+              className="h-1 bg-gradient-to-r from-blue-500 to-green-600 rounded-full mx-auto mb-6"
+            />
+
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              viewport={{ once: true }}
+              className="text-lg text-muted-foreground max-w-2xl mx-auto"
+            >
+              Learn more about our cross industry expertise and discover how
+              we're creating solutions for a better world.
+            </motion.p>
+          </motion.div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+            {categories.map((category, index) => (
+              <motion.div
+                initial={{ opacity: 0, y: 30, scale: 0.9 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{
+                  duration: 0.6,
+                  delay: index * 0.1,
+                  ease: [0.23, 1, 0.32, 1],
+                }}
+                viewport={{ once: true }}
+                key={category.name}
+                onClick={() => handleCategoryClick(category)}
+                className="group cursor-pointer"
+              >
+                <motion.div
+                  whileHover={{
+                    y: -8,
+                    scale: 1.05,
+                    rotateX: 5,
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
+                  className="relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl p-6 text-center shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-200/50 dark:border-gray-700/50 hover:border-blue-300/50 dark:hover:border-blue-600/50 overflow-hidden"
+                  style={{ transformStyle: "preserve-3d" }}
+                >
+                  {/* Animated background gradient */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    whileHover={{ opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                    className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-green-500/5 to-emerald-500/5 rounded-2xl"
+                  />
+
+                  <div className="relative z-10">
+                    <motion.div
+                      whileHover={{
+                        scale: 1.2,
+                        rotate: [0, -5, 5, 0],
+                      }}
+                      transition={{
+                        duration: 0.4,
+                        rotate: { duration: 0.6, repeat: 0 },
+                      }}
+                      className="mb-4 relative"
+                    >
+                      {/* Icon glow effect */}
+                      <motion.div
+                        whileHover={{ scale: 1.5, opacity: 0.6 }}
+                        transition={{ duration: 0.3 }}
+                        className="absolute inset-0 bg-gradient-to-r from-blue-500 to-green-600 rounded-full blur-lg opacity-0 group-hover:opacity-30"
+                      />
+
+                      <div
+                        dangerouslySetInnerHTML={{ __html: category.icon }}
+                        className="w-10 h-10 mx-auto text-blue-600 dark:text-blue-400 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors duration-300 relative z-10"
+                      />
+                    </motion.div>
+
+                    <motion.h3
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.2 }}
+                      className="font-semibold text-foreground mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300 text-sm md:text-base"
+                    >
+                      {category.name}
+                    </motion.h3>
+
+                    {/* Click indicator */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      whileHover={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="text-xs text-blue-500 dark:text-blue-400 font-medium"
+                    >
+                      Click to explore
+                    </motion.div>
+                  </div>
+
+                  {/* Hover border glow */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    whileHover={{ opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                    className="absolute inset-0 rounded-2xl border-2 border-gradient-to-r from-blue-500/50 to-green-500/50 pointer-events-none"
+                    style={{
+                      background:
+                        "linear-gradient(135deg, transparent 0%, rgba(59, 130, 246, 0.1) 50%, transparent 100%)",
+                    }}
+                  />
+                </motion.div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Modal */}
+      {selectedCategory && (
+        <CategoryModal
+          category={selectedCategory}
+          isOpen={isModalOpen}
+          onClose={handleModalClose}
+        />
+      )}
+    </>
+  );
+}
+
+>>>components/Footer.tsx
+import { Github, Instagram, Linkedin, Twitter } from "lucide-react";
+import Link from "next/link";
+import { Input } from "./ui/input";
+import { Button } from "./ui/button";
+
+const socialLinks = [
+  {
+    icon: Twitter,
+    href: "https://x.com/Cargill",
+    label: "Twitter",
+  },
+  {
+    icon: Github,
+    href: "https://github.com/cargill",
+    label: "GitHub",
+  },
+  {
+    icon: Linkedin,
+    href: "https://www.linkedin.com/company/cargill/",
+    label: "LinkedIn",
+  },
+  {
+    icon: Instagram,
+    href: "https://www.instagram.com/cargill/",
+    label: "Instagram",
+  },
+];
+
+const quickLinks = [
+  {
+    name: "Home",
+    href: "/",
+  },
+
+  {
+    name: "Dashboard",
+    href: "/dashboard",
+  },
+
+  {
+    name: "About",
+    href: "/about",
+  },
+];
+
+export default function Footer() {
+  return (
+    <footer className="bg-background border-t border-border/50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Brand */}
+          <div>
+            <h3 className="text-xl font-bold text-foreground mb-4">Cargill</h3>
+            <p className="text-muted-foreground mb-4">
+              Creating a more food secure world.
+            </p>
+
+            <div className="flex space-x-4">
+              {socialLinks.map((link) => {
+                const Icon = link.icon;
+                return (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    target="_blank"
+                    className="text-muted-foreground hover:text-foreground transition-colors duration-300"
+                  >
+                    <Icon className="h-5 w-5" />
+                    <span className="sr-only">{link.label}</span>
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Quick links */}
+
+          <div>
+            <h4 className="font-semibold text-foreground mb-4">Quick Links</h4>
+            <ul className="space-y-2">
+              {quickLinks.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    href={link.href}
+                    className="text-muted-foreground hover:text-foreground transition-colors duration-300"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Newsletter */}
+
+          <div>
+            <h4 className="font-semibold text-foreground mb-4">Stay Updated</h4>
+            <p className="text-muted-foreground mb-4">
+              Subscribe to get the latest posts delivered to your inbox.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-2">
+              <Input type="email" placeholder="Your email" />
+              <Button>Subscribe</Button>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-12 pt-8 border-t border-border/50 text-center text-sm text-muted-foreground">
+          <p>
+            © {new Date().getFullYear()} Cargill, Incorporated. All Rights
+            Reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+>>>components/HeroSection.tsx
+import * as motion from "motion/react-client";
+import { Button } from "./ui/button";
+import { ArrowRight } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+
+export default function HeroSection() {
+  return (
+    <section className="min-h-[90vh] flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Left content */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center lg:text-left"
+          >
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-foreground leading-tight mb-6">
+              Creating a more{" "}
+              <span className="text-primary italic">food secure world</span>
+            </h1>
+
+            <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl">
+              Our planet’s population is growing rapidly — and so is the need
+              for more food. Already, 800 million people go to bed hungry each
+              night. As a food company to the world, Cargill is partnering with
+              farmers and customers to grow and produce more food with less
+              impact, to move that food to store shelves and family tables, and
+              to nourish people for a more food secure world.
+            </p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              {/* <Link href="/about">
+                <Button size="lg" className="group">
+                  Read about Cargill{" "}
+                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Button>
+              </Link> */}
+            </motion.div>
+          </motion.div>
+
+          {/* Right content */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="hidden lg:block"
+          >
+            <div className="relative">
+              <div className="w-80 h-80 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-full blur-3xl absolute -top-10 -right-10"></div>
+              <div className="w-96 h-96 bg-gradient-to-tl from-secondary/30 to-primary/30 rounded-2xl transform rotate-6 shadow-2xl flex items-center justify-center overflow-hidden">
+                <Image
+                  src="/images/cargill-chain.png"
+                  alt="Cargill Logo"
+                  width={320}
+                  height={320}
+                  className="object-contain w-full h-full p-4"
+                />
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+>>>components/Navigation.tsx
+"use client";
+import { navItems } from "@/lib/constants";
+import Link from "next/link";
+import Image from "next/image";
+import ThemeToggle from "./ui/ThemeToggle";
+import MobileNavigtaion from "./ui/MobileNavigation";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu";
+import { useTheme } from "next-themes";
+
+const navButtons = ["Home", "Dashboard", "About"];
+export default function Navigation() {
+  const { theme } = useTheme();
+  return (
+    <nav className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
+          {/* Logo */}
+          <div className="flex-shrink-0">
+            <h1 className="flex items-center space-x-3">
+              <Image
+                src={
+                  theme === "dark"
+                    ? "/cargill-logo-dark.png"
+                    : "/cargill-logo-light.png"
+                }
+                alt="Cargill Logo"
+                width={100}
+                height={100}
+              />
+              <span className="text-muted-foreground text-lg font-light">
+                |
+              </span>
+              <Image
+                src="/cognizant-logo.png"
+                alt="Cognizant Logo"
+                width={145}
+                height={145}
+              />
+            </h1>
+          </div>
+
+          {/* Desktop navigation */}
+          <div className="hidden md:flex items-center space-x-2">
+            {navItems
+              .filter((item) => navButtons.includes(item.name))
+              .map((item) => (
+                <div key={item.name} className="relative">
+                  {item.items ? (
+                    <NavigationMenu>
+                      <NavigationMenuList>
+                        <NavigationMenuItem>
+                          <NavigationMenuTrigger className="hover:bg-[#BBD7C2] transition-colors duration-200">
+                            {item.name}
+                          </NavigationMenuTrigger>
+                          <NavigationMenuContent className="p-3 grid gap-2 w-max min-w-max">
+                            {item.items.map((sub) => (
+                              <Link
+                                key={sub.name}
+                                href={sub.href}
+                                className="block p-1 rounded-md hover:bg-[#BBD7C2] hover:text-accent-foreground transition-colors"
+                              >
+                                <span className="p-1 text-sm font-medium">
+                                  {sub.name}
+                                </span>
+                              </Link>
+                            ))}
+                          </NavigationMenuContent>
+                        </NavigationMenuItem>
+                      </NavigationMenuList>
+                    </NavigationMenu>
+                  ) : (
+                    <Link
+                      href={item.href}
+                      className="text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-[#BBD7C2] transition-colors duration-200 px-3 py-2 rounded-md"
+                    >
+                      {item.name}
+                    </Link>
+                  )}
+                </div>
+              ))}
+
+            <ThemeToggle />
+          </div>
+
+          {/* Mobile nav */}
+          <MobileNavigtaion />
+        </div>
+      </div>
+    </nav>
+  );
+}
+
+>>>components/QuotesSection.tsx
+import { quotes } from "@/lib/data";
+import { Quote } from "lucide-react";
+import * as motion from "motion/react-client";
+
+const getRandomQuote = () => {
+  return quotes[Math.floor(Math.random() * quotes.length)];
+};
+
+export default function QuotesSection() {
+  const randomQuote = getRandomQuote();
+
+  return (
+    <section className="py-20 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-4xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center"
+        >
+          <div>
+            <Quote className="h-12 w-12 text-primary/30 mx-auto mb-6" />
+            <blockquote className="text-2xl md:text-3xl font-serif font-medium text-foreground leading-relaxed mb-6">
+              {`"${randomQuote.text}"`}
+            </blockquote>
+            <cite className="text-lg text-foreground font-medium not-italic">
+              - {randomQuote.author}
+            </cite>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+

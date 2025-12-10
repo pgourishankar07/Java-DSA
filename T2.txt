@@ -1,0 +1,999 @@
+>>>lib/constants.ts
+export const navItems = [
+  {
+    name: "Home",
+    href: "/",
+  },
+  {
+    name: "Dashboard",
+    href: "/dashboard",
+  },
+  {
+    name: "About",
+    href: "/about",
+  },
+  {
+    name: "",
+    href: "",
+    items: [{ name: "", href: "" }]
+  }
+];
+
+>>>lib/data.ts
+export const categories = [
+  {
+    name: "Agriculture",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wheat-icon lucide-wheat"><path d="M2 22 16 8"/><path d="M3.47 12.53 5 11l1.53 1.53a3.5 3.5 0 0 1 0 4.94L5 19l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="M7.47 8.53 9 7l1.53 1.53a3.5 3.5 0 0 1 0 4.94L9 15l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="M11.47 4.53 13 3l1.53 1.53a3.5 3.5 0 0 1 0 4.94L13 11l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="M20 2h2v2a4 4 0 0 1-4 4h-2V6a4 4 0 0 1 4-4Z"/><path d="M11.47 17.47 13 19l-1.53 1.53a3.5 3.5 0 0 1-4.94 0L5 19l1.53-1.53a3.5 3.5 0 0 1 4.94 0Z"/><path d="M15.47 13.47 17 15l-1.53 1.53a3.5 3.5 0 0 1-4.94 0L9 15l1.53-1.53a3.5 3.5 0 0 1 4.94 0Z"/><path d="M19.47 9.47 21 11l-1.53 1.53a3.5 3.5 0 0 1-4.94 0L13 11l1.53-1.53a3.5 3.5 0 0 1 4.94 0Z"/></svg>`,
+
+  },
+  {
+    name: "Meat & Poultry",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-beef-icon lucide-beef"><path d="M16.4 13.7A6.5 6.5 0 1 0 6.28 6.6c-1.1 3.13-.78 3.9-3.18 6.08A3 3 0 0 0 5 18c4 0 8.4-1.8 11.4-4.3"/><path d="m18.5 6 2.19 4.5a6.48 6.48 0 0 1-2.29 7.2C15.4 20.2 11 22 7 22a3 3 0 0 1-2.68-1.66L2.4 16.5"/><circle cx="12.5" cy="8.5" r="2.5"/></svg>`,
+  },
+  {
+    name: "Animal Nutrition",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bone-icon lucide-bone"><path d="M17 10c.7-.7 1.69 0 2.5 0a2.5 2.5 0 1 0 0-5 .5.5 0 0 1-.5-.5 2.5 2.5 0 1 0-5 0c0 .81.7 1.8 0 2.5l-7 7c-.7.7-1.69 0-2.5 0a2.5 2.5 0 0 0 0 5c.28 0 .5.22.5.5a2.5 2.5 0 1 0 5 0c0-.81-.7-1.8 0-2.5Z"/></svg>`,
+  },
+  {
+    name: "Beauty",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-smile-plus-icon lucide-smile-plus"><path d="M22 11v1a10 10 0 1 1-9-10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" x2="9.01" y1="9" y2="9"/><line x1="15" x2="15.01" y1="9" y2="9"/><path d="M16 5h6"/><path d="M19 2v6"/></svg>`,
+    count: 12,
+  },
+  {
+    name: "Bioindustrial",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-biohazard-icon lucide-biohazard"><circle cx="12" cy="11.9" r="2"/><path d="M6.7 3.4c-.9 2.5 0 5.2 2.2 6.7C6.5 9 3.7 9.6 2 11.6"/><path d="m8.9 10.1 1.4.8"/><path d="M17.3 3.4c.9 2.5 0 5.2-2.2 6.7 2.4-1.2 5.2-.6 6.9 1.5"/><path d="m15.1 10.1-1.4.8"/><path d="M16.7 20.8c-2.6-.4-4.6-2.6-4.7-5.3-.2 2.6-2.1 4.8-4.7 5.2"/><path d="M12 13.9v1.6"/><path d="M13.5 5.4c-1-.2-2-.2-3 0"/><path d="M17 16.4c.7-.7 1.2-1.6 1.5-2.5"/><path d="M5.5 13.9c.3.9.8 1.8 1.5 2.5"/></svg>`,
+  },
+  {
+    name: "Food & Beverage",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-hamburger-icon lucide-hamburger"><path d="M12 16H4a2 2 0 1 1 0-4h16a2 2 0 1 1 0 4h-4.25"/><path d="M5 12a2 2 0 0 1-2-2 9 7 0 0 1 18 0 2 2 0 0 1-2 2"/><path d="M5 16a2 2 0 0 0-2 2 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 2 2 0 0 0-2-2q0 0 0 0"/><path d="m6.67 12 6.13 4.6a2 2 0 0 0 2.8-.4l3.15-4.2"/></svg>`,
+  },
+];
+
+export const quotes = [
+  {
+    text: "We believe big companies can and should do good.",
+    author: "Brian Sikes",
+  },
+  {
+    text: "At Cargill, everyone matters and everyone counts.",
+    author: "Brian Sikes",
+  },
+  {
+    text: "Our word is our bond.",
+    author: "Brian Sikes",
+  },
+  {
+    text: "Bringing access to life's essentials since 1865.",
+    author: "Brian Sikes",
+  },
+  {
+    text: "Nourishing the world in a safe, responsible and sustainable way.",
+    author: "Brian Sikes",
+  },
+];
+
+>>>lib/dataLoader.ts
+import Papa from 'papaparse';
+
+export interface EnterpriseData {
+    id: string;
+    title: string;
+    icon: string;
+    color: string;
+    metrics: {
+        apps: number;
+        valueSavings: string;
+        vulnerabilities: number;
+        innovations: string;
+        p1: number;
+    };
+    items: BusinessUnitData[];
+}
+
+export interface BusinessUnitData {
+    name: string;
+    apps: number;
+    valueSavings: string;
+    vulnerabilities: number;
+    innovations: number;
+    p1: number;
+    appBreakdown?: {
+        platinum: number;
+        gold: number;
+        silver: number;
+        bronze: number;
+        lead: number;
+    };
+}
+
+export interface EnterpriseCSVRow {
+    'Enterprise ID': string;
+    'Enterprise Name': string;
+    'Icon': string;
+    'Color': string;
+}
+
+export interface BusinessUnitCSVRow {
+    'Enterprise ID': string;
+    'Business Unit Name': string;
+    'Apps': string;
+    'Value Savings': string;
+    'Vulnerabilities': string;
+    'Innovations': string;
+    'P1': string;
+}
+
+export interface ContractData {
+    id: string;
+    title: string;
+    client: string;
+    value: string;
+    startDate: string;
+    endDate: string;
+    status: string;
+    type: string;
+    region: string;
+    progress: number;
+}
+
+// Function to calculate enterprise totals from business unit metrics
+function calculateEnterpriseMetrics(businessUnits: BusinessUnitData[]): {
+    apps: number;
+    valueSavings: string;
+    vulnerabilities: number;
+    innovations: string;
+    p1: number;
+} {
+    const totalApps = businessUnits.reduce((sum, unit) => sum + unit.apps, 0);
+    const totalVulnerabilities = businessUnits.reduce((sum, unit) => sum + unit.vulnerabilities, 0);
+    const totalP1 = businessUnits.reduce((sum, unit) => sum + unit.p1, 0);
+
+    // Sum up value savings (remove $ and K, then add back)
+    const totalValueSavings = businessUnits.reduce((sum, unit) => {
+        const value = parseInt(unit.valueSavings.replace(/[$K]/g, ''));
+        return sum + value;
+    }, 0);
+
+    // Sum up innovations (remove +, then add back)
+    const totalInnovations = businessUnits.reduce((sum, unit) => {
+        return sum + unit.innovations;
+    }, 0);
+
+    return {
+        apps: totalApps,
+        valueSavings: `$${totalValueSavings}K`,
+        vulnerabilities: totalVulnerabilities,
+        innovations: `${totalInnovations}+`,
+        p1: totalP1
+    };
+}
+
+// Main function that loads data from API route
+export async function loadEnterpriseData(): Promise<EnterpriseData[]> {
+    try {
+        // Load data from API route (which handles Excel/CSV on server side)
+        const response = await fetch('/api/enterprise-data');
+        if (!response.ok) {
+            throw new Error(`API request failed: ${response.status}`);
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error loading enterprise data from API:', error);
+        // Fallback to CSV if API fails
+        return await loadEnterpriseDataFromCSV();
+    }
+} export async function loadEnterpriseDataFromCSV(): Promise<EnterpriseData[]> {
+    try {
+        // Load enterprises CSV
+        const enterpriseResponse = await fetch('/data/enterprises.csv');
+        const enterpriseCSV = await enterpriseResponse.text();
+
+        // Load business units CSV
+        const businessUnitsResponse = await fetch('/data/business-units.csv');
+        const businessUnitsCSV = await businessUnitsResponse.text();
+
+        // Parse CSV data
+        const enterpriseResult = Papa.parse<EnterpriseCSVRow>(enterpriseCSV, {
+            header: true,
+            skipEmptyLines: true
+        });
+
+        const businessUnitsResult = Papa.parse<BusinessUnitCSVRow>(businessUnitsCSV, {
+            header: true,
+            skipEmptyLines: true
+        });
+
+        if (enterpriseResult.errors.length > 0) {
+            console.error('Enterprise CSV parsing errors:', enterpriseResult.errors);
+        }
+
+        if (businessUnitsResult.errors.length > 0) {
+            console.error('Business Units CSV parsing errors:', businessUnitsResult.errors);
+        }
+
+        // Group business units WITH METRICS by enterprise ID
+        const businessUnitsByEnterprise: { [key: string]: BusinessUnitData[] } = {};
+
+        businessUnitsResult.data.forEach(row => {
+            const enterpriseId = row['Enterprise ID'];
+            const unitData: BusinessUnitData = {
+                name: row['Business Unit Name'],
+                apps: parseInt(row['Apps']),
+                valueSavings: row['Value Savings'],
+                vulnerabilities: parseInt(row['Vulnerabilities']),
+                innovations: parseInt(row['Innovations']),
+                p1: parseInt(row['P1'])
+            };
+
+            if (!businessUnitsByEnterprise[enterpriseId]) {
+                businessUnitsByEnterprise[enterpriseId] = [];
+            }
+
+            businessUnitsByEnterprise[enterpriseId].push(unitData);
+        });
+
+        // Map enterprise data and CALCULATE TOTALS from business units
+        const enterpriseData: EnterpriseData[] = enterpriseResult.data.map(row => {
+            const enterpriseId = row['Enterprise ID'];
+
+            // Get business units for this enterprise
+            const businessUnits = businessUnitsByEnterprise[enterpriseId] || [];
+
+            // CALCULATE enterprise metrics from business unit totals
+            const calculatedMetrics = calculateEnterpriseMetrics(businessUnits);
+
+            return {
+                id: enterpriseId,
+                title: row['Enterprise Name'],
+                icon: row['Icon'],
+                color: row['Color'],
+                metrics: calculatedMetrics,
+                items: businessUnits
+            };
+        });
+
+        return enterpriseData;
+
+    } catch (error) {
+        console.error('Error loading CSV data:', error);
+        return [];
+    }
+}
+
+// Function to load contract data from Excel file via API
+export async function loadContractData(): Promise<ContractData[]> {
+    console.log('🔍 Starting to load contract data from API...');
+
+    try {
+        // Fetch contract data from API route
+        const response = await fetch('/api/contract-data');
+
+        if (!response.ok) {
+            throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+        }
+
+        const contracts = await response.json();
+        console.log('✅ Successfully loaded', contracts.length, 'contracts from API');
+        console.log('📊 Status distribution:', contracts.reduce((acc: { [key: string]: number }, contract: ContractData) => {
+            acc[contract.status] = (acc[contract.status] || 0) + 1;
+            return acc;
+        }, {}));
+
+        return contracts;
+    } catch (error) {
+        console.error('❌ Error loading contract data from API:', error);
+
+        // Return fallback data if Excel loading fails
+        return [
+            {
+                id: "CTR-001",
+                title: "Grain Supply Agreement",
+                client: "Global Foods Inc.",
+                value: "$2.5M",
+                startDate: "2024-01-15",
+                endDate: "2025-01-14",
+                status: "Active",
+                type: "Supply",
+                region: "North America",
+                progress: 75,
+            },
+            {
+                id: "CTR-002",
+                title: "Logistics Partnership",
+                client: "Transport Solutions Ltd.",
+                value: "$1.8M",
+                startDate: "2024-03-01",
+                endDate: "2024-12-31",
+                status: "Active",
+                type: "Services",
+                region: "Europe",
+                progress: 60,
+            },
+            {
+                id: "CTR-003",
+                title: "Animal Feed Contract",
+                client: "Livestock Partners Co.",
+                value: "$3.2M",
+                startDate: "2024-02-10",
+                endDate: "2025-02-09",
+                status: "Active",
+                type: "Supply",
+                region: "Asia-Pacific",
+                progress: 85,
+            }
+        ];
+    }
+}
+
+// Icon mapping function
+export function getIconComponent(iconName: string) {
+    // This will be imported and used in the main component
+    // We'll return the icon name for now and map it in the component
+    return iconName;
+}
+
+>>>lib/kpi-data.ts
+export const kpiData = [
+    [
+        "KPI-1",
+        "AMS  ",
+        "Incident Human Response Time - Personal Contact",
+        "Priority 1",
+        "Platinum & Gold",
+        "Measures the percentage of Priority 1 Incidents that were responded to by a Supplier personnel who is qualified  & trained to resolve Priority 1 Incidents within 0.25 Clock Hours",
+    ],
+    [
+        "KPI-2",
+        "AMS  ",
+        "Incident Human Response Time - Personal Contact",
+        "Priority 2",
+        "Platinum & Gold",
+        "Measures the percentage of Priority 2 Incidents that were responded to by a Supplier personnel who is qualified  & trained to resolve Priority 2 Incidents within 1 Clock Hour",
+    ],
+    [
+        "KPI-3",
+        "AMS  ",
+        "Incident Response Time - Assigned to an Individual",
+        "Priority 1  & 2",
+        "Platinum & Gold",
+        "Measures the percentage of Priority 1  & 2 Incidents that were assigned to the que  & then placed into an in-progress state by an individual within 1 Clock Hour",
+    ],
+    [
+        "KPI-4",
+        "AMS  ",
+        "Incident Response Time - Assigned to an Individual",
+        "Priority 1  & 2",
+        "Silver",
+        "Measures the percentage of Priority 1  & 2 Incidents that were assigned to the que  & then placed into an in-progress state by an individual within 1 Clock Hour",
+    ],
+    [
+        "KPI-5",
+        "AMS  ",
+        "Incident Response Time - Assigned to an Individual",
+        "Priority 3",
+        "Platinum & Gold",
+        "Measures the percentage of Priority 3 Incidents that were assigned to the que  & then placed into an in-progress state by an individual within 1 Business Day",
+    ],
+    [
+        "KPI-6",
+        "AMS  ",
+        "Incident Response Time - Assigned to an Individual",
+        "Priority 3",
+        "Silver & Bronze",
+        "Measures the percentage of Priority 3 Incidents that were assigned to the que  & then placed into an in-progress state by an individual within 1 Business Day",
+    ],
+    [
+        "KPI-7",
+        "AMS  ",
+        "Incident Response Time - Assigned to an Individual",
+        "Priority 4",
+        "Platinum & Gold",
+        "Measures the percentage of Priority 4 Incidents that were assigned to the que  & then placed into an in-progress state by an individual within 2 Business Days",
+    ],
+    [
+        "KPI-8",
+        "AMS  ",
+        "Incident Response Time - Assigned to an Individual",
+        "Priority 4",
+        "Silver & Bronze",
+        "Measures the percentage of Priority 4 Incidents that were assigned to the que  & then placed into an in-progress state by an individual within 2 Business Days",
+    ],
+    [
+        "KPI-9",
+        "AMS  ",
+        "Incident Closure Time",
+        "Priority 1",
+        "Platinum & Gold",
+        "Measures the percentage of Priority 1 Incidents that were closed within 24 Clock Hours",
+    ],
+    [
+        "KPI-10",
+        "AMS  ",
+        "Incident Closure Time",
+        "Priority 1",
+        "Silver",
+        "Measures the percentage of Priority 1 Incidents that were closed within 24 Clock Hours",
+    ],
+    [
+        "KPI-11",
+        "AMS  ",
+        "Incident Closure Time",
+        "Priority 2",
+        "Platinum & Gold",
+        "Measures the percentage of Priority 2 Incidents that were closed within 48 Clock Hours",
+    ],
+    [
+        "KPI-12",
+        "AMS  ",
+        "Incident Closure Time",
+        "Priority 2",
+        "Silver",
+        "Measures the percentage of Priority 2 Incidents that were closed within 48 Clock Hours",
+    ],
+    [
+        "KPI-13",
+        "AMS  ",
+        "Incident Closure Time",
+        "Priority 3",
+        "Platinum & Gold",
+        "Measures the percentage of Priority 3 Incidents that were closed within 10 Business Days",
+    ],
+    [
+        "KPI-14",
+        "AMS  ",
+        "Incident Closure Time",
+        "Priority 3",
+        "Silver & Bronze",
+        "Measures the percentage of Priority 3 Incidents that were closed within 10 Business Days",
+    ],
+    [
+        "KPI-15",
+        "AMS  ",
+        "Incident Closure Time",
+        "Priority 4",
+        "Platinum & Gold",
+        "Measures the percentage of Priority 4 Incidents that were closed within 15 Business Days",
+    ],
+    [
+        "KPI-16",
+        "AMS  ",
+        "Incident Closure Time",
+        "Priority 4",
+        "Silver & Bronze",
+        "Measures the percentage of Priority 4 Incidents that were closed within 15 Business Days",
+    ],
+    [
+        "KPI-17",
+        "AMS  ",
+        "Application Availability",
+        "NA",
+        "All",
+        "Measures the percentage of Clock Hours an application is available (excludes Maintenance time, downtime due to infra issues)",
+    ],
+    [
+        "KPI-18",
+        "AMS  ",
+        "Problem Root Cause Identification Time",
+        "Priority 1",
+        "Platinum & Gold",
+        "Measures the percentage of Priority 1 Incidents for which Supplier provided a root cause analysis within 3 Calendar Days of resolution",
+    ],
+    [
+        "KPI-19",
+        "AMS  ",
+        "Problem Root Cause Identification Time",
+        "Priority 2",
+        "Platinum & Gold",
+        "Measures the percentage of Priority 2 Incidents for which Supplier provided a root cause analysis within 5 Calendar Days of resolution",
+    ],
+    [
+        "KPI-20",
+        "AMS  ",
+        "Problem Root Cause Identification Time",
+        "Priority 2",
+        "Silver",
+        "Measures the percentage of Priority 2 Incidents for which Supplier provided a root cause analysis within 5 Calendar Days of resolution",
+    ],
+    [
+        "KPI-21",
+        "AMS  ",
+        "Emergency Change Effectiveness",
+        "NA",
+        "All",
+        "Measures the percentage of emergency Changes that are deployed successfully without rollback or creating any Incidents",
+    ],
+    [
+        "KPI-22",
+        "AMS  ",
+        "Expedited Change Effectiveness",
+        "NA",
+        "All",
+        "Measures the percentage of expedited Changes that are deployed successfully without rollback or creating any Incidents",
+    ],
+    [
+        "KPI-23",
+        "AMS  ",
+        "Change Success Effectiveness",
+        "All",
+        "All",
+        "Measures the percentage of Changes that are deployed successfully without rollback or creating any Incidents",
+    ],
+    [
+        "KPI-24",
+        "AMS  ",
+        "Reports Accuracy",
+        "All",
+        "NA",
+        "Measures the number of reports as listed within Exhibit D-2 (Reports) submitted on-time  & with the correct information",
+    ],
+    [
+        "KPI-25",
+        "AMS  ",
+        "On-time Resource Fulfillment",
+        "All",
+        "NA",
+        "Measures the percentage of resource requirements that were fulfilled on or before the agreed-upon deadline",
+    ],
+    [
+        "KPI-26",
+        "AMS  ",
+        "Data Accuracy",
+        "All",
+        "All",
+        "Measures accuracy of Supplier's accuracy of data updates",
+    ],
+    [
+        "KPI-27",
+        "AMS  ",
+        "Service Request Resolution Time",
+        "Priority 5 - Extended",
+        "Platinum & Gold",
+        "Measures the percentage of Priority 5 - Extended Service Requests where the final resolution was within 21 Calendar Days of assignment",
+    ],
+    [
+        "KPI-28",
+        "AD  ",
+        "Cost Variance % - Overage",
+        "NA",
+        "NA",
+        "Measures the percentage of spend for Project Gates completed (as determined by the Cargill acceptance delivery of all pre-determined requirements) within Cargill accepted budgets.",
+    ],
+    [
+        "KPI-29",
+        "AD  ",
+        "Effort Variance % - Overage",
+        "NA",
+        "NA",
+        "Measures the percentage of FTEs utilized for Project Gates completed (as determined by the Cargill acceptance delivery of all pre-determined requirements) within Cargill accepted estimates/budgets.",
+    ],
+    [
+        "KPI-30",
+        "AD  ",
+        "% Projects On Time",
+        "NA",
+        "NA",
+        "Measures the percentage of Project Gates timely completed",
+    ],
+    [
+        "KPI-31",
+        "AD  ",
+        "Post Production Defects - Critical & High",
+        "NA",
+        "NA",
+        "Percentage of post project go-live Defects (Number of Critical & High Defects detected during Hypercare)",
+    ],
+    [
+        "KPI-32",
+        "AD  ",
+        "UAT Defects - C & H",
+        "NA",
+        "NA",
+        "Measures the quality of the systems testing based on the identification of Defects during User Acceptance Testing. Defects are defined as Incidents / Problems that would be categorized as Critical  & High.",
+    ],
+    [
+        "KPI-33",
+        "AD  ",
+        "Defect Removal Efficiency",
+        "NA",
+        "NA",
+        "Number of Defects responded to  & fixed",
+    ],
+    [
+        "KPI-34",
+        "AD  ",
+        "Defect Density",
+        "NA",
+        "NA",
+        "Measures the density of Defects compared to size of code",
+    ],
+    [
+        "KPI-35",
+        "AD  ",
+        "On-time resource fulfillment",
+        "NA",
+        "NA",
+        "Measures the percentage of resource requests that were fulfilled before the agreed-upon deadline.",
+    ],
+];
+
+>>>lib/sla-data.ts
+export const slaData = [
+    [
+        "SL-1",
+        "AMS  ",
+        "Incident Resolution Time",
+        "Priority 1",
+        "Platinum & Gold",
+        "Measures the percentage of Priority 1 Incidents where the final resolution was within 4 Clock Hours of assignment",
+    ],
+    [
+        "SL-2",
+        "AMS  ",
+        "Incident Resolution Time",
+        "Priority 1",
+        "Silver",
+        "Measures the percentage of Priority 1 Incidents where the final resolution was within 4 Clock Hours of assignment",
+    ],
+    [
+        "SL-3",
+        "AMS  ",
+        "Incident Resolution Time",
+        "Priority 2",
+        "Platinum & Gold",
+        "Measures the percentage of Priority 2 Incidents where the final resolution was within 8 Clock Hours of assignment",
+    ],
+    [
+        "SL-4",
+        "AMS  ",
+        "Incident Resolution Time",
+        "Priority 2",
+        "Silver",
+        "Measures the percentage of Priority 2 Incidents where the final resolution was within 8 Clock Hours of assignment",
+    ],
+    [
+        "SL-5",
+        "AMS  ",
+        "Incident Resolution Time",
+        "Priority 3",
+        "Platinum & Gold",
+        "Measures the percentage of Priority 3 Incidents where the final resolution was within 3 Business Days of assignment",
+    ],
+    [
+        "SL-6",
+        "AMS  ",
+        "Incident Resolution Time",
+        "Priority 3",
+        "Silver & Bronze",
+        "Measures the percentage of Priority 3 Incidents where the final resolution was within 3 Business Days of assignment",
+    ],
+    [
+        "SL-7",
+        "AMS  ",
+        "Incident Resolution Time",
+        "Priority 4",
+        "Platinum & Gold",
+        "Measures the percentage of Priority 4 Incidents where the final resolution was within 5 Business Days of assignment",
+    ],
+    [
+        "SL-8",
+        "AMS  ",
+        "Incident Resolution Time",
+        "Priority 4",
+        "Silver & Bronze",
+        "Measures the percentage of Priority 4 Incidents where the final resolution was within 5 Business Days of assignment",
+    ],
+    [
+        "SL-9",
+        "AMS  ",
+        "Incident Reopens %",
+        "Priority 1  & 2",
+        "Platinum, Gold, Silver",
+        "Measures the percentage of Priority 1  & 2 Incidents that were reopened post resolution",
+    ],
+    [
+        "SL-10",
+        "AMS  ",
+        "Incident Reopens %",
+        "Priority 3  & 4",
+        "Platinum, Gold, Silver, Bronze",
+        "Measures the percentage of Priority 3  & 4 Incidents that were reopened post resolution",
+    ],
+    [
+        "SL-11",
+        "AMS  ",
+        "End User CSAT",
+        "All",
+        "All",
+        "Measures business satisfaction with AMS",
+    ],
+    [
+        "SL-12",
+        "AMS  ",
+        "Service Request Resolution Time",
+        "Priority 1",
+        "Platinum & Gold",
+        "Measures the percentage of Priority 1 Service Requests that were resolved within 6 Clock Hours",
+    ],
+    [
+        "SL-13",
+        "AMS  ",
+        "Service Request Resolution Time",
+        "Priority 1",
+        "Silver",
+        "Measures the percentage of Priority 1 Service Requests that were resolved within 6 Clock Hours",
+    ],
+    [
+        "SL-14",
+        "AMS  ",
+        "Service Request Resolution Time",
+        "Priority 2",
+        "Platinum & Gold",
+        "Measures the percentage of Priority 2 Service Requests that were resolved within 4 Calendar Days",
+    ],
+    [
+        "SL-15",
+        "AMS  ",
+        "Service Request Resolution Time",
+        "Priority 2",
+        "Silver",
+        "Measures the percentage of Priority 2 Service Requests that were resolved within 4 Calendar Days",
+    ],
+    [
+        "SL-16",
+        "AMS  ",
+        "Service Request Resolution Time",
+        "Priority 3  & 4",
+        "Platinum & Gold",
+        "Measures the percentage of Priority 3  & 4 Service Requests that were resolved within 7 Calendar Days",
+    ],
+    [
+        "SL-17",
+        "AMS  ",
+        "Service Request Resolution Time",
+        "Priority 4",
+        "Platinum & Gold",
+        "Measures the percentage of Priority 4 Service Requests that were resolved within 14 Calendar Days",
+    ],
+    [
+        "SL-18",
+        "AMS  ",
+        "Service Request Resolution Time",
+        "Priority 3  & 4",
+        "Silver & Bronze",
+        "Measures the percentage of Priority 3  & 4 Service Requests that were resolved within 7 Calendar Days",
+    ],
+    [
+        "SL-19",
+        "AMS  ",
+        "Service Request Resolution Time",
+        "Priority 4",
+        "Silver & Bronze",
+        "Measures the percentage of Priority 4 Service Requests that were resolved within 14 Calendar Days",
+    ],
+    [
+        "SL-20",
+        "AMS  ",
+        "Change Success",
+        "All",
+        "All",
+        "Measures the percentage of changes that are deployed successfully without rollback or creating any incidents",
+    ],
+];
+
+>>>lib/utils.ts
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+
+>>>scripts/createExcel.ts
+import ExcelJS from 'exceljs';
+
+// This function creates Excel files from the CSV data
+export async function createExcelFiles() {
+    try {
+        // Enterprise data
+        const enterpriseData = [
+            ['Enterprise ID', 'Enterprise Name', 'Icon', 'Color', 'Apps', 'Value Savings', 'Vulnerabilities', 'Innovations', 'P1'],
+            ['ag-trading', 'Ag & Trading Enterprise', 'TrendingUp', 'from-green-500 to-emerald-600', 145, '$234K', 250, '50+', 3],
+            ['food', 'Food Enterprise', 'Utensils', 'from-orange-500 to-red-600', 226, '$180K', 120, '30+', 2],
+            ['spec-portfolio', 'Specialized Portfolio', 'Heart', 'from-purple-500 to-pink-600', 230, '$150K', 95, '25+', 4],
+            ['core-capabs', 'Core Capability', 'Building2', 'from-blue-500 to-indigo-600', 383, '$120K', 80, '20+', 0]
+        ];
+
+        // Business units data
+        const businessUnitsData = [
+            ['Enterprise ID', 'Business Unit Name', 'Apps', 'Value Savings', 'Vulnerabilities', 'Innovations', 'P1'],
+            ['ag-trading', 'Ag & Trading Enterprise', 17, '$27K', 28, 6, 1],
+            ['ag-trading', 'Ag & Trading Asia Pacific', 16, '$26K', 28, 6, 1],
+            ['ag-trading', 'Ag & Trading Europe Middle East', 16, '$26K', 28, 5, 1],
+            ['ag-trading', 'Ag & Trading North America', 16, '$26K', 28, 5, 0],
+            ['ag-trading', 'Ag & Trading Latin America', 16, '$26K', 28, 5, 0],
+            ['ag-trading', 'Ocean Transportation', 16, '$26K', 27, 5, 0],
+            ['ag-trading', 'World Trading', 16, '$26K', 27, 5, 0],
+            ['ag-trading', 'Cargill Risk Management', 16, '$26K', 27, 5, 0],
+            ['ag-trading', 'Metals', 16, '$25K', 27, 5, 0],
+            ['food', 'Commercial Excellence', 113, '$90K', 60, 15, 1],
+            ['food', 'Food Enterprise', 113, '$90K', 60, 15, 1],
+            ['spec-portfolio', 'Animal Nutrition & Health', 77, '$50K', 32, 9, 2],
+            ['spec-portfolio', 'Cargill Bioindustrial', 77, '$50K', 32, 8, 1],
+            ['spec-portfolio', 'Deicing Solutions', 76, '$50K', 31, 8, 1],
+            ['core-capabs', 'Trade & Capital Markets', 192, '$60K', 40, 10, 0],
+            ['core-capabs', 'Trading & Risk Management', 191, '$60K', 40, 10, 0]
+        ];
+
+        // Create workbook
+        const workbook = new ExcelJS.Workbook();
+
+        // Create worksheets
+        const enterpriseWorksheet = workbook.addWorksheet('Enterprises');
+        const businessUnitsWorksheet = workbook.addWorksheet('BusinessUnits');
+
+        // Add data to worksheets
+        enterpriseWorksheet.addRows(enterpriseData);
+        businessUnitsWorksheet.addRows(businessUnitsData);
+
+        // Write to file (updated to use correct path for current workspace)
+        await workbook.xlsx.writeFile('./public/data/enterprise-metrics.xlsx');
+
+        console.log('Excel file created successfully!');
+        return true;
+    } catch (error) {
+        console.error('Error creating Excel file:', error);
+        return false;
+    }
+}
+
+>>>scripts/generateCsvFromExcel.ts
+import * as ExcelJS from 'exceljs';
+import * as fs from 'fs';
+import * as path from 'path';
+
+export async function generateCsvFromExcel(): Promise<void> {
+    try {
+        console.log('Starting CSV generation from Excel file...');
+
+        // Path to the Excel file
+        const excelPath = path.join(process.cwd(), 'public', 'data', 'enterprise-metrics.xlsx');
+        const csvDir = path.join(process.cwd(), 'public', 'data');
+
+        console.log('Reading Excel file:', excelPath);
+
+        // Create workbook and read the Excel file
+        const workbook = new ExcelJS.Workbook();
+        await workbook.xlsx.readFile(excelPath);
+
+        console.log('Available worksheets:');
+        workbook.eachSheet((worksheet, sheetId) => {
+            console.log(`  ${sheetId}: ${worksheet.name}`);
+        });
+
+        // Process Enterprises data
+        console.log('\nProcessing Enterprises worksheet...');
+        const enterpriseWorksheet = workbook.getWorksheet('Enterprises');
+        if (!enterpriseWorksheet) {
+            throw new Error('Enterprises worksheet not found');
+        }
+
+        // Generate enterprises.csv
+        const enterprisesCsvData: string[] = [];
+        const enterpriseHeaders: string[] = [];
+
+        // Get headers from first row
+        const enterpriseHeaderRow = enterpriseWorksheet.getRow(1);
+        enterpriseHeaderRow.eachCell((cell) => {
+            enterpriseHeaders.push(cell.value?.toString() || '');
+        });
+        enterprisesCsvData.push(enterpriseHeaders.join(','));
+
+        // Get data rows
+        for (let rowNumber = 2; rowNumber <= enterpriseWorksheet.rowCount; rowNumber++) {
+            const row = enterpriseWorksheet.getRow(rowNumber);
+            if (row.hasValues) {
+                const rowData: string[] = [];
+                for (let col = 1; col <= enterpriseHeaders.length; col++) {
+                    const cellValue = row.getCell(col).value;
+                    // Handle formulas by getting the result
+                    let value = '';
+                    if (cellValue && typeof cellValue === 'object' && 'result' in cellValue) {
+                        value = cellValue.result?.toString() || '';
+                    } else {
+                        value = cellValue?.toString() || '';
+                    }
+                    rowData.push(value);
+                }
+                enterprisesCsvData.push(rowData.join(','));
+            }
+        }
+
+        // Write enterprises.csv
+        const enterprisesCsvPath = path.join(csvDir, 'enterprises.csv');
+        fs.writeFileSync(enterprisesCsvPath, enterprisesCsvData.join('\n'));
+        console.log(`✓ Generated ${enterprisesCsvPath}`);
+        console.log(`  Rows: ${enterprisesCsvData.length - 1} (excluding header)`);
+
+        // Process Business Units data
+        console.log('\nProcessing BusinessUnits worksheet...');
+        const businessUnitsWorksheet = workbook.getWorksheet('BusinessUnits');
+        if (!businessUnitsWorksheet) {
+            throw new Error('BusinessUnits worksheet not found');
+        }
+
+        // Generate business-units.csv
+        const businessUnitsCsvData: string[] = [];
+        const businessUnitsHeaders: string[] = [];
+
+        // Get headers from first row
+        const businessUnitsHeaderRow = businessUnitsWorksheet.getRow(1);
+        businessUnitsHeaderRow.eachCell((cell) => {
+            businessUnitsHeaders.push(cell.value?.toString() || '');
+        });
+        businessUnitsCsvData.push(businessUnitsHeaders.join(','));
+
+        // Get data rows
+        for (let rowNumber = 2; rowNumber <= businessUnitsWorksheet.rowCount; rowNumber++) {
+            const row = businessUnitsWorksheet.getRow(rowNumber);
+            if (row.hasValues) {
+                const rowData: string[] = [];
+                for (let col = 1; col <= businessUnitsHeaders.length; col++) {
+                    const cellValue = row.getCell(col).value;
+                    // Handle formulas by getting the result
+                    let value = '';
+                    if (cellValue && typeof cellValue === 'object' && 'result' in cellValue) {
+                        value = cellValue.result?.toString() || '';
+                    } else {
+                        value = cellValue?.toString() || '';
+                    }
+                    rowData.push(value);
+                }
+                businessUnitsCsvData.push(rowData.join(','));
+            }
+        }
+
+        // Write business-units.csv
+        const businessUnitsCsvPath = path.join(csvDir, 'business-units.csv');
+        fs.writeFileSync(businessUnitsCsvPath, businessUnitsCsvData.join('\n'));
+        console.log(`✓ Generated ${businessUnitsCsvPath}`);
+        console.log(`  Rows: ${businessUnitsCsvData.length - 1} (excluding header)`);
+
+        console.log('\n✅ CSV generation completed successfully!');
+
+        // Verify the generated files
+        console.log('\nVerifying generated files:');
+
+        // Check enterprises.csv
+        const enterprisesContent = fs.readFileSync(enterprisesCsvPath, 'utf8');
+        const enterprisesLines = enterprisesContent.split('\n').filter(line => line.trim());
+        console.log(`  enterprises.csv: ${enterprisesLines.length} lines`);
+        console.log(`    Header: ${enterprisesLines[0]}`);
+        if (enterprisesLines.length > 1) {
+            console.log(`    Sample row: ${enterprisesLines[1]}`);
+        }
+
+        // Check business-units.csv
+        const businessUnitsContent = fs.readFileSync(businessUnitsCsvPath, 'utf8');
+        const businessUnitsLines = businessUnitsContent.split('\n').filter(line => line.trim());
+        console.log(`  business-units.csv: ${businessUnitsLines.length} lines`);
+        console.log(`    Header: ${businessUnitsLines[0]}`);
+        if (businessUnitsLines.length > 1) {
+            console.log(`    Sample row: ${businessUnitsLines[1]}`);
+        }
+
+    } catch (error) {
+        const errorMessage = error instanceof Error ? error.message : String(error);
+        console.error('❌ Error generating CSV files:', errorMessage);
+        if (error instanceof Error) {
+            console.error(error.stack);
+        }
+        process.exit(1);
+    }
+}
+
+// Run the script if called directly
+if (require.main === module) {
+    generateCsvFromExcel();
+}
+

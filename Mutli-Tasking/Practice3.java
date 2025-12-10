@@ -23,14 +23,14 @@ public class Practice3 {
     static class Thread1 extends Thread {
         @Override
         public void run() {
-            // synchronized (q) {
-            for (int i = 0; i < 10; i++) {
-                enq(i);
-                System.out.print("Enqueue " + i + " ");
-                System.out.println(q);
-                // q.notifyAll(); -- notifies other threads
+            synchronized (q) {
+                for (int i = 0; i < 10; i++) {
+                    enq(i);
+                    System.out.print("Enqueue " + i + " ");
+                    System.out.println(q);
+                    q.notifyAll(); // -- notifies other threads
+                }
             }
-            // }
         }
 
     }
@@ -39,12 +39,12 @@ public class Practice3 {
 
         @Override
         public void run() {
-            // synchronized (q) {
-            for (int i = 0; i < 10; i++) {
-                System.out.print("Dequeue " + deq() + " ");
-                System.out.println(q);
+            synchronized (q) {
+                for (int i = 0; i < 10; i++) {
+                    System.out.print("Dequeue " + deq() + " ");
+                    System.out.println(q);
+                }
             }
-            // }
         }
     }
 
