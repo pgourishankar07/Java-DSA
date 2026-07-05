@@ -87,7 +87,7 @@ public class buildST {
 
         // _______//______//_________//_____________
 
-        System.out.println(getSum(nodes, 0, 0));
+        System.out.println(getSum(nodes, 0, 7));
 
         // _______//______//_________//_____________
         // update(nodes, 2, 2);

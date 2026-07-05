@@ -1,0 +1,48 @@
+                    Iterable (Interface)
+                           │
+                           ▼
+                       Collection (Interface)
+                           │
+         ┌─────────────────┼─────────────────┐
+         ▼                 ▼                 ▼
+   List (Interface)  Queue (Interface)  Set (Interface)
+         │                 │                 │
+         │                 ▼                 ├─────────────────┐
+         │           Deque (Interface)       ▼                 ▼
+         │                 │           SortedSet (Interface) HashSet (Class)
+         │           ┌─────┴─────┐           │                 ▲
+         ▼           ▼           ▼           ▼                 │
+   ┌───────────┐ ┌───────────┐ ┌───────────┐NavigableSet(Intf) │
+   │ ArrayList │ │ArrayDeque │ │LinkedList │ │                 │
+   └───────────┘ └───────────┘ └─────┬─────┘ ▼                 │
+         ▲                           │   ┌───────────┐         │
+         │                           │   │  TreeSet  │         │
+   ┌─────┴─────┐                     │   └───────────┘         │
+   │  Vector   │ ◄───────────────────┘                         │
+   └─────┬─────┘                                               │
+         ▲                                                     │
+         │                                                     │
+   ┌─────┴─────┐                                               │
+   │   Stack   │                                               │
+   └───────────┘                                               │
+                                                               │
+   ┌───────────────────────────────────────────────────────────┘
+   ▼
+┌─────────────────┐
+│  LinkedHashSet  │
+└─────────────────┘
+
+
+
+
+                        Map (Interface)
+                               │
+         ┌─────────────────────┼─────────────────────┐
+         ▼                     ▼                     ▼
+   HashMap (Class)      SortedMap (Interface)   Hashtable (Class)
+         │                     │                     │
+         ▼                     ▼                     ▼
+LinkedHashMap (Class)   NavigableMap (Interface)  Properties (Class)
+                               │
+                               ▼
+                        TreeMap (Class)

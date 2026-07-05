@@ -32,7 +32,7 @@ public class KMPAlgo {
         return -1; // Pattern not found
     }
 
-    // Function to compute the LPS array
+    // Function to compute the LPS array -> Longest Prefix Suffix Array
     public static int[] computeLPSArray(String pattern) {
         int m = pattern.length();
         int[] lps = new int[m];
