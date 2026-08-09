@@ -67,7 +67,8 @@ public class ArrayDequeue {
      * - poll() -> removes queue head safely. Returns: removed element or null.
      *
      * Stack-style methods
-     * - push(E e) -> pushes at front (stack top). Returns: void.
+     * - push(E e) -> pushes at front (stack top). Returns: void. -- internally
+     * calls addFirst()
      * - pop() -> pops from front. Returns: removed top element.
      *
      * Search / remove occurrence
@@ -103,6 +104,7 @@ public class ArrayDequeue {
      * - Use ArrayDeque for queue/deque operations in most single-threaded cases.
      * - Avoid when you need null elements or thread-safe operations without
      * external synchronization.
+     * - thread safe : ConcurrentLinkedDequeue
      *
      * Complexity (typical)
      * - add/remove/peek at both ends: O(1) amortized

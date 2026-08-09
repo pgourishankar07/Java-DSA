@@ -55,12 +55,13 @@ class Solution {
 
 public class Test {
     public static void main(String[] args) {
-        int prices[] = { 8, 4, 6, 2, 3 };
+        // int prices[] = { 8, 4, 6, 2, 3 };
 
-        int ans[] = new int[prices.length];
-        ans = Solution.finalPrices(prices);
+        // int ans[] = new int[prices.length];
+        // ans = Solution.finalPrices(prices);
 
-        System.out.println(Arrays.toString(ans));
+        System.out.println(15 >> 3);
+        System.out.println(15 / 3);
 
         // LinkedHashMap<LinkedList<Integer>, Integer> stk = new Hashtable<>();
 

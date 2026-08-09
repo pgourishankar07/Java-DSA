@@ -17,6 +17,7 @@ public class LinkedHashMap {
      * - Keys are unique; values may repeat.
      * - It preserves insertion order by default.
      * - Can also preserve access order if constructed that way.
+     * - not thread safe, (Collections.synchronizedMap(new LinkedHashMap()))
      *
      * Key points
      * - No duplicate keys.

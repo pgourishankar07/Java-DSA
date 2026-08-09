@@ -17,6 +17,7 @@ public class HashMap {
      * - Keys are unique; values may repeat.
      * - It does not maintain insertion order.
      * - It allows one null key and multiple null values.
+     * - it is not thread safe. (HashTable/ConcurrentHashHap - thread safe)
      *
      * Key points
      * - Average O(1) for put, get, remove, containsKey.

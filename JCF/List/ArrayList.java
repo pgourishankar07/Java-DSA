@@ -19,7 +19,7 @@ public class ArrayList {
      * Queue<LinkedList<Integer>> stk = new ArrayList<>(); -- invalid
      *
      * Key points
-     * - Fast random access by index: O(1)
+     * - Fast random access by index: O(1), get/set/add/remove frm anywhere
      * - Add at end: amortized O(1)
      * - Insert/remove in middle or front: O(n)
      * - Allows duplicate values
@@ -231,8 +231,12 @@ public class ArrayList {
      * ^--------------- inner element type is ArrayList<Integer>
      *
      * Key idea:
+     * - sort(Comparator)
+     * - replaceAll(UnaryOperator)
      * - Left side controls compile-time accessible methods.
      * - Right side controls actual runtime object.
+     * - subList(fromInd, toInd) -- any change in this will change the main list
+     * - thread safe : CopyOnWriteArrayList
      */
 
     public static void main(String[] args) {

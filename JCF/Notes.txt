@@ -1,0 +1,68 @@
+Java Collection Framework :
+- intro in java 1.2
+- Collections : grp of obj
+- Framework : arch. to manage these grp of obj
+- Iterable was added in Java 1.5 -- used to traverse the collection
+- iterator() : java 1.5, forEach() : java 1.8 -- internally it is for loop + Consumer Functional interface 
+- hasNext(), next(), remove()
+
+Common Collection Methods :
+1. size()    Java1.2~    It returns the total number of elements present in the collection.
+2. isEmpty() Java1.2     Used to check if collection is empty or has some value. It returns true/false.
+3. contains() Java1.2    Used to search an element in the collection, returns true/false.
+4. toArray() Java1.2     It converts the collection into an Array.
+5. add()     Java1.2     Used to insert an element in the collection.
+6. remove()  Java1.2     Used to remove an element from the collection.
+7. addAll()  Java1.2     Used to insert one collection in another collection.
+8. removeAll() Java1.2   Remove all the elements from the collections which are present in the collection passed in the parameter.
+9. clear()   Java1.2     Remove all the elements from the collection.
+10. equals() Java1.2     Used to check if 2 collections are equal or not.
+11. stream() and parallelStream() Java1.8    Provide effective way to work with collection like filtering, processing data etc.
+12. iterator() Java1.2    As Iterable interface added in java 1.5, so before this, this method was used to iterate the collection and still can be used.
+
+Collection vs Collections
+- `Collection` (interface)
+	- What it is: core interface that defines the contract for groups of objects. Implemented by `List`, `Set`, `Queue`, etc.
+	- Usage: used as a type for variables and method signatures when you need a general collection contract.
+
+- `Collections` (utility class)
+	- What it is: final utility class with static methods (cannot be instantiated). Provides algorithms and collection wrappers.
+	- Common static methods: 
+    `sort()`, 
+    `binarySearch()`, 
+    `reverse()`, 
+    `shuffle()`, 
+    `synchronizedList()`, 
+    `unmodifiableList()`, 
+    `emptyList()`, 
+    `singletonList()`, 
+    `copy()`, 
+    `swap()`, 
+    `fill()`, 
+    `frequency()`, 
+    `max()`, 
+    `rotate()`, 
+    `min()`.
+	- Usage: call methods to operate on or return collections (e.g., sorting, searching, making unmodifiable/synchronized views).
+
+Quick differences
+- Type: `Collection` = interface; `Collections` = final class with static utilities.
+- Purpose: `Collection` defines behavior; `Collections` provides helper algorithms and wrappers.
+- Instantiation: you implement/instantiate classes that implement `Collection` (e.g., `ArrayList`); you never instantiate `Collections`.
+
+Examples
+- Using `Collection` methods:
+	List<String> list = new ArrayList<>();
+	list.add("apple");
+
+- Using `Collections` utilities:
+	Collections.sort(list);
+	List<String> readOnly = Collections.unmodifiableList(list);
+
+When to use
+- Use `Collection` (or its subinterfaces) as the type when you want a variable/method to accept any collection implementation.
+- Use `Collections` when you need algorithms or wrappers (sorting, synchronization, immutability, etc.).
+
+Note: Java 8 added default and static methods to interfaces (e.g., `stream()`, `forEach()`), so some utility-like operations are available directly on `Collection` instances.
+
+

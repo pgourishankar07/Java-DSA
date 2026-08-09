@@ -163,6 +163,8 @@ public class LinkedList {
      * When to use
      * - Use LinkedList when you do many insertions and removals near the ends.
      * - Avoid it when you need frequent random access by index.
+     * - Arraydequeue + arraylist
+     * - thread safe : vector
      */
 
     public static void main(String[] args) {

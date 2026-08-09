@@ -22,7 +22,7 @@ public class Vector {
      * Key points
      * - Maintains insertion order
      * - Allows duplicate values
-     * - Allows null values
+     * - Allows null values + maintains insertion order
      * - Fast random access by index: O(1)
      * - Add/remove at end: amortized O(1)
      * - Insert/remove in middle/front: O(n)

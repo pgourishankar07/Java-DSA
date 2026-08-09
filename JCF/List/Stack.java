@@ -18,6 +18,7 @@ public class Stack {
      * - It extends Vector, so internally it is array-backed and synchronized. --
      * thread safety
      * - creating object from List, Vector is valid
+     * - deque : not thread safe
      *
      * Key points
      * - push/pop/peek are stack-style operations.

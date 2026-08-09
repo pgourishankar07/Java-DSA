@@ -18,8 +18,8 @@ public class PriorityQueue {
      * - creating object from Queue is valid
      *
      * Key points
-     * - Default ordering: natural order (Comparable).
-     * - Custom ordering: provide Comparator.
+     * - Default ordering: natural order (Comparable). -- Interface. compareTo(x)
+     * - Custom ordering: provide Comparator. -- Functional Interface. compare(x,y)
      * - Allows duplicate values.
      * - Does NOT allow null elements.
      * - Not thread-safe.
@@ -95,6 +95,7 @@ public class PriorityQueue {
      * - Common in Dijkstra, Prim, scheduling, top-k, merge k sorted lists.
      * - If you need strict sorted iteration, use TreeSet/TreeMap or poll
      * repeatedly.
+     * - for thread safety : PriorityBlockingQueue
      *
      * Complexity (typical)
      * - offer/add: O(log n)
